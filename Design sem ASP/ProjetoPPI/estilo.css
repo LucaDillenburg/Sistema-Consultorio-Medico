@@ -1,0 +1,227 @@
+﻿html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    word-wrap: break-word;
+    overflow-x: hidden;
+}
+
+nav.leftnav {
+    position: relative;
+    float: left;
+    height: 100%;
+    position: fixed;
+    width: 15vw;
+    font-family: 'Comfortaa', cursive;
+    font-size: 70%;
+    border-right: solid 1px #a6a6a6;
+    line-break: normal;
+    z-index: 9999;
+    overflow-x: hidden;
+    background-color: #f2f2f2;
+}
+
+.menu-item {
+    position: relative;
+    float: left;
+    display: block;
+    width: 100%;
+    padding: 20px 14px;    
+    color: black;
+    text-decoration: none;
+    font-size: 2em;
+    background-image: none;
+    background-color: #f2f2f2;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+.menu-item:hover{
+    background-color: #cccccc;
+}
+
+.menu-item i {
+    margin-right: 10px;
+}
+
+#demo {
+    background-color: #00cc00;
+    font-size: 2.5em;
+    color: white;
+    border-bottom: solid 1px #a6a6a6;
+}
+
+.content {
+    box-sizing: border-box;
+    left: 20vw;
+    width: 85vw;
+    position: relative;
+    font-size: 70%;  
+}
+
+.content div.title {        
+    padding: 10px 14px; 
+    box-sizing: border-box;
+    width: 100%;
+    background-image: linear-gradient(#66ffff,#4dffa6);
+    color: black;   
+}
+
+.content div.title h1 {
+    padding: 30px 0px;
+    font-size: 8em;
+    font-family: 'Pacifico', cursive;
+}
+
+.content .title h2 {
+    font-size: 3em;
+    font-family: 'Baloo Tammudu', cursive;
+    padding: 0;    
+}
+
+.content .title h1, h2 {    
+    margin: 0;   
+    text-align: center;
+}
+
+.content .title hr {
+    margin-top: 0px;
+    border: 2px solid white; 
+    border-radius: 5px;
+    width: 85%;
+}
+
+.content h1{
+    font-family: 'Baloo Tammudu', cursive;
+    font-size: 3em;
+    color: black;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.content h1 i {
+    margin-right: 10px;
+}
+
+.content h2 {
+    text-align: left;
+    color: black;
+    font-size: 2.5em;
+    font-family: 'Baloo Tammudu', cursive;
+}
+
+.content p{
+    text-align: justify;
+    display: block;
+    width: 80%;
+    padding: 10px;
+    margin: auto;
+    height: auto;
+    text-indent: 100px;
+    font-size: 2em;
+    font-family: 'Comfortaa', cursive;
+    color: black;
+}
+
+.btnClose, .btnOpen {
+    display: none;
+    cursor: pointer;
+}
+
+.btnClose {
+    float: right;
+}
+
+#medicos-sorrindo {
+    height: 200px;
+    background-image: url("medico-sorrindo.jpg");
+    background-position:center;
+    background-size:cover;
+}
+
+.section {
+    margin: 0;
+    padding: 20px 40px;
+    border-bottom: solid 1px #a6a6a6;
+}
+
+#quem-somos {        
+    background-image: url("medico-paciente.jpg");
+    background-position-x:center;
+    background-position-y:top;
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+
+#quem-somos p {
+    background-color: rgba(204, 204, 204, 0.7);
+}
+
+#quem-somos i {
+    color: #ff0000;
+}
+
+#consultas i {
+    color: #33cc33;
+}
+
+#titulo-pacientes {
+    font-family: 'Baloo Tammudu', cursive;
+    text-align: left;
+    font-size: 5em;
+}
+
+#subtitulo-pacientes {
+    font-family: 'Comfortaa', cursive;
+    text-align: left;
+    font-size: 2em;
+}
+
+.formulario {
+    margin: auto;
+    margin-top: 50px;
+    padding: 10px;
+    width: 300px;
+    height: auto;
+    background-color: inherit;
+    box-shadow: 0px 0px 10px 0.5px rgba(153, 153, 153, 0.8);
+}
+
+.formulario .campo {    
+    margin: auto;
+    padding: 5px;
+}
+
+.formulario .campo label {
+    font-size: 2em;
+    font-family: 'Comfortaa', cursive;
+    color: black;
+}
+
+.formulario .campo input[type=text] {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 1.5em;
+    margin-left: 10px;
+}
+
+.formulario .campo input[type=button] {
+    text-decoration: none;
+    background: none;
+    border: none;
+    width: 80%;
+    text-align: center;
+    margin: auto;
+    font-size: 2em;
+    font-family: 'Comfortaa', cursive;
+    vertical-align: middle;
+    padding: 0;
+    margin: 0;
+}
+
+
+
