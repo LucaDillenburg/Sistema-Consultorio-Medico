@@ -1,0 +1,22 @@
+PÁGINAS:
+ - LOGIN(uma pra paciente, uma pra médico, uma pra secretária). OK
+ - PÁGINA DO MÉDICO
+   -> ver agenda (Consultas)
+   -> Consulta agora: pode fazer observacoes, colocar que consulta foi ocorrida
+   -> adicionar especialidades
+
+ - PÁGINA DO PACIENTE
+   -> todas consultas (opcao para consultas ficarem em sequencia ou no calendario)
+   -> ver consulta especifica (pode registrar satisfação)
+   -> pedir para agendar uma consulta ??
+
+ - PÁGINA DA SECRETÁRIA
+   -> ver agenda de todos os médicos (primeiro uma agenda do mes: cada dia terá apenas o número do dia e um número pequeno de quantas consultas marcadas há nesse dia, depois no dia e ver as headlines das consultas daquele dia e se clicar na consulta mostrar as informacoes da consulta)
+(filtrar por medico ou por paciente)
+   -> cadastrar paciente, medico e secretaria. OK
+   -> agendar consulta (nao pode ser data anterior a do dia). OK
+
+
+Sistema:
+ .se o medico nao colocar que a consulta ocorreu, o sistema deverá colocar que a consulta nao ocorreu (cancelada)
+ .mandar sms ou email para paciente um dia antes da consulta

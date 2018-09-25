@@ -1,0 +1,3 @@
+FAZER AGORA
+ - quando um medico fizer uma observacao sobre a consulta mudar o status da consulta para ocorrido
+ - quando tiver uma nova satisfacao deixar uma notificacao que levará o médico para ver a consulta (quando medico ver uma consulta verificar se ele viu um novo comentario ou satisfacao). Novo campo: viuSatisfacao bit null

@@ -1,0 +1,50 @@
+___ O QUE FAZER AGORA ___
+ - TextChanged NAO FUNCIONA (pesquisar: TextChanged ASPX doesnt fire)
+
+ - escape!!! (no minimo javascript e sql injection)
+
+ - CALENDARIO: http://demo.geekslabs.com/materialize-v1.0/app-calendar.html#!
+
+ - arrumar cadastro: dá erro quando clica em qualquer botao, mesmo que nao tenha nada onclick dele
+   . as tags nao estao em formato de tags (colocar <TEXTO/>)
+   . <AjaxToolkit:ToolkitScriptManager ID="smContent" runat="server"></AjaxToolkit:ToolkitScriptManager>
+   . https://stackoverflow.com/questions/6348589/difference-between-script-manager-and-toolkit-script-manager
+   
+   . txtHorario (Agendar Consulta)
+            <ajaxToolkit:MaskedEditExtender ID="MaskedEditExtender1" runat="server" 
+            TargetControlID="txtHorario" 
+            Mask="99/99/9999 99:99" 
+            MaskType="Number" 
+            InputDirection="LeftToRight" 
+            ClearMaskOnLostFocus ="False"/>
+
+   . txtCRM (CadastroUsuarios)
+            <ajaxToolkit:MaskedEditExtender ID="MaskedEditExtender4" runat="server" 
+            TargetControlID="txtCRM" 
+            Mask="99999999-9/LL" 
+            InputDirection="LeftToRight" 
+            ClearMaskOnLostFocus ="False" />
+
+   . txtCelular (CadastroUsuarios)
+            <ajaxToolkit:MaskedEditExtender ID="MaskedEditExtender2" runat="server" 
+            TargetControlID="txtCelular" 
+            Mask="(99)99999-9999" 
+            MaskType="Number" 
+            InputDirection="LeftToRight" 
+            ClearMaskOnLostFocus ="False" />
+
+   . txtTelefone (CadastroUsuarios)
+            <ajaxToolkit:MaskedEditExtender ID="MaskedEditExtender1" runat="server" 
+            TargetControlID="txtTelefone" 
+            Mask="(99)9999-9999" 
+            MaskType="Number" 
+            InputDirection="LeftToRight" 
+            ClearMaskOnLostFocus ="False" />
+
+   . txtHorario (AgendarConsulta)
+            <ajaxToolkit:MaskedEditExtender ID="MaskedEditExtender1" runat="server" 
+            TargetControlID="txtHorario" 
+            Mask="99:99" 
+            MaskType="Number" 
+            InputDirection="LeftToRight" 
+            ClearMaskOnLostFocus ="False" />
