@@ -132,9 +132,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Content\architecture-buildings-city-1139556.jpg" />
+    <Content Include="Index.aspx" />
+    <Content Include="LoginT.aspx" />
+    <Content Include="medico-paciente.jpg" />
+    <Content Include="medico-sorrindo.jpg" />
     <Content Include="Medico\Index.aspx" />
     <Content Include="Medico\VerConsulta.aspx" />
     <Content Include="Paciente\VerConsulta.aspx" />
+    <Content Include="Scripts\script.js" />
     <Content Include="Secretaria\AgendarConsulta.aspx" />
     <Content Include="Secretaria\CadastroUsuarios.aspx" />
     <Content Include="Contact.aspx" />
@@ -152,8 +158,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Menu.Master" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Index.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Secretaria\Index.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -192,6 +198,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Acesso.cs" />
+    <Compile Include="IndexT.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IndexT.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoginT.aspx.cs">
+      <DependentUpon>LoginT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoginT.aspx.designer.cs">
+      <DependentUpon>LoginT.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Medico\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -205,6 +225,13 @@
     </Compile>
     <Compile Include="Medico\VerConsulta.aspx.designer.cs">
       <DependentUpon>VerConsulta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Menu.Master.cs">
+      <DependentUpon>Menu.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Menu.Master.designer.cs">
+      <DependentUpon>Menu.Master</DependentUpon>
     </Compile>
     <Compile Include="Paciente\VerConsulta.aspx.cs">
       <DependentUpon>VerConsulta.aspx</DependentUpon>
@@ -256,13 +283,6 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Index.aspx.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Index.aspx.designer.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
