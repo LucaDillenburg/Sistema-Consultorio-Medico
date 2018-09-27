@@ -116,14 +116,13 @@ namespace ProjetoPPI.PagPaciente
             
             if (tudoCerto)
             {
-                // ADICIONAR SATISFACAO (E TALVEZ COMENTARIO)
-                if (String.IsNullOrEmpty(this.txtComentario.Text))
-                    ((ConexaoBD)Session["conexao"]).ExecuteInUpDel("update consulta set " + 
-                        " satisfacao = " + satisfacao + " where codConsulta=" + this.codConsulta);
-                else
-                    ((ConexaoBD)Session["conexao"]).ExecuteInUpDel("update consulta set comentario = '"
-                        + this.txtComentario.Text + "', satisfacao = " + satisfacao +
-                        " where codConsulta=" + this.codConsulta);
+                //colocar no session da consulta 
+                ((AtributosConsultaCod)Session["consulta"]).Comentario = this.txtComentario.Text;
+                ((AtributosConsultaCod)Session["consulta"]).Satisfacao = satisfacao;
+                ((AtributosConsultaCod)Session["consulta"]).HorarioSatisfacao = DateTime.Now;
+                ((AtributosConsultaCod)Session["consulta"]).MedicoJahViuSatisfacao = false;
+
+                ((Paciente)Session["usuario"]).RegistrarSatisfacao((AtributosConsultaCod)Session["consulta"]);
 
                 this.txtComentario.ReadOnly = true;
                 this.btnRegistrarSatisfacao.Visible = false;
@@ -131,10 +130,6 @@ namespace ProjetoPPI.PagPaciente
                 this.lbMsgComentario.Text = "";
                 this.lbMsgSatisfacao.Text = "";
                 this.lbMsg.Text = "Comentário e satisfação registradas...";
-
-                //colocar no session da consulta 
-                ((AtributosConsultaCod)Session["consulta"]).Comentario = this.txtComentario.Text;
-                ((AtributosConsultaCod)Session["consulta"]).Satisfacao = satisfacao;
             }
         }
     }

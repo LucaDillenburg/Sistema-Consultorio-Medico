@@ -129,17 +129,16 @@ namespace ProjetoPPI.PagMedico
 
             if (tudoCerto)
             {
-                // ADICIONAR COMENTARIO E SATISFACAO
-                ((ConexaoBD)Session["conexao"]).ExecuteInUpDel("update consulta set observacoes = '"
-                     + this.txtObservacoes.Text + "'" + " where codConsulta=" + this.codConsulta);
+                //colocar no session da consulta 
+                ((AtributosConsultaCod)Session["consulta"]).Observacoes = this.txtObservacoes.Text;
+
+                // ADICIONAR OBSERVACAO
+                ((Medico)Session["usuario"]).MudarObservacoes((AtributosConsultaCod)Session["consulta"]);
 
                 this.lbMsgObservacoes.Text = "";
                 this.lbMsg.Text = "Comentário e satisfação registradas...";
 
                 this.btnMandarObservacoes.Text = "Mudar Observações";
-
-                //colocar no session da consulta 
-                ((AtributosConsultaCod)Session["consulta"]).Observacoes = this.txtObservacoes.Text;
             }
         }
     }

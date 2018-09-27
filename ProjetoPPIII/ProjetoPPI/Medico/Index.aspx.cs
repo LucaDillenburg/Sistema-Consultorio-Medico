@@ -23,60 +23,30 @@ namespace ProjetoPPI.PagMedico
                 
             this.conexaoBD = (ConexaoBD)Session["conexao"];
 
-            //ve se há consulta agora e coloca a satisfacao media
-            tmrConsultaAtual_Tick(null, null);
-        }
-        
-        protected AtributosConsulta ConsultaAtual()
-        {
-            DateTime agora = DateTime.Now;
-            DateTime consultaMeiaHora = new DateTime(agora.Year, agora.Month, agora.Day,
-                agora.Hour, (agora.Minute < 30)?0:30, 0);
-            DateTime consultaUmaHora;
-            if (agora.Minute < 30)
-                consultaUmaHora = new DateTime(agora.Year, agora.Month, agora.Day,
-                    agora.Hour-1, 30, 0);
-            else
-                consultaUmaHora = new DateTime(agora.Year, agora.Month, agora.Day,
-                    agora.Hour, 0, 0);
-
-            DataSet dadosConsulta = this.conexaoBD.ExecuteSelect("select codConsulta, proposito, horario, umaHora, observacoes, " +
-                " status, emailMedico, emailPac, satisfacao, comentario from consulta " +
-                " where emailMedico = " + ((Medico)Session["usuario"]).Atributos.Email + " and " +
-                " ( horario = " + consultaMeiaHora.ToString(AtributosConsulta.FORMATO_HORARIO) + 
-                " or (horario = " + consultaUmaHora.ToString(AtributosConsulta.FORMATO_HORARIO) + 
-                " and umaHora = 1) )");
-            if (dadosConsulta.Tables[0].Rows.Count <= 0)
-                return null;
-
-            object[] auxDados = dadosConsulta.Tables[0].Rows[0].ItemArray;
-            AtributosConsultaCod consulta = new AtributosConsultaCod();
-            //codConsulta, proposito, horario, umaHora, observacoes, status, emailMedico, emailPac, 
-            //satisfacao, comentario
-            consulta.CodConsulta = Convert.ToInt32(auxDados[0]);
-            consulta.Proposito = auxDados[1].ToString();
-            consulta.SetHorario(Convert.ToDateTime(auxDados[2]), (ConexaoBD)Session["conexao"]);
-            consulta.UmaHora = Convert.ToInt32(auxDados[3])==1;
-            consulta.Observacoes = auxDados[4].ToString();
-            consulta.Status = Convert.ToChar(auxDados[5]);
-            consulta.SetEmailMedico(auxDados[6].ToString(), (ConexaoBD)Session["conexao"]);
-            consulta.SetEmailPaciente(auxDados[7].ToString(), (ConexaoBD)Session["conexao"]);
-            consulta.Satisfacao = Convert.ToInt32(auxDados[8]);
-            consulta.Comentario = auxDados[9].ToString();
-
-            return consulta;
+            //verifica elementos que precisam ser atualizados
+            this.AtualizarPagina();
         }
 
-        protected void tmrConsultaAtual_Tick(object sender, EventArgs e)
+
+        //timer: ficar atualizando a pagina
+        //ve se há consulta agora, coloca a satisfacao media e verifica novas notificacoes
+        protected void timer_Tick(object sender, EventArgs e)
+        { /*o timer faz a pagina reloadar e no reload eh chamado o atualizar pagina*/ }
+
+        protected void AtualizarPagina()
         {
-            AtributosConsulta atributosConsulta = this.ConsultaAtual();
+            AtributosConsulta atributosConsulta = ((Medico)Session["usuario"]).ConsultaAtual();
             this.consultaAtual = atributosConsulta;
             this.btnConsultaAtual.Visible = atributosConsulta == null;
 
-            this.lbSatisfacaoMedia.Text = "Satisfação Média: " + Medico.SatisfacaoMedia(((Medico)Session["usuario"]).Atributos.Email, 
-                (ConexaoBD)Session["conexao"]) + "/5";
+            this.lbSatisfacaoMedia.Text = "Satisfação Média: " + Medico.SatisfacaoMedia(((Medico)Session["usuario"]).Atributos.Email,
+                (ConexaoBD)Session["conexao"]).ToString("0.0") + "/5";
+
+            this.btnNotificacoes.Text = "Notificações (" + ((Medico)Session["usuario"]).QtdNovasSatisfacoes + ")";
         }
 
+
+        //botoes
         protected void btnConsultaAtual_Click(object sender, EventArgs e)
         {
             if (this.consultaAtual == null)
@@ -87,6 +57,17 @@ namespace ProjetoPPI.PagMedico
                 Response.Redirect("VerConsulta.aspx");
                 return;
             }
+        }
+
+        protected void btnNotificacoes_Click(object sender, EventArgs e)
+        {
+            AtributosConsultaCod[] atributosConsulta = ((Medico)Session["usuario"]).UltimasSatisfacoes;
+            
+            //mostrar notificacoes
+
+            //atualizar banco
+            ((Medico)Session["usuario"]).ViuNovasSatisfacoes();
+            this.btnNotificacoes.Text = "Notificações (0)";
         }
     }
 }

@@ -9,10 +9,14 @@
 </head>
 <body>
 <form id="form1" runat="server">
+<asp:scriptmanager runat="server"></asp:scriptmanager>
+
 <div>
     <asp:Label ID="lbSatisfacaoMedia" runat="server" Text="Satisfação Média: "></asp:Label>
     <asp:Button ID="btnConsultaAtual" runat="server" Text="Consulta Atual" OnClick="btnConsultaAtual_Click" />
-    <asp:Timer ID="tmrConsultaAtual" runat="server" OnTick="tmrConsultaAtual_Tick"></asp:Timer>
+    <asp:Timer ID="timer" runat="server" OnTick="timer_Tick"></asp:Timer>
+
+    <asp:Button ID="btnNotificacoes" runat="server" Text="Notificacoes" OnClick="btnNotificacoes_Click" />
 </div>
 </form>
 </body>

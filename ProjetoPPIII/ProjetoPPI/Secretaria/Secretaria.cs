@@ -30,8 +30,8 @@ namespace ProjetoPPI
             if (data.Tables[0].Rows.Count <= 0)
                 return false;
             
-            this.atributos.NomeCompleto = data.Tables[0].Rows[0].ItemArray[0].ToString();
-            this.atributos.Endereco = data.Tables[0].Rows[0].ItemArray[1].ToString();
+            this.atributos.NomeCompleto = (string)data.Tables[0].Rows[0].ItemArray[0];
+            this.atributos.Endereco = (string)data.Tables[0].Rows[0].ItemArray[1];
 
             return true;
         }
@@ -72,6 +72,7 @@ namespace ProjetoPPI
                 atrSecretaria.Email + "', '" + atrSecretaria.NomeCompleto + "', '" + atrSecretaria.Endereco + "', '" + atrSecretaria.SenhaCriptografada + "')");
         }
 
+        protected const int MINUTOS_DE_TOLERANCIA = 5;
         public void CadastrarConsulta(AtributosConsulta atrConsulta)
         {
             if (!String.IsNullOrEmpty(atrConsulta.Observacoes) || !String.IsNullOrEmpty(atrConsulta.Comentario)
@@ -82,9 +83,25 @@ namespace ProjetoPPI
                 String.IsNullOrEmpty(atrConsulta.EmailPaciente) || String.IsNullOrEmpty(atrConsulta.Proposito))
                 throw new Exception("Atributos da consulta invalido! Faltando dados!");
 
+            //a consulta tem que ser marcada antes para depois realiza-la (5 minutos de tolerancia)
+            DateTime agoraComTolerancia;
+            if (DateTime.Now.Minute < MINUTOS_DE_TOLERANCIA)
+                agoraComTolerancia = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,
+                  DateTime.Now.Hour - 1, 60 - MINUTOS_DE_TOLERANCIA + DateTime.Now.Minute, DateTime.Now.Second);
+            else
+                agoraComTolerancia = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,
+                  DateTime.Now.Hour, DateTime.Now.Minute - MINUTOS_DE_TOLERANCIA, DateTime.Now.Second);
+            if (atrConsulta.Horario.CompareTo(DateTime.Now) < 0)
+                throw new Exception("Consulta tem que ser depois do horário atual! Tolerância: " + MINUTOS_DE_TOLERANCIA + " minutos.");
+
+            if (!Medico.HorarioConsultaEhLivre(atrConsulta, this.conexaoBD))
+                throw new Exception("Médico estará em outra consulta!");
+            if (!Paciente.HorarioConsultaEhLivre(atrConsulta, this.conexaoBD))
+                throw new Exception("Paciente estará em outra consulta!");
+
             //proposito, horario, umaHora, observacoes, status, emailMedico, emailPac
             this.conexaoBD.ExecuteInUpDel("insert into consulta(proposito, horario, umaHora, status, emailMedico, emailPac) " + 
-                "values('" + atrConsulta.Proposito + "', '" + atrConsulta.Horario + "', '" + (atrConsulta.UmaHora?"1":"0") + "', '" + 
+                "values('" + atrConsulta.Proposito + "', '" + atrConsulta.Horario + "', " + (atrConsulta.UmaHora?"1":"0") + ", '" + 
                 atrConsulta.Status + "', '" + atrConsulta.EmailMedico + "', '" + atrConsulta.EmailPaciente + "')");
         }
     }
