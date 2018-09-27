@@ -25,8 +25,7 @@ namespace ProjetoPPI
             for (int i = 0; i < emailNomePacientes.GetLength(0); i++)
                 this.cbxPacientes.Items.Add(new ListItem(emailNomePacientes[i, 1], emailNomePacientes[i, 0])); */
         }
-
-        protected const int MINUTOS_DE_TOLERANCIA = 5;
+        
         protected void btnAgendar_Click(object sender, EventArgs e)
         {
             AtributosConsulta atributos = new AtributosConsulta();
@@ -70,17 +69,6 @@ namespace ProjetoPPI
                 { throw new Exception("Formato de data inválido!"); }
 
                 atributos.SetHorario(data, (ConexaoBD)Session["conexao"]);
-
-                //a consulta tem que ser marcada antes para depois realiza-la (5 minutos de tolerancia)
-                DateTime agoraComTolerancia;
-                if (DateTime.Now.Minute < MINUTOS_DE_TOLERANCIA)
-                    agoraComTolerancia = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,
-                      DateTime.Now.Hour - 1, 60 - MINUTOS_DE_TOLERANCIA + DateTime.Now.Minute, DateTime.Now.Second);
-                else
-                    agoraComTolerancia = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,
-                      DateTime.Now.Hour, DateTime.Now.Minute - MINUTOS_DE_TOLERANCIA, DateTime.Now.Second);
-                if (data.CompareTo(DateTime.Now) < 0)
-                    throw new Exception("Consulta tem que ser depois do horário atual! Tolerância: " + MINUTOS_DE_TOLERANCIA + " minutos.");
             }
             catch (Exception err)
             { this.lbMsgHorario.Text = err.Message; podeIncluir = false; }
@@ -99,7 +87,7 @@ namespace ProjetoPPI
                 }catch (Exception err)
                 {
                     this.lbMsg.Attributes["style"] = "color: red";
-                    this.lbMsg.Text = "Erro ao adicionar consulta no banco...";
+                    this.lbMsg.Text = err.Message;
                     return;
                 }
 

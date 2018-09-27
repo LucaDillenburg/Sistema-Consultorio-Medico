@@ -134,7 +134,6 @@
     <Content Include="About.aspx" />
     <Content Include="Content\architecture-buildings-city-1139556.jpg" />
     <Content Include="Index.aspx" />
-    <Content Include="LoginT.aspx" />
     <Content Include="medico-paciente.jpg" />
     <Content Include="medico-sorrindo.jpg" />
     <Content Include="Medico\Index.aspx" />
@@ -198,19 +197,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Acesso.cs" />
+    <Compile Include="Consulta.cs" />
     <Compile Include="IndexT.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="IndexT.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LoginT.aspx.cs">
-      <DependentUpon>LoginT.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LoginT.aspx.designer.cs">
-      <DependentUpon>LoginT.aspx</DependentUpon>
     </Compile>
     <Compile Include="Medico\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>

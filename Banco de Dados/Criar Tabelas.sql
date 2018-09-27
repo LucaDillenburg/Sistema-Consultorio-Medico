@@ -39,6 +39,8 @@ emailMedico varchar(50) not null,
 emailPac varchar(50) not null,
 satisfacao int null,
 comentario ntext null,
+horarioSatisfacao datetime null,
+medicoJahViuSatisfacao bit null,
 
 constraint fkMedicoConsulta foreign key (emailMedico)
 references medico(email),

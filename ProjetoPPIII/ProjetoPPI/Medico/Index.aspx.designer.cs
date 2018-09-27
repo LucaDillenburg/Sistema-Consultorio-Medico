@@ -40,12 +40,21 @@ namespace ProjetoPPI.PagMedico {
         protected global::System.Web.UI.WebControls.Button btnConsultaAtual;
         
         /// <summary>
-        /// Controle tmrConsultaAtual.
+        /// Controle timer.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.Timer tmrConsultaAtual;
+        protected global::System.Web.UI.Timer timer;
+        
+        /// <summary>
+        /// Controle btnNotificacoes.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnNotificacoes;
     }
 }
