@@ -1,0 +1,10 @@
+F:\PROJETOS\Pratica-Profissional-III\ServidorApp\ServidorApp\bin\Debug\ServidorApp.exe.config
+F:\PROJETOS\Pratica-Profissional-III\ServidorApp\ServidorApp\bin\Debug\ServidorApp.exe
+F:\PROJETOS\Pratica-Profissional-III\ServidorApp\ServidorApp\bin\Debug\ServidorApp.pdb
+F:\PROJETOS\Pratica-Profissional-III\ServidorApp\ServidorApp\obj\Debug\ServidorApp.csprojResolveAssemblyReference.cache
+F:\PROJETOS\Pratica-Profissional-III\ServidorApp\ServidorApp\obj\Debug\ServidorApp.Form1.resources
+F:\PROJETOS\Pratica-Profissional-III\ServidorApp\ServidorApp\obj\Debug\ServidorApp.Properties.Resources.resources
+F:\PROJETOS\Pratica-Profissional-III\ServidorApp\ServidorApp\obj\Debug\ServidorApp.csproj.GenerateResource.Cache
+F:\PROJETOS\Pratica-Profissional-III\ServidorApp\ServidorApp\obj\Debug\ServidorApp.csproj.CoreCompileInputs.cache
+F:\PROJETOS\Pratica-Profissional-III\ServidorApp\ServidorApp\obj\Debug\ServidorApp.exe
+F:\PROJETOS\Pratica-Profissional-III\ServidorApp\ServidorApp\obj\Debug\ServidorApp.pdb

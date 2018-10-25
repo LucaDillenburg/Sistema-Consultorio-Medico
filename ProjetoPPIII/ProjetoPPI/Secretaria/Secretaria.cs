@@ -36,6 +36,8 @@ namespace ProjetoPPI
             return true;
         }
 
+
+        //CADASTRAR USUARIOS
         public void CadastrarMedico(AtributosMedico atrMedico)
         {
             if (String.IsNullOrEmpty(atrMedico.Email) || String.IsNullOrEmpty(atrMedico.NomeCompleto) || String.IsNullOrEmpty(atrMedico.CRM) ||
@@ -72,6 +74,8 @@ namespace ProjetoPPI
                 atrSecretaria.Email + "', '" + atrSecretaria.NomeCompleto + "', '" + atrSecretaria.Endereco + "', '" + atrSecretaria.SenhaCriptografada + "')");
         }
 
+
+        //CONSULTAS
         protected const int MINUTOS_DE_TOLERANCIA = 5;
         public void CadastrarConsulta(AtributosConsulta atrConsulta)
         {
@@ -80,7 +84,7 @@ namespace ProjetoPPI
                 throw new Exception("Atributos da consulta invalido! Dados demais!");
             if ((atrConsulta.Status!='n' && atrConsulta.Status != 's' && atrConsulta.Status != 'c') || String.IsNullOrEmpty(atrConsulta.Proposito) 
                 || atrConsulta.Horario == null || String.IsNullOrEmpty(atrConsulta.EmailMedico) || 
-                String.IsNullOrEmpty(atrConsulta.EmailPaciente) || String.IsNullOrEmpty(atrConsulta.Proposito))
+                String.IsNullOrEmpty(atrConsulta.EmailPaciente))
                 throw new Exception("Atributos da consulta invalido! Faltando dados!");
 
             //a consulta tem que ser marcada antes para depois realiza-la (5 minutos de tolerancia)
@@ -100,9 +104,32 @@ namespace ProjetoPPI
                 throw new Exception("Paciente estará em outra consulta!");
 
             //proposito, horario, umaHora, observacoes, status, emailMedico, emailPac
-            this.conexaoBD.ExecuteInUpDel("insert into consulta(proposito, horario, umaHora, status, emailMedico, emailPac) " + 
+            this.conexaoBD.ExecuteInUpDel("insert into consulta(proposito, horario, umaHora, status, emailMedico, emailPac, jahMandouEmailSMS) " + 
                 "values('" + atrConsulta.Proposito + "', '" + atrConsulta.Horario + "', " + (atrConsulta.UmaHora?"1":"0") + ", '" + 
-                atrConsulta.Status + "', '" + atrConsulta.EmailMedico + "', '" + atrConsulta.EmailPaciente + "')");
+                atrConsulta.Status + "', '" + atrConsulta.EmailMedico + "', '" + atrConsulta.EmailPaciente + "', 0)");
+        }
+
+        public void AtualizarDadosConsulta(AtributosConsultaCod atributos)
+        {
+            if (atributos.Status=='s') //consulta ocorreu
+            {
+                if (String.IsNullOrEmpty(atributos.Observacoes)) //nao tem observacoes
+                    throw new Exception("Uma consulta que ocorreu precisa ter observações!");
+            }
+            else //consulta nao ocorreu
+                if(!String.IsNullOrEmpty(atributos.Observacoes)) //tem observacoes
+                throw new Exception("Observações tem que ser vazia se consulta ainda não ocorreu.");
+
+            if ((atributos.Status != 'n' && atributos.Status != 's' && atributos.Status != 'c') || String.IsNullOrEmpty(atributos.Proposito)
+                || atributos.Horario == null || String.IsNullOrEmpty(atributos.EmailMedico) ||
+                String.IsNullOrEmpty(atributos.EmailPaciente))
+                throw new Exception("Atributos da consulta invalido! Faltando dados!");
+
+            //proposito, medico, paciente, horario, duracao, status, observações
+            this.conexaoBD.ExecuteInUpDel("update consulta set proposito='" + atributos.Proposito + "', emailMedico='" + atributos.EmailMedico + "', " +
+                "emailPaciente='" + atributos.EmailPaciente + "', horario='" + atributos.Horario + "', umaHora= " + (atributos.UmaHora ? "1" : "0") + ", " +
+                "status='" + atributos.Status + "', observacoes='" + atributos.Observacoes + "' " +
+                "where codConsulta = " + atributos.CodConsulta);
         }
     }
 }

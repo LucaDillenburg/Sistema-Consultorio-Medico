@@ -15,16 +15,12 @@ namespace ProjetoPPI.PagMedico
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() != typeof(Medico))
-            {
-                Response.Redirect("../Index.aspx");
-                return;
-            }
-                
-            this.conexaoBD = (ConexaoBD)Session["conexao"];
+            //parte da verificacao estah no proprio .aspx
+            
+            this.lbSatisfacaoMedia.Text = "Satisfação Média: " + Medico.SatisfacaoMedia(((Medico)Session["usuario"]).Atributos.Email,
+                (ConexaoBD)Session["conexao"]).ToString("0.0") + "/5";
 
-            //verifica elementos que precisam ser atualizados
-            this.AtualizarPagina();
+            this.btnNotificacoes.Text = "Notificações (" + ((Medico)Session["usuario"]).QtdNovasSatisfacoes + ")";
         }
 
 
@@ -32,19 +28,7 @@ namespace ProjetoPPI.PagMedico
         //ve se há consulta agora, coloca a satisfacao media e verifica novas notificacoes
         protected void timer_Tick(object sender, EventArgs e)
         { /*o timer faz a pagina reloadar e no reload eh chamado o atualizar pagina*/ }
-
-        protected void AtualizarPagina()
-        {
-            AtributosConsulta atributosConsulta = ((Medico)Session["usuario"]).ConsultaAtual();
-            this.consultaAtual = atributosConsulta;
-            this.btnConsultaAtual.Visible = atributosConsulta == null;
-
-            this.lbSatisfacaoMedia.Text = "Satisfação Média: " + Medico.SatisfacaoMedia(((Medico)Session["usuario"]).Atributos.Email,
-                (ConexaoBD)Session["conexao"]).ToString("0.0") + "/5";
-
-            this.btnNotificacoes.Text = "Notificações (" + ((Medico)Session["usuario"]).QtdNovasSatisfacoes + ")";
-        }
-
+        
 
         //botoes
         protected void btnConsultaAtual_Click(object sender, EventArgs e)

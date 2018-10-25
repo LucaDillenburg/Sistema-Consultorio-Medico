@@ -41,6 +41,7 @@ satisfacao int null,
 comentario ntext null,
 horarioSatisfacao datetime null,
 medicoJahViuSatisfacao bit null,
+jahMandouEmailSMS bit not null,
 
 constraint fkMedicoConsulta foreign key (emailMedico)
 references medico(email),

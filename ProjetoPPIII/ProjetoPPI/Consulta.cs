@@ -12,7 +12,7 @@ namespace ProjetoPPI
         {
             DataSet dataSet = conexaoBD.ExecuteSelect("select proposito, horario, umaHora, observacoes, status, " +
                 "emailMedico, emailPac, satisfacao, comentario, horarioSatisfacao, medicoJahViuSatisfacao " +
-                "where codConsulta = " + codConsulta);
+                "from consulta where codConsulta = " + codConsulta);
 
             if (dataSet.Tables[0].Rows.Count != 1)
                 return null;
@@ -100,5 +100,36 @@ namespace ProjetoPPI
 
             return atributosConsultas;
         }
+
+        public static AtributosConsultaCod[] UltimasConsultasDe(string email, bool ehMedico, ConexaoBD conexaoBD)
+        {
+            DataSet dataSet = conexaoBD.ExecuteSelect("select codConsulta, proposito, horario, umaHora, observacoes, status, " +
+                "emailMedico, emailPac, satisfacao, comentario, horarioSatisfacao, medicoJahViuSatisfacao from consulta " +
+                "where " + (ehMedico?"emailMedico":"emailPac") +" = '" + email + "' order by horario desc");
+
+            if (dataSet.Tables[0].Rows.Count <= 0)
+                return null;
+
+            AtributosConsultaCod[] atributos = new AtributosConsultaCod[dataSet.Tables[0].Rows.Count];
+            for (int i = 0; i<atributos.Length; i++)
+            {
+                atributos[i] = new AtributosConsultaCod();
+                atributos[i].CodConsulta = (int)dataSet.Tables[0].Rows[0].ItemArray[0];
+                atributos[i].Proposito = (string)dataSet.Tables[0].Rows[0].ItemArray[1];
+                atributos[i].SetHorario((DateTime)dataSet.Tables[0].Rows[0].ItemArray[2], conexaoBD);
+                atributos[i].UmaHora = (bool)dataSet.Tables[0].Rows[0].ItemArray[3];
+                atributos[i].Observacoes = (string)dataSet.Tables[0].Rows[0].ItemArray[4];
+                atributos[i].Status = (char)dataSet.Tables[0].Rows[0].ItemArray[5];
+                atributos[i].SetEmailMedico((string)dataSet.Tables[0].Rows[0].ItemArray[6], conexaoBD);
+                atributos[i].SetEmailPaciente((string)dataSet.Tables[0].Rows[0].ItemArray[7], conexaoBD);
+                atributos[i].Satisfacao = (int)dataSet.Tables[0].Rows[0].ItemArray[8];
+                atributos[i].Comentario = (string)dataSet.Tables[0].Rows[0].ItemArray[9];
+                atributos[i].HorarioSatisfacao = (DateTime)dataSet.Tables[0].Rows[0].ItemArray[10];
+                atributos[i].MedicoJahViuSatisfacao = (bool)dataSet.Tables[0].Rows[0].ItemArray[11];
+            }
+
+            return atributos;
+        }
+
     }
 }

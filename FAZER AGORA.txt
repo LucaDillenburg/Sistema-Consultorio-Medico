@@ -1,3 +1,9 @@
 FAZER AGORA
- - quando um medico fizer uma observacao sobre a consulta mudar o status da consulta para ocorrido
- - quando tiver uma nova satisfacao deixar uma notificacao que levará o médico para ver a consulta (quando medico ver uma consulta verificar se ele viu um novo comentario ou satisfacao). Novo campo: viuSatisfacao bit null
+ - Ver consultas. OK
+ - testar ServidorApp
+ - verifica o adicionar observacoes e satisfacao
+
+
+mudar o que estah no OnLoad da page para o arquivo .aspx  ( <% if () { %> <tag> <% } %> ) e (<%= variavel%> //escrever nome da variavel). OK
+quando um medico fizer uma observacao sobre a consulta mudar o status da consulta para ocorrido. OK
+arrumar cadastrar consulta (data). OK

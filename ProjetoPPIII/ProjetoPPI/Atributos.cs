@@ -253,8 +253,7 @@ namespace ProjetoPPI
                 this.proposito = char.ToUpper(value[0]) + value.Substring(1);
             }
         }
-
-        protected const string dataNascimentoPattern = @"^\d{2}/\d{2}/\d{4} \d{2}:\d{2}:\d{2}$";
+        
         public const string FORMATO_HORARIO = "dd/MM/yyyy  HH:mm:ss";
         public DateTime Horario
         {
@@ -267,18 +266,20 @@ namespace ProjetoPPI
                 throw new Exception("Horario de atendimento dos medicos eh de 9h-12h e 14h-17h!");
 
             //30min ou 0min
-            if (!(value.Minute == 0 || value.Minute == 30))
+            if (value.Minute != 0 && value.Minute != 30)
                 throw new Exception("Só pode haver consultas em horas cheias ou metades de horas.");
 
             if (value.Second != 0)
-                throw new Exception("Pode haver apenas horas cheias ou metades de horas.");
+                throw new Exception("Só pode haver consultas em horas cheias ou metades de horas.");
 
+            DateTime aux = this.horario;
+            this.horario = value;
             //verificar se paciente jah teria nascido nessa data (se o paciente jah foi adicionado)
             if (!String.IsNullOrEmpty(this.emailPaciente) && !this.PacienteJahNasceuAtehConsulta(conexaoBD))
+            {
+                this.horario = aux;
                 throw new Exception("O paciente ainda não vai ter nascido até a data da consulta...");
-            
-
-            this.horario = value;
+            }
         }
        /* public string SegundoHorario
         {
@@ -331,10 +332,10 @@ namespace ProjetoPPI
         {
             if (!ExAtributosSimples.EmailValido(value))
                 throw new Exception("Email invalido!");
-            AtributosPaciente atrPaciente = new AtributosPaciente(); // Paciente.DeEmail(value, conexaoBD);
+            AtributosPaciente atrPaciente = Paciente.DeEmail(value, conexaoBD);
             if (atrPaciente == null)
                 throw new Exception("Esse paciente não existe!");
-            if (this.horario != null && !this.PacienteJahNasceuAtehConsulta(atrPaciente))
+            if (this.horario != new DateTime() && !this.PacienteJahNasceuAtehConsulta(atrPaciente))
                 throw new Exception("O paciente ainda não vai ter nascido até a data da consulta...");
             this.emailPaciente = value;
         }

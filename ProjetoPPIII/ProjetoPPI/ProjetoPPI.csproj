@@ -137,7 +137,9 @@
     <Content Include="medico-paciente.jpg" />
     <Content Include="medico-sorrindo.jpg" />
     <Content Include="Medico\Index.aspx" />
+    <Content Include="Medico\UltimasConsultas.aspx" />
     <Content Include="Medico\VerConsulta.aspx" />
+    <Content Include="Paciente\UltimasConsultas.aspx" />
     <Content Include="Paciente\VerConsulta.aspx" />
     <Content Include="Scripts\script.js" />
     <Content Include="Secretaria\AgendarConsulta.aspx" />
@@ -189,6 +191,7 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Secretaria\VerConsulta.aspx" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -212,6 +215,13 @@
     <Compile Include="Medico\Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Medico\UltimasConsultas.aspx.cs">
+      <DependentUpon>UltimasConsultas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Medico\UltimasConsultas.aspx.designer.cs">
+      <DependentUpon>UltimasConsultas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Medico\VerConsulta.aspx.cs">
       <DependentUpon>VerConsulta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -225,6 +235,13 @@
     </Compile>
     <Compile Include="Menu.Master.designer.cs">
       <DependentUpon>Menu.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Paciente\UltimasConsultas.aspx.cs">
+      <DependentUpon>UltimasConsultas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paciente\UltimasConsultas.aspx.designer.cs">
+      <DependentUpon>UltimasConsultas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paciente\VerConsulta.aspx.cs">
       <DependentUpon>VerConsulta.aspx</DependentUpon>
@@ -264,6 +281,13 @@
     </Compile>
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Secretaria\VerConsulta.aspx.cs">
+      <DependentUpon>VerConsulta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Secretaria\VerConsulta.aspx.designer.cs">
+      <DependentUpon>VerConsulta.aspx</DependentUpon>
     </Compile>
     <Compile Include="Senha.cs" />
     <Compile Include="Default.aspx.cs">

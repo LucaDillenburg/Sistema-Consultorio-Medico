@@ -76,21 +76,26 @@ namespace ProjetoPPI
 
         public static AtributosPaciente DeEmail(string email, ConexaoBD conexaoBD)
         {
-            DataSet data = conexaoBD.ExecuteSelect("select nomeCompleto, crm, celular, telefoneResidencial, endereco, dataDeNascimento, foto " +
-                " from medico where email='" + email + "'");
+            AtributosPaciente atributos = new AtributosPaciente();
+            DataSet data = conexaoBD.ExecuteSelect("select nomeCompleto, celular, telefoneResidencial, endereco, dataDeNascimento, foto " +
+                " from paciente where email='" + email + "'");
             if (data.Tables[0].Rows.Count <= 0)
                 return null;
 
-            AtributosPaciente atributos = new AtributosPaciente();
             atributos.Email = email;
             atributos.NomeCompleto = (string)data.Tables[0].Rows[0].ItemArray[0];
-            atributos.Celular = (string)data.Tables[0].Rows[0].ItemArray[2];
-            atributos.TelefoneResidencial = (string)data.Tables[0].Rows[0].ItemArray[3];
-            atributos.Endereco = (string)data.Tables[0].Rows[0].ItemArray[4];
-            atributos.DataNascimento = (DateTime)data.Tables[0].Rows[0].ItemArray[5];
+            atributos.Celular = (string)data.Tables[0].Rows[0].ItemArray[1];
+            atributos.TelefoneResidencial = (string)data.Tables[0].Rows[0].ItemArray[2];
+            atributos.Endereco = (string)data.Tables[0].Rows[0].ItemArray[3];
+            atributos.DataNascimento = (DateTime)data.Tables[0].Rows[0].ItemArray[4];
 
-            byte[] vetorImagem = (byte[])data.Tables[0].Rows[0].ItemArray[6];
-            atributos.Foto = ImageMethods.ImageFromBytes(vetorImagem);
+            try
+            {
+                byte[] vetorImagem = (byte[])data.Tables[0].Rows[0].ItemArray[5];
+                atributos.Foto = ImageMethods.ImageFromBytes(vetorImagem);
+            }
+            catch (Exception e)
+            { /*se entrou aqui eh porque era nulo (ele nao reconhece como nulo)*/ }
 
             return atributos;
         }

@@ -10,6 +10,6 @@
 namespace ProjetoPPI {
     
     
-    public partial class IndexT {
+    public partial class Index {
     }
 }
