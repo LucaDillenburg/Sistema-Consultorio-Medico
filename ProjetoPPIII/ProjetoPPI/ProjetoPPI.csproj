@@ -134,13 +134,20 @@
     <Content Include="About.aspx" />
     <Content Include="Content\architecture-buildings-city-1139556.jpg" />
     <Content Include="Index.aspx" />
+    <Content Include="IndexMedico.aspx" />
+    <Content Include="IndexPaciente.aspx" />
+    <Content Include="IndexSecretaria.aspx" />
+    <Content Include="scriptPaginas.js" />
     <Content Include="LoginT.aspx" />
     <Content Include="medico-paciente.jpg" />
     <Content Include="medico-sorrindo.jpg" />
     <Content Include="Medico\Index.aspx" />
     <Content Include="Medico\VerConsulta.aspx" />
+    <Content Include="NIndex.aspx" />
+    <Content Include="NScript.js" />
     <Content Include="Paciente\VerConsulta.aspx" />
     <Content Include="Scripts\script.js" />
+    <Content Include="wallpaper-index.jpeg" />
     <Content Include="Secretaria\AgendarConsulta.aspx" />
     <Content Include="Secretaria\CadastroUsuarios.aspx" />
     <Content Include="Contact.aspx" />
@@ -159,6 +166,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Menu.Master" />
+    <Content Include="NMenu.Master" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Login.aspx" />
     <Content Include="Secretaria\Index.aspx" />
@@ -198,6 +206,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Acesso.cs" />
+    <Compile Include="IndexMedico.aspx.cs">
+      <DependentUpon>IndexMedico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IndexMedico.aspx.designer.cs">
+      <DependentUpon>IndexMedico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IndexPaciente.aspx.cs">
+      <DependentUpon>IndexPaciente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IndexPaciente.aspx.designer.cs">
+      <DependentUpon>IndexPaciente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IndexSecretaria.aspx.cs">
+      <DependentUpon>IndexSecretaria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IndexSecretaria.aspx.designer.cs">
+      <DependentUpon>IndexSecretaria.aspx</DependentUpon>
+    </Compile>
     <Compile Include="IndexT.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -232,6 +261,20 @@
     </Compile>
     <Compile Include="Menu.Master.designer.cs">
       <DependentUpon>Menu.Master</DependentUpon>
+    </Compile>
+    <Compile Include="NIndex.aspx.cs">
+      <DependentUpon>NIndex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NIndex.aspx.designer.cs">
+      <DependentUpon>NIndex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NMenu.Master.cs">
+      <DependentUpon>NMenu.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NMenu.Master.designer.cs">
+      <DependentUpon>NMenu.Master</DependentUpon>
     </Compile>
     <Compile Include="Paciente\VerConsulta.aspx.cs">
       <DependentUpon>VerConsulta.aspx</DependentUpon>

@@ -8,8 +8,226 @@ body {
     height: 100%;
     word-wrap: break-word;
     overflow-x: hidden;
+    overflow-y: scroll;
 }
 
+div.menu-horizontal {
+    position: fixed;
+    width: 100%;
+    background: rgb(0,36,33);
+    background: linear-gradient(90deg, rgba(0,36,33,1) 0%, rgba(9,121,84,0.639093137254902) 0%, rgba(0,255,141,1) 100%);
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 20px;
+    line-height: 50px;
+    box-shadow: 0px 0px 5px 3px rgba(50, 50, 50, 0.5);
+    font-family: 'Comfortaa', cursive;
+}
+
+.menu-horizontal .menu-item {
+    position: relative;
+    vertical-align: middle;
+    padding-left: 10px;
+    padding-right: 10px;     
+}
+
+#btnOpen {
+    float: left; 
+    width: 70px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#logo {
+    width: 100px;
+    margin: auto;
+    font-family: 'Pacifico', cursive;
+}
+
+#login {
+    float: right;    
+}
+
+ul.menu-vertical {
+    position: absolute;
+    top: 50px;
+    display: block;
+    width: 250px;
+    height: auto;
+    background-color: rgb(242, 242, 242);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    box-shadow: 1px 1px 3px rgba(50, 50, 50, 0.5);
+    display: none;
+    z-index: 50;
+}
+
+ul.menu-vertical li.menu-item {
+    display: block;
+    padding: 8px;    
+    margin: 0;
+    font-family: 'Comfortaa', cursive;
+    font-size: 20px;
+    color: black;
+    line-height: 70px;
+}
+
+ul.menu-vertical li.menu-titulo{
+    background-color: lightgreen;
+}
+
+ul.menu-vertical li.menu-item .asp_button {
+
+}
+
+#da-espaco {
+    height: 50px;
+    width: 100%;
+    top: 0%;    
+    z-index: -99;
+}
+
+.asp_button {
+    text-decoration: none;
+    border: none;
+    color: black;
+    background: none;
+}
+
+.asp_button:hover {
+    color: black;
+}
+
+div.content {    
+    text-align: left;
+    margin: auto;
+    margin-top: 50px;
+    display: block;
+    position: relative;   
+    width: 90vw;
+    background-color: rgb(242, 242, 242);
+    z-index: -1;
+    font-family: 'Comfortaa', cursive;
+    padding-top: 15px;
+    padding: 20px;
+    color: black;
+    box-shadow: 0px 0px 5px 0.5px rgba(50, 50, 50, 0.5);    
+}
+
+.content h1.title {
+    font-family: 'Comfortaa', cursive;
+}
+
+.content p.text {
+    font-family: 'Comfortaa', cursive;
+}
+
+h1.title-originais {
+    font-size: 46px;
+    margin-top: 40px;
+    text-align: center;
+    font-family: 'Comfortaa', cursive;
+}
+
+hr.hr-originais {
+    border-width: 2px;  
+    border-color: lightgrey;
+    width: 90%;
+    margin: auto;    
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+ul.opcoes {
+    font-family: 'Comfortaa', cursive;    
+    margin: auto;
+    width: 80%;
+    list-style: none;
+    display: block;
+    padding: 0;
+    display: block;
+    text-align: center;
+    z-index: -99;
+}
+
+.opcoes li {
+    margin: auto;
+    width: 350px;
+    font-size: 25px;
+    display: inline-block;
+    padding: 10px;
+    border: 2px solid rgb(0,36,33);    
+    border-radius: 10px;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    z-index: 99;
+}
+
+.opcoes li:hover{
+    background-color: lightgray;
+}
+
+.opcoes li.ativo {
+    background: rgb(0,36,33);
+    background: linear-gradient(90deg, rgba(0,36,33,1) 0%, rgba(9,121,84,0.639093137254902) 0%, rgba(0,255,141,1) 100%);     
+}
+
+div.tab-paciente {
+    width: 80%;
+    height: 500px;    
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 170px;
+}
+
+.consultas-paciente {
+    border: solid grey 2px;
+    width: 100%;
+    font-family: 'Comfortaa', cursive;
+    color: black;
+}
+
+.consultas-paciente td {
+    border: solid grey 2px;
+    line-height: 30px;
+    text-align: center;
+    height: 100%;
+}
+
+.consultas-paciente .proposito {    
+    color: black;
+    font-weight: bold;
+}
+
+.consultas-paciente .proposito td {
+    line-height: 50px;
+}
+
+.consultas-paciente .observacoes td{
+    line-height: 70px;
+}
+
+.pedido-consulta {
+    padding: 25px;
+    top: 0;
+    position: relative;
+    display: none;
+    width: 100%;
+    height: 100px;
+    border: solid 2px grey;
+    font-family: 'Comfortaa', cursive;
+}
+
+.agenda, .perfil {
+    width: 100%;
+    height: 100px;
+    border: 2px gray solid;
+    display: none;
+}
+
+/*
 nav.leftnav {
     position: relative;
     float: left;
@@ -57,6 +275,7 @@ nav.leftnav {
     color: white;
     border-bottom: solid 1px #a6a6a6;
 }
+
 
 .content {
     box-sizing: border-box;
@@ -182,7 +401,7 @@ nav.leftnav {
     font-family: 'Comfortaa', cursive;
     text-align: left;
     font-size: 2em;
-}
+}*/
 
 .formulario {
     display: block;
@@ -192,7 +411,7 @@ nav.leftnav {
     padding: 15px;
     width: 400px;
     height: 300px;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 0px 0px 5px 3px rgba(50, 50, 50, 0.5);
 }
 
