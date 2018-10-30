@@ -13,7 +13,6 @@ namespace ProjetoPPI
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["usuario"] = null;
             if (Session["conexao"] == null)
                 Session["conexao"] = new ConexaoBD(WebConfigurationManager.ConnectionStrings["conexaoBD"].ConnectionString);
         }

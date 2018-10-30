@@ -201,8 +201,10 @@ namespace ProjetoPPI
         //getters e setters
         public static bool DataNascimentoValida(DateTime dataNascimento)
         {
-            //paciente pode nao ter nascido ainda
-            return dataNascimento == null;
+            //paciente pode nao ter nascido ainda, mas nao se pode cadastrar um paciente que vai nascer soh daqui a mais de um ano
+            DateTime auxAgora = DateTime.Now;
+            DateTime daquiUmAno = new DateTime(auxAgora.Year + 1, auxAgora.Month, auxAgora.Day);
+            return (dataNascimento.CompareTo(daquiUmAno) <= 0);
         }
         public DateTime DataNascimento
         {
@@ -235,8 +237,10 @@ namespace ProjetoPPI
         protected string emailMedico;
         protected string emailPaciente;
         //comentario
-        protected string comentario;
         protected int satisfacao = -1;
+        protected string comentario;
+        protected DateTime horarioSatisfacao;
+        protected bool medicoJahViuSatisfacao = false;
 
         public string Proposito
         {
@@ -249,13 +253,11 @@ namespace ProjetoPPI
                 this.proposito = char.ToUpper(value[0]) + value.Substring(1);
             }
         }
-
-        protected const string dataNascimentoPattern = @"^\d{2}/\d{2}/\d{4} \d{2}:\d{2}:\d{2}$";
+        
         public const string FORMATO_HORARIO = "dd/MM/yyyy  HH:mm:ss";
         public DateTime Horario
         {
-            get
-            { return this.horario; }
+            get { return this.horario; }
         }
         public void SetHorario (DateTime value, ConexaoBD conexaoBD)
         {
@@ -264,17 +266,20 @@ namespace ProjetoPPI
                 throw new Exception("Horario de atendimento dos medicos eh de 9h-12h e 14h-17h!");
 
             //30min ou 0min
-            if (!(value.Minute == 0 || value.Minute == 30))
+            if (value.Minute != 0 && value.Minute != 30)
                 throw new Exception("Só pode haver consultas em horas cheias ou metades de horas.");
 
             if (value.Second != 0)
-                throw new Exception("Pode haver apenas horas cheias ou metades de horas.");
+                throw new Exception("Só pode haver consultas em horas cheias ou metades de horas.");
 
+            DateTime aux = this.horario;
+            this.horario = value;
             //verificar se paciente jah teria nascido nessa data (se o paciente jah foi adicionado)
             if (!String.IsNullOrEmpty(this.emailPaciente) && !this.PacienteJahNasceuAtehConsulta(conexaoBD))
+            {
+                this.horario = aux;
                 throw new Exception("O paciente ainda não vai ter nascido até a data da consulta...");
-
-            this.horario = value;
+            }
         }
        /* public string SegundoHorario
         {
@@ -293,36 +298,18 @@ namespace ProjetoPPI
         } */
         public string Observacoes
         {
-            get
-            {
-                return this.observacoes;
-            }
-            set
-            {
-                this.observacoes = value;
-            }
+            get { return this.observacoes; }
+            set { this.observacoes = value; }
         }
         public char Status
         {
-            get
-            {
-                return this.status;
-            }
-            set
-            {
-                this.status = value;
-            }
+            get { return this.status; }
+            set { this.status = value; }
         }
         public bool UmaHora
         {
-            get
-            {
-                return this.umaHora;
-            }
-            set
-            {
-                this.umaHora = value;
-            }
+            get { return this.umaHora; }
+            set {  this.umaHora = value; }
         }
 
         public string EmailMedico
@@ -345,10 +332,10 @@ namespace ProjetoPPI
         {
             if (!ExAtributosSimples.EmailValido(value))
                 throw new Exception("Email invalido!");
-            AtributosPaciente atrPaciente = new AtributosPaciente(); // Paciente.DeEmail(value, conexaoBD);
+            AtributosPaciente atrPaciente = Paciente.DeEmail(value, conexaoBD);
             if (atrPaciente == null)
                 throw new Exception("Esse paciente não existe!");
-            if (this.horario != null && !this.PacienteJahNasceuAtehConsulta(atrPaciente))
+            if (this.horario != new DateTime() && !this.PacienteJahNasceuAtehConsulta(atrPaciente))
                 throw new Exception("O paciente ainda não vai ter nascido até a data da consulta...");
             this.emailPaciente = value;
         }
@@ -358,9 +345,11 @@ namespace ProjetoPPI
             get { return this.comentario; }
             set
             {
-                if (String.IsNullOrEmpty(value) || String.IsNullOrWhiteSpace(value))
+                if (String.IsNullOrEmpty(value))
+                    this.comentario = "";
+                if (String.IsNullOrWhiteSpace(value) || value.Length < 6)
                     throw new Exception("Comentario invalido!");
-                this.comentario = value[0] + (value.Length > 1 ? value.Substring(1) : "");
+                this.comentario = Char.ToUpper(value[0]) + (value.Length > 1 ? value.Substring(1) : "");
             }
         }
         public int Satisfacao
@@ -372,6 +361,16 @@ namespace ProjetoPPI
                     throw new Exception("Satisfacao invalida!");
                 this.satisfacao = value;
             }
+        }
+        public DateTime HorarioSatisfacao
+        {
+            get { return this.horarioSatisfacao; }
+            set { this.horarioSatisfacao = value; }
+        }
+        public bool MedicoJahViuSatisfacao
+        {
+            get { return this.medicoJahViuSatisfacao;  }
+            set { this.medicoJahViuSatisfacao = value; }
         }
 
         protected bool PacienteJahNasceuAtehConsulta(ConexaoBD conexaoBD)

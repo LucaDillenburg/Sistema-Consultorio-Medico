@@ -13,33 +13,7 @@ namespace ProjetoPPI
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() != typeof(Secretaria))
-            {
-                Response.Redirect("../Index.aspx");
-                return;
-            }
-
-            if (Session["tipoUsCadastrar"] == null)
-                Session["tipoUsCadastrar"] = TipoUsuario.paciente;
-            this.tipoUsCadastrar = (TipoUsuario)Session["tipoUsCadastrar"];
-
-            if (this.tipoUsCadastrar == TipoUsuario.paciente)
-            {
-                this.crm.Visible = false;
-                this.lbTitulo.Text = "Cadastrar Paciente";
-            }
-            else
-            if (this.tipoUsCadastrar == TipoUsuario.medico)
-                this.lbTitulo.Text = "Cadastrar Médico";
-            else
-            {
-                this.crm.Visible = false;
-                this.telefone.Visible = false;
-                this.celular.Visible = false;
-                this.datanascimento.Visible = false;
-
-                this.lbTitulo.Text = "Cadastrar Secretária";
-            }
+            //tudo no .aspx
         }
 
         //cadastrar

@@ -23,7 +23,42 @@
 <body>
     <form id="form1" runat="server">
         <div class="formulario">
-            <asp:Label ID="lbTitulo" CssClass="legenda" runat="server" Text="TITULO" ></asp:Label>
+            <%
+                if (Session["tipoUsuario"] == null || Session["tipoUsuario"].GetType()!=typeof(ProjetoPPI.TipoUsuario))
+                {
+                    tipoUsuario = ProjetoPPI.TipoUsuario.paciente;
+                    Session["tipoUsuario"] = tipoUsuario;
+                }
+                else
+                    tipoUsuario = (ProjetoPPI.TipoUsuario)Session["tipoUsuario"];   
+            %>
+
+            <asp:Label ID="lbTitulo" CssClass="legenda" runat="server" Text="TITULO" >
+                <%
+                    //se jah estah logado vai para o index do personagem
+                    switch (this.tipoUsuario)
+                    {
+                        case ProjetoPPI.TipoUsuario.medico:
+                            if (Session["usuario"] != null && Session["usuario"].GetType() == typeof(ProjetoPPI.Medico))
+                                Response.Redirect("Medico/index.aspx");
+                            %>Login Médico<%
+                            break;
+                        case ProjetoPPI.TipoUsuario.paciente:
+                            if (Session["usuario"] != null && Session["usuario"].GetType() == typeof(ProjetoPPI.Paciente))
+                                Response.Redirect("Paciente/index.aspx");
+                            %>Login Paciente<%
+                            break;
+                        case ProjetoPPI.TipoUsuario.secretaria:
+                            if (Session["usuario"] != null && Session["usuario"].GetType() == typeof(ProjetoPPI.Secretaria))
+                                Response.Redirect("Secretaria/index.aspx");
+                            %>Login Secretária<%
+                            break;
+                        default:
+                            Response.Redirect("Index.aspx");
+                            return;
+                    }
+                %>
+            </asp:Label>
             <hr />
             <div class="campo">
                 <asp:Label CssClass="asp_label" ID="Label1" runat="server" Text="Email: "></asp:Label>

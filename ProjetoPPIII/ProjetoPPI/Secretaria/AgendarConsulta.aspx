@@ -12,7 +12,13 @@
 <body>
 <form id="form1" runat="server">
 <!---->
-
+    <%
+        if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() != typeof(Secretaria))
+        {
+            Response.Redirect("../Index.aspx");
+            return;
+        }
+    %>
 <div>
     <h1>Agendar Consulta</h1>
 

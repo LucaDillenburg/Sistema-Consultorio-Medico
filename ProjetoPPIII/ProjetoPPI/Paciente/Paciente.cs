@@ -26,26 +26,47 @@ namespace ProjetoPPI
             this.atributos = new AtributosPaciente();
             this.atributos.AdicionarSenha(senha);
 
-            DataSet data = conexaoBD.ExecuteSelect("select nomeCompleto, crm, celular, telefoneResidencial, endereco, dataDeNascimento, foto " +
-                " from medico where email='" + email + "' and senha='" + this.atributos.SenhaCriptografada + "'");
+            DataSet data = conexaoBD.ExecuteSelect("select nomeCompleto, celular, telefoneResidencial, endereco, dataDeNascimento, foto " +
+                " from paciente where email='" + email + "' and senha='" + this.atributos.SenhaCriptografada + "'");
             if (data.Tables[0].Rows.Count <= 0)
                 return false;
 
             this.atributos.Email = email;
 
-            this.atributos.NomeCompleto = data.Tables[0].Rows[0].ItemArray[0].ToString();
-            this.atributos.Celular = data.Tables[0].Rows[0].ItemArray[2].ToString();
-            this.atributos.TelefoneResidencial = data.Tables[0].Rows[0].ItemArray[3].ToString();
-            this.atributos.Endereco = data.Tables[0].Rows[0].ItemArray[4].ToString();
-            this.atributos.DataNascimento = Convert.ToDateTime(data.Tables[0].Rows[0].ItemArray[5]);
+            this.atributos.NomeCompleto = (string)data.Tables[0].Rows[0].ItemArray[0];
+            this.atributos.Celular = (string)data.Tables[0].Rows[0].ItemArray[1];
+            this.atributos.TelefoneResidencial = (string)data.Tables[0].Rows[0].ItemArray[2];
+            this.atributos.Endereco = (string)data.Tables[0].Rows[0].ItemArray[3];
+            this.atributos.DataNascimento = (DateTime)data.Tables[0].Rows[0].ItemArray[4];
 
-            byte[] vetorImagem = (byte[])data.Tables[0].Rows[0].ItemArray[6];
-            this.atributos.Foto = ImageMethods.ImageFromBytes(vetorImagem);
+            try
+            { 
+                byte[] vetorImagem = (byte[])data.Tables[0].Rows[0].ItemArray[5];
+                this.atributos.Foto = ImageMethods.ImageFromBytes(vetorImagem);
+            }catch(Exception e)
+            { /*se entrou aqui eh porque era nulo (ele nao reconhece como nulo)*/ }
 
             return true;
         }
 
-        
+
+        //acoes de paciente
+        public void RegistrarSatisfacao(AtributosConsultaCod atributosConsulta)
+        {
+            // ADICIONAR SATISFACAO (E TALVEZ COMENTARIO)
+            if (String.IsNullOrEmpty(atributosConsulta.Comentario))
+                this.conexaoBD.ExecuteInUpDel("update consulta set " +
+                    " satisfacao = " + atributosConsulta.Satisfacao + ", medicoJahViuSatisfacao = 0, " +
+                    " horarioSatisfacao = " + atributosConsulta.HorarioSatisfacao +
+                    " where codConsulta=" + atributosConsulta.CodConsulta);
+            else
+                this.conexaoBD.ExecuteInUpDel("update consulta set comentario = '"
+                    + atributosConsulta.Comentario + "', satisfacao = " + atributosConsulta.Satisfacao +
+                    ", medicoJahViuSatisfacao = 0, horarioSatisfacao = " + atributosConsulta.HorarioSatisfacao +
+                    " where codConsulta=" + atributosConsulta.CodConsulta);
+        }
+
+
         //cadastro
         public static bool Existe(string email, ConexaoBD conexaoBD)
         {
@@ -55,23 +76,37 @@ namespace ProjetoPPI
 
         public static AtributosPaciente DeEmail(string email, ConexaoBD conexaoBD)
         {
-            DataSet data = conexaoBD.ExecuteSelect("select nomeCompleto, crm, celular, telefoneResidencial, endereco, dataDeNascimento, foto " +
-                " from medico where email='" + email + "'");
+            AtributosPaciente atributos = new AtributosPaciente();
+            DataSet data = conexaoBD.ExecuteSelect("select nomeCompleto, celular, telefoneResidencial, endereco, dataDeNascimento, foto " +
+                " from paciente where email='" + email + "'");
             if (data.Tables[0].Rows.Count <= 0)
                 return null;
 
-            AtributosPaciente atributos = new AtributosPaciente();
             atributos.Email = email;
-            atributos.NomeCompleto = data.Tables[0].Rows[0].ItemArray[0].ToString();
-            atributos.Celular = data.Tables[0].Rows[0].ItemArray[2].ToString();
-            atributos.TelefoneResidencial = data.Tables[0].Rows[0].ItemArray[3].ToString();
-            atributos.Endereco = data.Tables[0].Rows[0].ItemArray[4].ToString();
-            atributos.DataNascimento = Convert.ToDateTime(data.Tables[0].Rows[0].ItemArray[5]);
+            atributos.NomeCompleto = (string)data.Tables[0].Rows[0].ItemArray[0];
+            atributos.Celular = (string)data.Tables[0].Rows[0].ItemArray[1];
+            atributos.TelefoneResidencial = (string)data.Tables[0].Rows[0].ItemArray[2];
+            atributos.Endereco = (string)data.Tables[0].Rows[0].ItemArray[3];
+            atributos.DataNascimento = (DateTime)data.Tables[0].Rows[0].ItemArray[4];
 
-            byte[] vetorImagem = (byte[])data.Tables[0].Rows[0].ItemArray[6];
-            atributos.Foto = ImageMethods.ImageFromBytes(vetorImagem);
+            try
+            {
+                byte[] vetorImagem = (byte[])data.Tables[0].Rows[0].ItemArray[5];
+                atributos.Foto = ImageMethods.ImageFromBytes(vetorImagem);
+            }
+            catch (Exception e)
+            { /*se entrou aqui eh porque era nulo (ele nao reconhece como nulo)*/ }
 
             return atributos;
+        }
+
+
+        //paciente especifico
+        public static bool HorarioConsultaEhLivre(AtributosConsulta atrConsulta, ConexaoBD conexaoBD)
+        {
+            AtributosConsultaCod[] vetor = Consulta.ConsultasOcorrendoEmHorarioOutraConsulta(atrConsulta, null,
+                atrConsulta.EmailPaciente, conexaoBD);
+            return vetor == null;
         }
 
         //todos os pacientes
@@ -82,8 +117,8 @@ namespace ProjetoPPI
             string[,] ret = new string[data.Tables[0].Rows.Count, 2];
             for (int i = 0; i < data.Tables[0].Rows.Count; i++)
             {
-                ret[i, 0] = data.Tables[0].Rows[i].ItemArray[0].ToString();
-                ret[i, 1] = data.Tables[0].Rows[i].ItemArray[1].ToString();
+                ret[i, 0] = (string)data.Tables[0].Rows[i].ItemArray[0];
+                ret[i, 1] = (string)data.Tables[0].Rows[i].ItemArray[1];
             }
 
             return ret;

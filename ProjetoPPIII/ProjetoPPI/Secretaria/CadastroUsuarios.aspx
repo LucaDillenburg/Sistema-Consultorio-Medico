@@ -12,86 +12,124 @@
 <body>
 <form id="form1" runat="server">
 <!---->
+    <%
+        if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() != typeof(Secretaria))
+        {
+            Response.Redirect("../Index.aspx");
+            return;
+        }
 
+        if (Session["tipoUsCadastrar"] == null)
+            Session["tipoUsCadastrar"] = ProjetoPPI.TipoUsuario.paciente;
+        this.tipoUsCadastrar = (ProjetoPPI.TipoUsuario)Session["tipoUsCadastrar"];
+    %>
 <div>
-    <asp:Label ID="lbTitulo" runat="server" Text="Cadastrar Médico"></asp:Label>
+    <h1> Cadastrar 
+        <%
+            switch(this.tipoUsCadastrar)
+            {
+                case ProjetoPPI.TipoUsuario.paciente:
+                    %>Paciente<%
+                    break;
+                case ProjetoPPI.TipoUsuario.medico:
+                    %>Médico<%
+                    break;
+                case ProjetoPPI.TipoUsuario.secretaria:
+                    %>Secretária<%
+                    break;
+            }
+        %>
+    </h1>
     <br /> <br />
 
     <table>
         <tr>
-            <td><asp:Label ID="Label1" runat="server" Text="Email: "></asp:Label></td>
+            <td><label>Email: </label></td>
             <td><asp:TextBox ID="txtEmail" runat="server" MaxLength="50" OnTextChanged="txtEmail_TextChanged"></asp:TextBox>
             <asp:Label ID="lbMsgEmail" runat="server"></asp:Label>
             </td>
         </tr>
 
         <tr>
-            <td><asp:Label ID="Label2" runat="server" Text="Nome completo: "></asp:Label></td>
+            <td><label>Nome completo: </label></td>
             <td><asp:TextBox ID="txtNome" runat="server" MaxLength="50" OnTextChanged="txtNome_TextChanged"></asp:TextBox>
             <asp:Label ID="lbMsgNome" runat="server"></asp:Label>
             </td>
         </tr>
 
-        <asp:Panel ID="crm" runat="server">
+        <%
+            if (this.tipoUsCadastrar == ProjetoPPI.TipoUsuario.medico)
+            {
+        %>
+            <tr>
+                <!-- -->
+
+                <td><label>CRM: </label></td>
+                <td><asp:TextBox ID="txtCRM" runat="server" MaxLength="13" OnTextChanged="txtCRM_TextChanged"></asp:TextBox>
+                <asp:Label ID="lbMsgCRM" runat="server"></asp:Label>
+                </td>
+            </tr>
+        <%
+            }
+        %>
+
+        <%
+            if (this.tipoUsCadastrar != ProjetoPPI.TipoUsuario.secretaria)
+            {
+        %>
+            <tr>
+                <!-- -->
+
+                <td><label>Celular: </label></td>
+                <td><asp:TextBox ID="txtCelular" runat="server" MaxLength="14" OnTextChanged="txtCelular_TextChanged"></asp:TextBox>
+                <asp:Label ID="lbMsgCelular" runat="server"></asp:Label>
+                </td> 
+            </tr>
+
+            <tr>
+                <!-- -->
+
+                <td><label>Telefone: </label></td>
+                <td><asp:TextBox ID="txtTelefone" runat="server" MaxLength="13" OnTextChanged="txtTelefone_TextChanged"></asp:TextBox>
+                <asp:Label ID="lbMsgTelefone" runat="server"></asp:Label>
+                </td>
+            </tr>
+        <%
+            }
+        %>
+
         <tr>
-            <!-- -->
-
-            <td><asp:Label ID="lbCRM" runat="server" Text="CRM: "></asp:Label></td>
-            <td><asp:TextBox ID="txtCRM" runat="server" MaxLength="13" OnTextChanged="txtCRM_TextChanged"></asp:TextBox>
-            <asp:Label ID="lbMsgCRM" runat="server"></asp:Label>
-            </td>
-        </tr>
-        </asp:Panel>
-
-        <asp:Panel ID="celular" runat="server">
-        <tr>
-            <!-- -->
-
-            <td><asp:Label ID="Label4" runat="server" Text="Celular: "></asp:Label></td>
-            <td><asp:TextBox ID="txtCelular" runat="server" MaxLength="14" OnTextChanged="txtCelular_TextChanged"></asp:TextBox>
-            <asp:Label ID="lbMsgCelular" runat="server"></asp:Label>
-            </td> 
-        </tr>
-        </asp:Panel>
-
-        <asp:Panel ID="telefone" runat="server">
-        <tr>
-            <!-- -->
-
-            <td><asp:Label ID="Label5" runat="server" Text="Telefone: "></asp:Label></td>
-            <td><asp:TextBox ID="txtTelefone" runat="server" MaxLength="13" OnTextChanged="txtTelefone_TextChanged"></asp:TextBox>
-            <asp:Label ID="lbMsgTelefone" runat="server"></asp:Label>
-            </td>
-        </tr>
-        </asp:Panel>
-
-        <tr>
-            <td><asp:Label ID="Label6" runat="server" Text="Endereço: "></asp:Label></td>
+            <td><label>Endereço: </label></td>
             <td><asp:TextBox ID="txtEndereco" runat="server" MaxLength="100" OnTextChanged="txtEndereco_TextChanged"></asp:TextBox>
             <asp:Label ID="lbMsgEndereco" runat="server"></asp:Label>
             </td>
         </tr>
 
-        <asp:Panel ID="datanascimento" runat="server">
-        <tr>
-            <!-- -->
+        <%
+            if (this.tipoUsCadastrar != ProjetoPPI.TipoUsuario.secretaria)
+            {
+        %>
+            <tr>
+                <!-- -->
 
-            <td><asp:Label ID="Label7" runat="server" Text="Data de Nascimento: "></asp:Label></td>
-            <td><asp:TextBox ID="txtDataNascimento" runat="server" TextMode="Date" MaxLength="10" OnTextChanged="txtDataNascimento_TextChanged"></asp:TextBox>
-            <asp:Label ID="lbMsgDataNascimento" runat="server"></asp:Label>
-            </td>
-        </tr>
-        </asp:Panel>
+                <td><label>Data de Nascimento: </label></td>
+                <td><asp:TextBox ID="txtDataNascimento" runat="server" TextMode="Date" MaxLength="10" OnTextChanged="txtDataNascimento_TextChanged"></asp:TextBox>
+                <asp:Label ID="lbMsgDataNascimento" runat="server"></asp:Label>
+                </td>
+            </tr>
+        <%
+            }
+        %>
 
         <tr>
-            <td><asp:Label ID="Label8" runat="server" Text="Senha: "></asp:Label></td>
+            <td><label>Senha: </label></td>
             <td><asp:TextBox ID="txtSenha" runat="server" TextMode="Password" MaxLength="30" OnTextChanged="txtSenha_TextChanged"></asp:TextBox>
             <asp:Label ID="lbMsgSenha" runat="server"></asp:Label>
             </td>
         </tr>
 
         <tr>
-            <td><asp:Label ID="Label9" runat="server" Text="Confirmação de senha: "></asp:Label></td>
+            <td><label>Confirmação de senha: </label></td>
             <td><asp:TextBox ID="txtConfirmacaoSenha" runat="server" TextMode="Password" MaxLength="30" OnTextChanged="txtConfirmacaoSenha_TextChanged"></asp:TextBox>
             <asp:Label ID="lbMsgConfSenha" runat="server"></asp:Label>
             </td>

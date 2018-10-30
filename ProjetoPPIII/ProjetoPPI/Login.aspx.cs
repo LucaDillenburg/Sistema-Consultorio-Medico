@@ -16,32 +16,6 @@ namespace ProjetoPPI
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["tipoUsuario"] == null || Session["tipoUsuario"].GetType()!=typeof(TipoUsuario))
-            {
-                tipoUsuario = TipoUsuario.paciente;
-                Session["tipoUsuario"] = tipoUsuario;
-            }
-            else
-                tipoUsuario = (TipoUsuario)Session["tipoUsuario"];
-            
-            Session["usuario"] = null;
-
-            switch (this.tipoUsuario)
-            {
-                case TipoUsuario.medico:
-                    this.lbTitulo.Text = "Login Médico";
-                    break;
-                case TipoUsuario.paciente:
-                    this.lbTitulo.Text = "Login Paciente";
-                    break;
-                case TipoUsuario.secretaria:
-                    this.lbTitulo.Text = "Login Secretária";
-                    break;
-                default:
-                    Response.Redirect("Index.aspx");
-                    return;
-            }
-
             if (Session["conexao"] == null)
                 Session["conexao"] = new ConexaoBD(WebConfigurationManager.ConnectionStrings["conexaoBD"].ConnectionString);
         }
