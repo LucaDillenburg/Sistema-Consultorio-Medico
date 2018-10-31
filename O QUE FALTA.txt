@@ -1,0 +1,40 @@
+PÁGINAS:
+ - HOME. (falta colocar texto de verdade)
+ - LOGIN. OK
+ - PÁGINA DO MÉDICO
+   -> Index 
+      .ver todas as consultas. OK
+      .botao para ver consulta de agora. (falta design)
+      .label com satisfacao media. (falta design)
+      .notificacoes. (falta design)
+      .opcao para ir para pagina com suas informacoes. (falta tudo)
+   -> Página com informacoes do medico (opcao para colocar foto de perfil [soh se der tempo]). (falta tudo)
+   -> Ver consulta especifica. (falta design)
+
+ - PÁGINA DO PACIENTE
+   -> Index
+      .ver todas as consultas. OK
+      .opcao para ir para pagina com suas informacoes. (falta tudo)
+   -> Página com informacoes do paciente (opcao para colocar foto de perfil [soh se der tempo]). (falta tudo)
+   -> Ver consulta especifica. (falta design)
+
+ - PÁGINA DA SECRETÁRIA
+   -> Index (??)
+   -> Página com informações da secretária. (falta tudo)
+   -> Agenda (filtrar por medico, paciente e data). (falta tudo)
+   -> Ver consulta especifica. (falta design)
+   -> Cadastrar paciente, medico e secretaria. (falta design)
+   -> Agendar consulta. (falta design)
+   -> Adicionar especialidade de medico. (falta tudo)
+   -> Graficos. (falta tudo)
+   -> mudar informações de médicos e pacientes (pesquisa de médico e pacientes e opção para mudar essas informações). ??
+
+
+Sistema:
+ .se o medico nao colocar que a consulta ocorreu ateh o final do dia, o sistema deverá colocar que a consulta nao ocorreu (cancelada). OK
+ .mandar sms e email para paciente um dia antes da consulta. OK
+
+
+[se der tempo]
+Além disso:
+ - falta colocar AjaxToolKit
