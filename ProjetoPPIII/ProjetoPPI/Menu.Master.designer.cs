@@ -10,7 +10,7 @@
 namespace ProjetoPPI {
     
     
-    public partial class Menu {
+    public partial class NMenu {
         
         /// <summary>
         /// Controle head.
@@ -31,6 +31,15 @@ namespace ProjetoPPI {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// Controle btnLogin.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnLogin;
+        
+        /// <summary>
         /// Controle btnMenuPaciente.
         /// </summary>
         /// <remarks>
@@ -40,15 +49,6 @@ namespace ProjetoPPI {
         protected global::System.Web.UI.WebControls.LinkButton btnMenuPaciente;
         
         /// <summary>
-        /// Controle btnMenuMedico.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnMenuMedico;
-        
-        /// <summary>
         /// Controle btnMenuSecretaria.
         /// </summary>
         /// <remarks>
@@ -56,6 +56,15 @@ namespace ProjetoPPI {
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnMenuSecretaria;
+        
+        /// <summary>
+        /// Controle btnMenuMedico.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnMenuMedico;
         
         /// <summary>
         /// Controle ContentPlaceHolder1.

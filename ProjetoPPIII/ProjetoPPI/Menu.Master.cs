@@ -8,11 +8,11 @@ using System.Web.Configuration;
 
 namespace ProjetoPPI
 {
-    public partial class Menu : System.Web.UI.MasterPage
-    {      
-
+    public partial class NMenu : System.Web.UI.MasterPage
+    {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["usuario"] = null;
             if (Session["conexao"] == null)
                 Session["conexao"] = new ConexaoBD(WebConfigurationManager.ConnectionStrings["conexaoBD"].ConnectionString);
         }
@@ -33,6 +33,6 @@ namespace ProjetoPPI
         {
             Session["tipoUsuario"] = TipoUsuario.paciente;
             Response.Redirect("Login.aspx");
-        }
+        }        
     }
 }

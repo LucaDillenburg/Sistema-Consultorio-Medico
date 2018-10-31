@@ -279,6 +279,7 @@
     </Compile>
     <Compile Include="NMenu.Master.designer.cs">
       <DependentUpon>NMenu.Master</DependentUpon>
+    </Compile>
     <Compile Include="Paciente\UltimasConsultas.aspx.cs">
       <DependentUpon>UltimasConsultas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
