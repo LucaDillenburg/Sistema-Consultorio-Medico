@@ -1,9 +1,0 @@
-FAZER AGORA
- - Ver consultas. OK
- - testar ServidorApp
- - verifica o adicionar observacoes e satisfacao
-
-
-mudar o que estah no OnLoad da page para o arquivo .aspx  ( <% if () { %> <tag> <% } %> ) e (<%= variavel%> //escrever nome da variavel). OK
-quando um medico fizer uma observacao sobre a consulta mudar o status da consulta para ocorrido. OK
-arrumar cadastrar consulta (data). OK

@@ -392,7 +392,7 @@ namespace ProjetoPPI
             get { return this.codConsulta; }
             set
             {
-                if (this.codConsulta <= 0)
+                if (value <= 0)
                     throw new Exception("Codigo invalido!");
                 this.codConsulta = value;
             }

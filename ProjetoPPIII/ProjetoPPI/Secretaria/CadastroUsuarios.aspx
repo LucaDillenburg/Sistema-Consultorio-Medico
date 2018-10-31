@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CadastroUsuarios.aspx.cs" Inherits="ProjetoPPI.CadastroUsuarios" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CadastroUsuarios.aspx.cs" Inherits="ProjetoPPI.PagSecretaria.CadastroUsuarios" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
@@ -13,7 +13,7 @@
 <form id="form1" runat="server">
 <!---->
     <%
-        if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() != typeof(Secretaria))
+        if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() != typeof(ProjetoPPI.Secretaria))
         {
             Response.Redirect("../Index.aspx");
             return;
@@ -21,12 +21,11 @@
 
         if (Session["tipoUsCadastrar"] == null)
             Session["tipoUsCadastrar"] = ProjetoPPI.TipoUsuario.paciente;
-        this.tipoUsCadastrar = (ProjetoPPI.TipoUsuario)Session["tipoUsCadastrar"];
     %>
 <div>
     <h1> Cadastrar 
         <%
-            switch(this.tipoUsCadastrar)
+            switch(Session["tipoUsCadastrar"])
             {
                 case ProjetoPPI.TipoUsuario.paciente:
                     %>Paciente<%
@@ -58,7 +57,7 @@
         </tr>
 
         <%
-            if (this.tipoUsCadastrar == ProjetoPPI.TipoUsuario.medico)
+            if ((ProjetoPPI.TipoUsuario)Session["tipoUsCadastrar"] == ProjetoPPI.TipoUsuario.medico)
             {
         %>
             <tr>
@@ -74,7 +73,7 @@
         %>
 
         <%
-            if (this.tipoUsCadastrar != ProjetoPPI.TipoUsuario.secretaria)
+            if ((ProjetoPPI.TipoUsuario)Session["tipoUsCadastrar"] != ProjetoPPI.TipoUsuario.secretaria)
             {
         %>
             <tr>
@@ -106,7 +105,7 @@
         </tr>
 
         <%
-            if (this.tipoUsCadastrar != ProjetoPPI.TipoUsuario.secretaria)
+            if ((ProjetoPPI.TipoUsuario)Session["tipoUsCadastrar"] != ProjetoPPI.TipoUsuario.secretaria)
             {
         %>
             <tr>

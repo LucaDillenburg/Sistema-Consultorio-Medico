@@ -7,10 +7,10 @@
 // </gerado automaticamente>
 //------------------------------------------------------------------------------
 
-namespace ProjetoPPI {
+namespace ProjetoPPI.PagSecretaria {
     
     
-    public partial class PaginaSecretaria {
+    public partial class Index {
         
         /// <summary>
         /// Controle form1.
@@ -47,5 +47,23 @@ namespace ProjetoPPI {
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCadastrarSecretaria;
+        
+        /// <summary>
+        /// Controle btnAgendarConsulta.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAgendarConsulta;
+        
+        /// <summary>
+        /// Controle btnAgenda.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAgenda;
     }
 }

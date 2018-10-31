@@ -7,9 +7,9 @@
 // </gerado automaticamente>
 //------------------------------------------------------------------------------
 
-namespace ProjetoPPI {
+namespace ProjetoPPI.PagPaciente {
     
     
-    public partial class IndexPaciente {
+    public partial class Index {
     }
 }

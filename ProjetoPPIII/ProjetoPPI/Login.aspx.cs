@@ -12,8 +12,6 @@ namespace ProjetoPPI
 
     public partial class Login : System.Web.UI.Page
     {
-        protected TipoUsuario tipoUsuario;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["conexao"] == null)
@@ -30,7 +28,7 @@ namespace ProjetoPPI
 
             this.lbMsg.Text = "";
 
-            switch (this.tipoUsuario)
+            switch ((ProjetoPPI.TipoUsuario)Session["tipoUsuario"])
             {
                 case TipoUsuario.medico:
                     try
@@ -50,6 +48,7 @@ namespace ProjetoPPI
                         Session["usuario"] = new Paciente(this.txtEmail.Text, this.txtSenha.Text, (ConexaoBD)Session["conexao"]);
                         Acesso.AdicionarAcesso(this.txtEmail.Text, TipoUsuario.paciente, (ConexaoBD)Session["conexao"]);
                         Response.Redirect("Paciente/Index.aspx");
+                        if (Session["usuario"] == null) { int i = 0; }
                         return;
                     }
                     catch (Exception err)
@@ -62,7 +61,7 @@ namespace ProjetoPPI
                     {
                         Session["usuario"] = new Secretaria(this.txtEmail.Text, this.txtSenha.Text, (ConexaoBD)Session["conexao"]);
                         Acesso.AdicionarAcesso(this.txtEmail.Text, TipoUsuario.secretaria, (ConexaoBD)Session["conexao"]);
-                        Response.Redirect("Secretaria/Index.aspx");
+                        Response.Redirect("Secretaria/Index.aspx", false);
                         return;
                     }
                     catch (Exception err)

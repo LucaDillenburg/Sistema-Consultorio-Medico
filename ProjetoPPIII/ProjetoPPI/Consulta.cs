@@ -101,11 +101,12 @@ namespace ProjetoPPI
             return atributosConsultas;
         }
 
-        public static AtributosConsultaCod[] UltimasConsultasDe(string email, bool ehMedico, ConexaoBD conexaoBD)
+        public static AtributosConsultaCod[] ConsultasDe(string email, bool ehMedico, bool ordenarPorSatisfacao, ConexaoBD conexaoBD)
         {
             DataSet dataSet = conexaoBD.ExecuteSelect("select codConsulta, proposito, horario, umaHora, observacoes, status, " +
                 "emailMedico, emailPac, satisfacao, comentario, horarioSatisfacao, medicoJahViuSatisfacao from consulta " +
-                "where " + (ehMedico?"emailMedico":"emailPac") +" = '" + email + "' order by horario desc");
+                "where " + (ehMedico?"emailMedico":"emailPac") +" = '" + email + "' order by "
+                + (ordenarPorSatisfacao? "horarioSatisfacao" : "horario") + " desc");
 
             if (dataSet.Tables[0].Rows.Count <= 0)
                 return null;
@@ -118,14 +119,19 @@ namespace ProjetoPPI
                 atributos[i].Proposito = (string)dataSet.Tables[0].Rows[0].ItemArray[1];
                 atributos[i].SetHorario((DateTime)dataSet.Tables[0].Rows[0].ItemArray[2], conexaoBD);
                 atributos[i].UmaHora = (bool)dataSet.Tables[0].Rows[0].ItemArray[3];
-                atributos[i].Observacoes = (string)dataSet.Tables[0].Rows[0].ItemArray[4];
-                atributos[i].Status = (char)dataSet.Tables[0].Rows[0].ItemArray[5];
+                if (dataSet.Tables[0].Rows[0].ItemArray[4] != System.DBNull.Value)
+                    atributos[i].Observacoes = (string)dataSet.Tables[0].Rows[0].ItemArray[4];
+                atributos[i].Status = ((string)dataSet.Tables[0].Rows[0].ItemArray[5])[0];
                 atributos[i].SetEmailMedico((string)dataSet.Tables[0].Rows[0].ItemArray[6], conexaoBD);
                 atributos[i].SetEmailPaciente((string)dataSet.Tables[0].Rows[0].ItemArray[7], conexaoBD);
-                atributos[i].Satisfacao = (int)dataSet.Tables[0].Rows[0].ItemArray[8];
-                atributos[i].Comentario = (string)dataSet.Tables[0].Rows[0].ItemArray[9];
-                atributos[i].HorarioSatisfacao = (DateTime)dataSet.Tables[0].Rows[0].ItemArray[10];
-                atributos[i].MedicoJahViuSatisfacao = (bool)dataSet.Tables[0].Rows[0].ItemArray[11];
+                if (dataSet.Tables[0].Rows[0].ItemArray[8] != System.DBNull.Value)
+                    atributos[i].Satisfacao = (int)dataSet.Tables[0].Rows[0].ItemArray[8];
+                if (dataSet.Tables[0].Rows[0].ItemArray[9] != System.DBNull.Value)
+                    atributos[i].Comentario = (string)dataSet.Tables[0].Rows[0].ItemArray[9];
+                if (dataSet.Tables[0].Rows[0].ItemArray[10] != System.DBNull.Value)
+                    atributos[i].HorarioSatisfacao = (DateTime)dataSet.Tables[0].Rows[0].ItemArray[10];
+                if (dataSet.Tables[0].Rows[0].ItemArray[11] != System.DBNull.Value)
+                    atributos[i].MedicoJahViuSatisfacao = (bool)dataSet.Tables[0].Rows[0].ItemArray[11];
             }
 
             return atributos;

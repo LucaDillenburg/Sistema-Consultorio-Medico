@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="ProjetoPPI.PagMedico.PaginaMedico" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="ProjetoPPI.PagMedico.Index" %>
 
 <!DOCTYPE html>
 
@@ -17,16 +17,13 @@
             return;
         }
 
-        this.conexaoBD = (ProjetoPPI.ConexaoBD)Session["conexao"];
-
-        ProjetoPPI.AtributosConsulta atributosConsulta = ((ProjetoPPI.Medico)Session["usuario"]).ConsultaAtual();
-        this.consultaAtual = atributosConsulta;
+        ProjetoPPI.AtributosConsulta consultaAtual = ((ProjetoPPI.Medico)Session["usuario"]).ConsultaAtual();
     %>
 
 <div>
     <asp:Label ID="lbSatisfacaoMedia" runat="server" Text= "Satisfação Média: "></asp:Label>
 
-    <% if (this.consultaAtual != null) { %>
+    <% if (consultaAtual != null) { %>
         <asp:Button ID="btnConsultaAtual" runat="server" Text="Consulta Atual" OnClick="btnConsultaAtual_Click" />
     <%  } %>
 

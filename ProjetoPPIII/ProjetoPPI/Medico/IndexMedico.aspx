@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NMenu.Master" AutoEventWireup="true" CodeBehind="IndexMedico.aspx.cs" Inherits="ProjetoPPI.IndexMedico" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Menu.Master" AutoEventWireup="true" CodeBehind="IndexMedico.aspx.cs" Inherits="ProjetoPPI.PagMedico.IndexMedico" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -6,8 +6,8 @@
     <hr class="hr-originais" />
 
     <% 
-        string emailPaciente = ((ProjetoPPI.Paciente)Session["usuario"]).Atributos.Email;    
-        ProjetoPPI.AtributosConsultaCod[] consultas = ProjetoPPI.Consulta.UltimasConsultasDe(emailPaciente, false, (ProjetoPPI.ConexaoBD)Session["conexao"]);    
+        string emailMedico = ((ProjetoPPI.Medico)Session["usuario"]).Atributos.Email;    
+        ProjetoPPI.AtributosConsultaCod[] consultas = ProjetoPPI.Consulta.ConsultasDe(emailMedico, true, false, (ProjetoPPI.ConexaoBD)Session["conexao"]);    
     %>
         
     <ul class="opcoes">
@@ -17,9 +17,10 @@
     </ul>
 
     <div class="tab-paciente">        
-         <table class="consultas-paciente">
+         
              <%for (int i = 0; i<consultas.Length; i++)
               {%>
+            <table class="consultas-paciente">
             <tr class="proposito">
                 <td>PROPÓSITO: </td>                
                 <td colspan="4"><%=consultas[i].Proposito%></td>
@@ -32,7 +33,7 @@
             </tr>
             <tr>
                 <td style="font-weight: bold; color: black;">PACIENTE: </td>
-                <td colspan="4"><%=ProjetoPPI.Medico.DeEmail(consultas[i].EmailMedico, (ProjetoPPI.ConexaoBD)Session["conexaoBD"]).NomeCompleto%></td>
+                <td colspan="4"><%=ProjetoPPI.Paciente.DeEmail(consultas[i].EmailPaciente, (ProjetoPPI.ConexaoBD)Session["conexaoBD"]).NomeCompleto%></td>
             </tr>
             <tr class="observacoes">
                 <td style="font-weight: bold;">OBSERVAÇÕES</td>
@@ -63,11 +64,10 @@
                 %>
                 </td>
             </tr>
-            <tr>
-                <td colspan="4"> - </td>
-            </tr>
+            </table>
+            <br />
              <%} %>
-        </table>       
+        
         <div class="agenda">Agenda</div>
         <div class="perfil">Perfil</div>
     </div>

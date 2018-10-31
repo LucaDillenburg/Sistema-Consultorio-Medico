@@ -10,7 +10,7 @@
 namespace ProjetoPPI.PagMedico {
     
     
-    public partial class PaginaMedico {
+    public partial class Index {
         
         /// <summary>
         /// Controle form1.

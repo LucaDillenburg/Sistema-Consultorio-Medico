@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace ProjetoPPI
+namespace ProjetoPPI.PagSecretaria
 {
     public partial class AgendarConsulta : System.Web.UI.Page
     {

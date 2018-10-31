@@ -42,13 +42,11 @@ namespace ProjetoPPI
             this.atributos.Endereco = (string)data.Tables[0].Rows[0].ItemArray[4];
             this.atributos.DataNascimento = (DateTime)data.Tables[0].Rows[0].ItemArray[5];
 
-            try
+            if (data.Tables[0].Rows[0].ItemArray[6] != System.DBNull.Value)
             {
                 byte[] vetorImagem = (byte[])data.Tables[0].Rows[0].ItemArray[6];
                 this.atributos.Foto = ImageMethods.ImageFromBytes(vetorImagem);
             }
-            catch (Exception e)
-            { /*se entrou aqui eh porque era nulo (ele nao reconhece como nulo)*/ }
 
             return true;
         }
@@ -87,37 +85,6 @@ namespace ProjetoPPI
 
 
         //atributos medico
-        public AtributosConsultaCod[] UltimasSatisfacoes
-        {
-            get
-            {
-                DataSet dataSet = this.conexaoBD.ExecuteSelect("select top(30) codConsulta, proposito, horario, umaHora, " +
-                "observacoes, status, emailPac, satisfacao, comentario, horarioSatisfacao from consulta " +
-                "where emailMedico = '" + this.Atributos.Email + "' order by horarioSatisfacao desc");
-
-                AtributosConsultaCod[] atributosConsultas = new AtributosConsultaCod[dataSet.Tables[0].Rows.Count];
-
-                for (int i = 0; i<dataSet.Tables[0].Rows.Count; i++)
-                {
-                    atributosConsultas[i] = new AtributosConsultaCod();
-                    atributosConsultas[i].CodConsulta = (int)dataSet.Tables[0].Rows[i].ItemArray[0];
-                    atributosConsultas[i].Proposito = (string)dataSet.Tables[0].Rows[i].ItemArray[1];
-                    atributosConsultas[i].SetHorario((DateTime)dataSet.Tables[0].Rows[i].ItemArray[2], conexaoBD);
-                    atributosConsultas[i].UmaHora = (bool)dataSet.Tables[0].Rows[i].ItemArray[3];
-                    atributosConsultas[i].Observacoes = (string)dataSet.Tables[0].Rows[i].ItemArray[4];
-                    atributosConsultas[i].Status = (char)dataSet.Tables[0].Rows[i].ItemArray[5];
-                    atributosConsultas[i].SetEmailMedico(this.Atributos.Email, conexaoBD);
-                    atributosConsultas[i].SetEmailPaciente((string)dataSet.Tables[0].Rows[i].ItemArray[6], conexaoBD);
-                    atributosConsultas[i].Satisfacao = (int)dataSet.Tables[0].Rows[i].ItemArray[7];
-                    atributosConsultas[i].Comentario = (string)dataSet.Tables[0].Rows[i].ItemArray[8];
-                    atributosConsultas[i].HorarioSatisfacao = (DateTime)dataSet.Tables[0].Rows[i].ItemArray[9];
-                    atributosConsultas[i].MedicoJahViuSatisfacao = false;
-                }
-
-                return atributosConsultas;
-            }
-        }        
-
         public int QtdNovasSatisfacoes
         {
             get
@@ -145,8 +112,11 @@ namespace ProjetoPPI
             atributos.Endereco = (string)data.Tables[0].Rows[0].ItemArray[4];
             atributos.DataNascimento = (DateTime)data.Tables[0].Rows[0].ItemArray[5];
 
-            byte[] vetorImagem = (byte[])data.Tables[0].Rows[0].ItemArray[6];
-            atributos.Foto = ImageMethods.ImageFromBytes(vetorImagem);
+            if (data.Tables[0].Rows[0].ItemArray[6] != System.DBNull.Value)
+            {
+                byte[] vetorImagem = (byte[])data.Tables[0].Rows[0].ItemArray[6];
+                atributos.Foto = ImageMethods.ImageFromBytes(vetorImagem);
+            }
 
             return atributos;
         }

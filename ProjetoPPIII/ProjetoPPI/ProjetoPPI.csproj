@@ -131,32 +131,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About.aspx" />
     <Content Include="Content\architecture-buildings-city-1139556.jpg" />
     <Content Include="Index.aspx" />
-    <Content Include="IndexMedico.aspx" />
-    <Content Include="IndexPaciente.aspx" />
-    <Content Include="IndexSecretaria.aspx" />
+    <Content Include="Medico\IndexMedico.aspx" />
+    <Content Include="Paciente\Index.aspx" />
     <Content Include="scriptPaginas.js" />
-    <Content Include="LoginT.aspx" />
     <Content Include="medico-paciente.jpg" />
     <Content Include="medico-sorrindo.jpg" />
     <Content Include="Medico\Index.aspx" />
     <Content Include="Medico\UltimasConsultas.aspx" />
     <Content Include="Medico\VerConsulta.aspx" />
-    <Content Include="NIndex.aspx" />
     <Content Include="NScript.js" />
     <Content Include="Paciente\UltimasConsultas.aspx" />
     <Content Include="Paciente\VerConsulta.aspx" />
     <Content Include="Scripts\script.js" />
+    <Content Include="Secretaria\IndexSecretaria.aspx" />
+    <Content Include="teste.aspx" />
     <Content Include="wallpaper-index.jpeg" />
     <Content Include="Secretaria\AgendarConsulta.aspx" />
     <Content Include="Secretaria\CadastroUsuarios.aspx" />
-    <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="Default.aspx" />
     <Content Include="estilo.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -168,7 +164,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Menu.Master" />
-    <Content Include="NMenu.Master" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Login.aspx" />
     <Content Include="Secretaria\Index.aspx" />
@@ -201,41 +196,18 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Secretaria\VerConsulta.aspx" />
-    <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
-    <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Acesso.cs" />
-    <Compile Include="IndexMedico.aspx.cs">
-      <DependentUpon>IndexMedico.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="IndexMedico.aspx.designer.cs">
-      <DependentUpon>IndexMedico.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="IndexPaciente.aspx.cs">
-      <DependentUpon>IndexPaciente.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="IndexPaciente.aspx.designer.cs">
-      <DependentUpon>IndexPaciente.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="IndexSecretaria.aspx.cs">
-      <DependentUpon>IndexSecretaria.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="IndexSecretaria.aspx.designer.cs">
-      <DependentUpon>IndexSecretaria.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Consulta.cs" />
-    <Compile Include="IndexT.aspx.cs">
+    <Compile Include="Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="IndexT.aspx.designer.cs">
+    <Compile Include="Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Medico\Index.aspx.cs">
@@ -244,6 +216,13 @@
     </Compile>
     <Compile Include="Medico\Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Medico\IndexMedico.aspx.cs">
+      <DependentUpon>IndexMedico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Medico\IndexMedico.aspx.designer.cs">
+      <DependentUpon>IndexMedico.aspx</DependentUpon>
     </Compile>
     <Compile Include="Medico\UltimasConsultas.aspx.cs">
       <DependentUpon>UltimasConsultas.aspx</DependentUpon>
@@ -266,19 +245,12 @@
     <Compile Include="Menu.Master.designer.cs">
       <DependentUpon>Menu.Master</DependentUpon>
     </Compile>
-    <Compile Include="NIndex.aspx.cs">
-      <DependentUpon>NIndex.aspx</DependentUpon>
+    <Compile Include="Paciente\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="NIndex.aspx.designer.cs">
-      <DependentUpon>NIndex.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="NMenu.Master.cs">
-      <DependentUpon>NMenu.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="NMenu.Master.designer.cs">
-      <DependentUpon>NMenu.Master</DependentUpon>
+    <Compile Include="Paciente\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paciente\UltimasConsultas.aspx.cs">
       <DependentUpon>UltimasConsultas.aspx</DependentUpon>
@@ -302,13 +274,6 @@
       <DependentUpon>AgendarConsulta.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Atributos.cs" />
     <Compile Include="Secretaria\CadastroUsuarios.aspx.cs">
@@ -319,12 +284,12 @@
       <DependentUpon>CadastroUsuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="ConexaoBD.cs" />
-    <Compile Include="Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
+    <Compile Include="Secretaria\IndexSecretaria.aspx.cs">
+      <DependentUpon>IndexSecretaria.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
+    <Compile Include="Secretaria\IndexSecretaria.aspx.designer.cs">
+      <DependentUpon>IndexSecretaria.aspx</DependentUpon>
     </Compile>
     <Compile Include="Secretaria\VerConsulta.aspx.cs">
       <DependentUpon>VerConsulta.aspx</DependentUpon>
@@ -334,13 +299,6 @@
       <DependentUpon>VerConsulta.aspx</DependentUpon>
     </Compile>
     <Compile Include="Senha.cs" />
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Extensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -363,19 +321,12 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Secretaria\Secretaria.cs" />
-    <Compile Include="Site.Master.cs">
-      <DependentUpon>Site.Master</DependentUpon>
+    <Compile Include="teste.aspx.cs">
+      <DependentUpon>teste.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Site.Master.designer.cs">
-      <DependentUpon>Site.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Site.Mobile.Master.cs">
-      <DependentUpon>Site.Mobile.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Site.Mobile.Master.designer.cs">
-      <DependentUpon>Site.Mobile.Master</DependentUpon>
+    <Compile Include="teste.aspx.designer.cs">
+      <DependentUpon>teste.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

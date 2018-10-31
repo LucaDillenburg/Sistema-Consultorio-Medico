@@ -8,15 +8,16 @@ using System.Web.UI.WebControls;
 
 namespace ProjetoPPI.PagMedico
 {
-    public partial class PaginaMedico : System.Web.UI.Page
+    public partial class Index : System.Web.UI.Page
     {
         protected ConexaoBD conexaoBD;
         protected AtributosConsulta consultaAtual;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //parte da verificacao estah no proprio .aspx
-            
+            this.conexaoBD = (ProjetoPPI.ConexaoBD)Session["conexao"];
+            this.consultaAtual = ((ProjetoPPI.Medico)Session["usuario"]).ConsultaAtual();
+
             this.lbSatisfacaoMedia.Text = "Satisfação Média: " + Medico.SatisfacaoMedia(((Medico)Session["usuario"]).Atributos.Email,
                 (ConexaoBD)Session["conexao"]).ToString("0.0") + "/5";
 
@@ -45,7 +46,7 @@ namespace ProjetoPPI.PagMedico
 
         protected void btnNotificacoes_Click(object sender, EventArgs e)
         {
-            AtributosConsultaCod[] atributosConsulta = ((Medico)Session["usuario"]).UltimasSatisfacoes;
+            AtributosConsultaCod[] atributosConsulta = Consulta.ConsultasDe(((Medico)Session["usuario"]).Atributos.Email, true, true, (ConexaoBD)Session["conexao"]);
             
             //mostrar notificacoes
 

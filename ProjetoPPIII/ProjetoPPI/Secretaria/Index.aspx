@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="ProjetoPPI.PaginaSecretaria" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="ProjetoPPI.PagSecretaria.Index" %>
 
 <!DOCTYPE html>
 
@@ -13,8 +13,9 @@
             <asp:Button ID="btnCadastrarMedico" runat="server" Text="Cadastrar Médico" OnClick="btnCadastrarMedico_Click" />
             <asp:Button ID="btnCadastrarPaciente" runat="server" Text="Cadastrar Paciente" OnClick="btnCadastrarPaciente_Click" />
             <asp:Button ID="btnCadastrarSecretaria" runat="server" Text="Cadastrar Secretaria" OnClick="btnCadastrarSecretaria_Click" />
-            <a href="AgendarConsulta.aspx">Agendar Consulta</a>
-            <a href="Agenda.aspx">Agenda</a>
+
+            <asp:Button ID="btnAgendarConsulta" runat="server" Text="Agendar Consulta" OnClick="btnAgendarConsulta_Click" />
+            <asp:Button ID="btnAgenda" runat="server" Text="Agenda" OnClick="btnAgenda_Click" />
         </div>
     </form>
 </body>

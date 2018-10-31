@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace ProjetoPPI
+namespace ProjetoPPI.PagSecretaria
 {
-    public partial class PaginaSecretaria : System.Web.UI.Page
+    public partial class Index : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -35,5 +35,10 @@ namespace ProjetoPPI
             Session["tipoUsCadastrar"] = TipoUsuario.secretaria;
             Response.Redirect("CadastroUsuarios.aspx");
         }
+
+        protected void btnAgendarConsulta_Click(object sender, EventArgs e)
+        { Response.Redirect("AgendarConsulta.aspx"); }
+        protected void btnAgenda_Click(object sender, EventArgs e)
+        { Response.Redirect("Agenda.aspx"); }
     }
 }

@@ -7,7 +7,7 @@
 // </gerado automaticamente>
 //------------------------------------------------------------------------------
 
-namespace ProjetoPPI {
+namespace ProjetoPPI.PagSecretaria {
     
     
     public partial class CadastroUsuarios {

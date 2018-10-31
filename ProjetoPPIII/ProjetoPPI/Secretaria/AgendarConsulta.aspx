@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AgendarConsulta.aspx.cs" Inherits="ProjetoPPI.AgendarConsulta" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AgendarConsulta.aspx.cs" Inherits="ProjetoPPI.PagSecretaria.AgendarConsulta" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
@@ -11,15 +11,15 @@
 </head>
 <body>
 <form id="form1" runat="server">
-<!---->
+<div>
     <%
-        if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() != typeof(Secretaria))
+        if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() != typeof(ProjetoPPI.Secretaria))
         {
             Response.Redirect("../Index.aspx");
             return;
         }
     %>
-<div>
+
     <h1>Agendar Consulta</h1>
 
     <table>

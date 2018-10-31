@@ -5,15 +5,12 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace ProjetoPPI
+namespace ProjetoPPI.PagSecretaria
 {
     public partial class CadastroUsuarios : System.Web.UI.Page
     {
-        protected TipoUsuario tipoUsCadastrar;
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            //tudo no .aspx
         }
 
         //cadastrar
@@ -23,10 +20,10 @@ namespace ProjetoPPI
             bool tudoCerto = true;
 
             ExAtributosSimples atributos;
-            if (this.tipoUsCadastrar == TipoUsuario.medico)
+            if ((TipoUsuario)Session["tipoUsCadastrar"] == TipoUsuario.medico)
                 atributos = new AtributosMedico();
             else
-            if (this.tipoUsCadastrar == TipoUsuario.paciente)
+            if ((TipoUsuario)Session["tipoUsCadastrar"] == TipoUsuario.paciente)
                 atributos = new AtributosPaciente();
             else
                 atributos = new AtributosSecretaria();
@@ -87,13 +84,16 @@ namespace ProjetoPPI
             else
                 this.ProcSenhaValidaOuNao(forcaSenha, true);
 
-            if (this.tipoUsCadastrar == TipoUsuario.secretaria)
+            if ((TipoUsuario)Session["tipoUsCadastrar"] == TipoUsuario.secretaria)
             {
                 if (tudoCerto)
                 {
                     try
                     {
                         ((Secretaria)Session["usuario"]).CadastrarSecretaria((AtributosSecretaria)atributos);
+
+                        this.lbMsg.Attributes["style"] = "color: green";
+                        this.lbMsg.Text = "Secretária adicionado ao banco!";
                     }
                     catch(Exception err)
                     {
@@ -132,7 +132,7 @@ namespace ProjetoPPI
                 //data nascimento
                 try
                 {
-                    if (this.tipoUsCadastrar == TipoUsuario.medico)
+                    if ((TipoUsuario)Session["tipoUsCadastrar"] == TipoUsuario.medico)
                         ((AtributosMedico)atributos).DataNascimento = this.DataNascimentoAtual();
                     else
                         ((AtributosPaciente)atributos).DataNascimento = this.DataNascimentoAtual();
@@ -144,7 +144,7 @@ namespace ProjetoPPI
                     tudoCerto = false;
                 }
 
-                if (this.tipoUsCadastrar == TipoUsuario.medico)
+                if ((TipoUsuario)Session["tipoUsCadastrar"] == TipoUsuario.medico)
                     //CRM
                     try
                     {
@@ -158,21 +158,25 @@ namespace ProjetoPPI
                     }
 
                 if (tudoCerto)
-                //ADICIONAR MEDICO AO BANCO
+                //ADICIONAR USUARIO AO BANCO
                 {
                     this.lbMsg.Text = "";
 
                     try
                     {
-                        if (this.tipoUsCadastrar == TipoUsuario.medico)
+                        if ((TipoUsuario)Session["tipoUsCadastrar"] == TipoUsuario.medico)
                             ((Secretaria)Session["usuario"]).CadastrarMedico((AtributosMedico)atributos);
                         else
                             ((Secretaria)Session["usuario"]).CadastrarPaciente((AtributosPaciente)atributos);
+
+                        this.lbMsg.Attributes["style"] = "color: green";
+                        this.lbMsg.Text = (((TipoUsuario)Session["tipoUsCadastrar"] == TipoUsuario.medico)?"Médico":"Paciente") 
+                            +" adicionado ao banco!";
                     }
                     catch (Exception err)
                     {
                         this.lbMsg.Attributes["style"] = "color: red";
-                        this.lbMsg.Text = "Erro ao adicionar "+ ((this.tipoUsCadastrar == TipoUsuario.medico)?"médico":"paciente") + " no banco...";
+                        this.lbMsg.Text = "Erro ao adicionar "+ (((TipoUsuario)Session["tipoUsCadastrar"] == TipoUsuario.medico)?"médico":"paciente") + " no banco...";
                         tudoCerto = false;
                     }
                 }
@@ -201,9 +205,6 @@ namespace ProjetoPPI
                 this.lbMsgConfSenha.Text = "";
                 this.txtSenha.Attributes.Add("value", "");
                 this.txtConfirmacaoSenha.Attributes.Add("value", "");
-
-                this.lbMsg.Attributes["style"] = "color: green";
-                this.lbMsg.Text = "Médico adicionado ao banco!";
             }
             else
             {
@@ -252,12 +253,12 @@ namespace ProjetoPPI
         
         protected DateTime DataNascimentoAtual()
         {
-            return DateTime.ParseExact(this.txtDataNascimento.Text, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            return DateTime.ParseExact(this.txtDataNascimento.Text, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
         }
 
         protected void txtDataNascimento_TextChanged(object sender, EventArgs e)
         {
-            if (this.tipoUsCadastrar == TipoUsuario.medico)
+            if ((TipoUsuario)Session["tipoUsCadastrar"] == TipoUsuario.medico)
                 this.ProcNascimentoValidaOuNao(AtributosMedico.DataNascimentoValida(this.DataNascimentoAtual()));
             else
                 this.ProcNascimentoValidaOuNao(AtributosPaciente.DataNascimentoValida(this.DataNascimentoAtual()));
@@ -267,7 +268,7 @@ namespace ProjetoPPI
         {
             if (!valido)
             {
-                if (this.tipoUsCadastrar == TipoUsuario.medico)
+                if ((TipoUsuario)Session["tipoUsCadastrar"] == TipoUsuario.medico)
                     this.lbMsgDataNascimento.Text = "Essa não é uma data de nascimento válida! Um médico precisa ser maior de idade.";
                 else
                     this.lbMsgDataNascimento.Text = "Essa não é uma data de nascimento válida! O paciente já precisa ter nascido.";
@@ -330,14 +331,14 @@ namespace ProjetoPPI
 
         protected void txtCRM_TextChanged(object sender, EventArgs e)
         {
-            if (this.tipoUsCadastrar != TipoUsuario.medico)
+            if ((TipoUsuario)Session["tipoUsCadastrar"] != TipoUsuario.medico)
                 return;
             this.ProcCRMValidoOuNao(AtributosMedico.CRMValido(this.txtCRM.Text));
         }
 
         protected void ProcCRMValidoOuNao(bool valido)
         {
-            if (this.tipoUsCadastrar != TipoUsuario.medico)
+            if ((TipoUsuario)Session["tipoUsCadastrar"] != TipoUsuario.medico)
                 return;
             if (valido)
                 this.lbMsgCRM.Text = "";

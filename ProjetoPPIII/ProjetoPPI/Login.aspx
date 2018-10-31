@@ -25,18 +25,13 @@
         <div class="formulario">
             <%
                 if (Session["tipoUsuario"] == null || Session["tipoUsuario"].GetType()!=typeof(ProjetoPPI.TipoUsuario))
-                {
-                    tipoUsuario = ProjetoPPI.TipoUsuario.paciente;
-                    Session["tipoUsuario"] = tipoUsuario;
-                }
-                else
-                    tipoUsuario = (ProjetoPPI.TipoUsuario)Session["tipoUsuario"];   
+                    Session["tipoUsuario"] = ProjetoPPI.TipoUsuario.paciente; 
             %>
 
             <asp:Label ID="lbTitulo" CssClass="legenda" runat="server" Text="TITULO" >
                 <%
                     //se jah estah logado vai para o index do personagem
-                    switch (this.tipoUsuario)
+                    switch ((ProjetoPPI.TipoUsuario)Session["tipoUsuario"])
                     {
                         case ProjetoPPI.TipoUsuario.medico:
                             if (Session["usuario"] != null && Session["usuario"].GetType() == typeof(ProjetoPPI.Medico))
