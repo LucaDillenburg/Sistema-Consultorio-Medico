@@ -11,11 +11,31 @@ body {
     overflow-y: scroll;
 }
 
+#bodyIndex {
+    background-image: url('wallpaper-index.jpeg');*/
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat repeat;
+    background-size: cover;
+}
+
+#bodyIndex .title-originais{
+    padding: 60px 0;
+    margin: 0;
+    color: black;
+    font-size: 55px;
+    background-color: rgba(242, 242, 242, 0.7);
+}
+
+#invisivel {
+    width: 100%;
+    height: 250px;
+}
+
 div.menu-horizontal {
     position: fixed;
     width: 100%;
-    background: rgb(0,36,33);
-    background: linear-gradient(90deg, rgba(0,36,33,1) 0%, rgba(9,121,84,0.639093137254902) 0%, rgba(0,255,141,1) 100%);
+    background-image: linear-gradient(120deg, #89f7fe 0%, #63dfff 100%);
     padding-left: 10px;
     padding-right: 10px;
     font-size: 20px;
@@ -77,10 +97,6 @@ ul.menu-vertical li.menu-titulo{
     background-color: lightgreen;
 }
 
-ul.menu-vertical li.menu-item .asp_button {
-
-}
-
 #da-espaco {
     height: 50px;
     width: 100%;
@@ -105,12 +121,12 @@ div.content {
     margin-top: 50px;
     display: block;
     position: relative;   
-    width: 90vw;
+    width: 100vw;
     background-color: rgb(242, 242, 242);
     z-index: -1;
     font-family: 'Comfortaa', cursive;
     padding-top: 15px;
-    padding: 20px;
+    padding: 20px 50px;
     color: black;
     box-shadow: 0px 0px 5px 0.5px rgba(50, 50, 50, 0.5);    
 }
@@ -121,6 +137,7 @@ div.content {
 
 .content p.text {
     font-family: 'Comfortaa', cursive;
+    font-size: 18px;
 }
 
 h1.title-originais {
@@ -128,6 +145,7 @@ h1.title-originais {
     margin-top: 40px;
     text-align: center;
     font-family: 'Comfortaa', cursive;
+    font-weight: normal;    
 }
 
 hr.hr-originais {
@@ -163,6 +181,7 @@ ul.opcoes {
     box-sizing: border-box;
     cursor: pointer;
     z-index: 99;
+    color: black;
 }
 
 .opcoes li:hover{
@@ -170,8 +189,12 @@ ul.opcoes {
 }
 
 .opcoes li.ativo {
-    background: rgb(0,36,33);
-    background: linear-gradient(90deg, rgba(0,36,33,1) 0%, rgba(9,121,84,0.639093137254902) 0%, rgba(0,255,141,1) 100%);     
+    background-image: linear-gradient(120deg, #89f7fe 0%, #63dfff 100%);    
+}
+
+.opcoes .asp_button {
+    background: none;
+    text-decoration: none;
 }
 
 div.tab-paciente {
@@ -183,6 +206,7 @@ div.tab-paciente {
 }
 
 .consultas-paciente {
+    display: none;
     border: solid grey 2px;
     width: 100%;
     font-family: 'Comfortaa', cursive;
@@ -220,11 +244,18 @@ div.tab-paciente {
     font-family: 'Comfortaa', cursive;
 }
 
-.agenda, .perfil {
+.agenda {
+    display: none;
+}
+
+.perfil {
+    display: block;
+}
+
+.agenda, .perfil, .cadastros {
     width: 100%;
     border: 2px gray solid;
-    font-family: 'Comfortaa', cursive;
-    display: none;
+    font-family: 'Comfortaa', cursive;    
     color: black;
     padding: 30px;
 }
@@ -246,11 +277,11 @@ div.tab-paciente {
     border: solid grey 1px;
 }
 
-.perfil #imagem {    
+.perfil #imagem {
+    float:right;
     border: solid 2px grey;   
     height: 120px;
-    width: 90px;
-    float: right;
+    width: 90px;    
     display: inline-block;
     margin: 0;
     margin-bottom: 10px;
@@ -264,181 +295,68 @@ div.tab-paciente {
     margin-bottom: 10px;
 }
 
-/*
-nav.leftnav {
-    position: relative;
-    float: left;
-    height: 100%;
-    position: fixed;
-    width: 15vw;
-    font-family: 'Comfortaa', cursive;
-    font-size: 70%;
-    border-right: solid 1px #a6a6a6;
-    line-break: normal;
-    z-index: 9999;
-    overflow-x: hidden;
-    background-color: #f2f2f2;
-}
-
-.menu-item {
-    position: relative;
-    float: left;
+.cadastros ul{
     display: block;
-    width: 100%;
-    padding: 20px 14px;    
-    color: black;    
-    font-size: 2em;
-    background-image: none;
-    background-color: #f2f2f2;
-    border: none;
-    text-align: left;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.menu-item:hover{
-    background-color: #cccccc;
-    text-decoration: none;
-    color: black;
-}
-
-.menu-item i {
-    margin-right: 10px;
-}
-
-#demo {
-    background-color: #00cc00;
-    font-size: 2.5em;
-    color: white;
-    border-bottom: solid 1px #a6a6a6;
-}
-
-
-.content {
-    box-sizing: border-box;
-    left: 20vw;
-    width: 85vw;
-    position: relative;
-    font-size: 70%;  
-}
-
-.content div.title {        
-    padding: 10px 14px; 
-    box-sizing: border-box;
-    width: 100%;
-    background-image: linear-gradient(#66ffff,#4dffa6);
-    color: black;   
-}
-
-.content div.title h1 {
-    padding: 30px 0px;
-    font-size: 8em;
-    font-family: 'Pacifico', cursive;
-}
-
-.content .title h2 {
-    font-size: 3em;
-    font-family: 'Baloo Tammudu', cursive;
-    padding: 0;    
-}
-
-.content .title h1, h2 {    
-    margin: 0;   
+    list-style: none;
+    margin: 0;
+    margin: auto;
     text-align: center;
 }
 
-.content .title hr {
-    margin-top: 0px;
-    border: 2px solid white; 
-    border-radius: 5px;
-    width: 85%;
+.cadastros ul li {
+    font-size: 24px;
+    display: inline-block;    
+    margin: 0 5%;
+    box-sizing: border-box;    
+    border-radius: 10px;
+    background: rgb(47,198,47);
+    background: radial-gradient(circle, rgba(47,198,47,1) 0%, rgba(191,233,191,1) 100%);
 }
 
-.content h1{
-    font-family: 'Baloo Tammudu', cursive;
-    font-size: 3em;
-    color: black;
-    padding: 0;
-    margin-bottom: 20px;
-}
-
-.content h1 i {
-    margin-right: 10px;
-}
-
-.content h2 {
-    text-align: left;
-    color: black;
-    font-size: 2.5em;
-    font-family: 'Baloo Tammudu', cursive;
-}
-
-.content p{
-    text-align: justify;
-    display: block;
-    width: 80%;
-    padding: 10px;
-    margin: auto;
-    height: auto;
-    text-indent: 100px;
-    font-size: 2em;
-    font-family: 'Comfortaa', cursive;
-    color: black;
-}
-
-.btnClose, .btnOpen {
-    display: none;
-    cursor: pointer;
-}
-
-.btnClose {
-    float: right;
-}
-
-#medicos-sorrindo {
-    height: 200px;
-    background-image: url("medico-sorrindo.jpg");
-    background-position:center;
-    background-size:cover;
-}
-
-.section {
-    margin: 0;
-    padding: 20px 40px;
-    border-bottom: solid 1px #a6a6a6;
-}
-
-#quem-somos {        
-    background-image: url("medico-paciente.jpg");
-    background-position-x:center;
-    background-position-y:top;
-    background-size:cover;
+#body-verConsulta {
+    background-attachment: fixed;
+    background-position: center;
     background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("medico-paciente.jpg");
 }
 
-#quem-somos p {
-    background-color: rgba(204, 204, 204, 0.7);
-}
-
-#quem-somos i {
-    color: #ff0000;
-}
-
-#consultas i {
-    color: #33cc33;
-}
-
-#titulo-pacientes {
-    font-family: 'Baloo Tammudu', cursive;
-    text-align: left;
-    font-size: 5em;
-}
-
-#subtitulo-pacientes {
+.consulta {
+    padding: 30px;
+    margin: auto;
+    margin-top: 50px;
+    width: 70%;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0px 0px 5px 3px rgba(50, 50, 50, 0.5);
     font-family: 'Comfortaa', cursive;
-    text-align: left;
-    font-size: 2em;
-}*/
+}
+
+.consulta .secao {
+    border-left: 3px solid #63dfff;
+    padding: 5px 10px;
+    background-color: rgba(191, 191, 191, 0.5);
+    margin: 20px 0;
+}
+
+.consulta .title-originais {
+    margin: 0px 0px 30px 0px;
+    padding: 10px;
+   background-image: linear-gradient(120deg, #89f7fe 0%, #63dfff 100%);
+    font-size: 32px;
+    color: black;    
+    border-radius: 10px;
+}
+
+.consulta h2 {
+    font-family: 'Comfortaa', cursive;
+    text-decoration: underline;
+}
+
+.consulta p {
+    margin-left: 30px;
+    font-size: 18px;
+}
+
 
 .formulario {
     display: block;

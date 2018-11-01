@@ -61,7 +61,7 @@ namespace ProjetoPPI
                     {
                         Session["usuario"] = new Secretaria(this.txtEmail.Text, this.txtSenha.Text, (ConexaoBD)Session["conexao"]);
                         Acesso.AdicionarAcesso(this.txtEmail.Text, TipoUsuario.secretaria, (ConexaoBD)Session["conexao"]);
-                        Response.Redirect("Secretaria/Index.aspx", false);
+                        Response.Redirect("/Secretaria/IndexSecretaria.aspx", false);
                         return;
                     }
                     catch (Exception err)

@@ -21,12 +21,13 @@
         <li id="btnPerfilPaciente">Perfil</li>
         <li id="btnConsultasPaciente">Suas Consultas</li>        
     </ul>
-    <div class="tab-paciente">            
-            <table class="consultas-paciente">
-                <%
-                    if (consultas != null)
-                        for (int i = 0; i < consultas.Length; i++)
-                        {%>
+    <div class="tab-paciente">
+        <%
+        if (consultas != null)
+            for (int i = 0; i < consultas.Length; i++)
+            {%>
+        <a href="VerConsulta.aspx?<%=consultas[i].CodConsulta%>">
+            <table class="consultas-paciente">                                
                 <tr class="proposito">
                     <td>PROPÓSITO: </td>                
                     <td colspan="4"><%=consultas[i].Proposito%></td>
@@ -63,21 +64,17 @@
                                 %>Satisfação: <%=consultas[i].Satisfacao%> <br /><%
                                                                                      if (!String.IsNullOrEmpty(consultas[i].Comentario))
                                     %>Comentário: <%=consultas[i].Comentario%> <br /> <%
-                                                                                              }
-                                                                                              break;
-                                                                                          }
-
-                %>
+                              }
+                              break;
+                        }%>
                     </td>
-                 </tr>
-                <%}
-                    else
-                    { %>
-                    <tr>
-                        <td colspan="5">Você ainda não possui nenhuma consulta.</td>
-                    </tr>
-                  <%} %>
-            </table>                              
+                 </tr>                
+            </table>
+            </a>
+          <%} else
+            { %>
+            <table class="consultas-paciente"><tr><td colspan="5">Você ainda não possui nenhuma consulta</td></tr></table>
+            <%} %>
         <div class="perfil">
             <div id="cabecalho">
                 <h1><%=atributos.NomeCompleto %></h1>

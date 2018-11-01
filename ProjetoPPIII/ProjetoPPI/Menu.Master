@@ -8,28 +8,17 @@
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    <link rel="stylesheet" href="estilo.css" />
+    <link rel="stylesheet" href="/estilo.css" />
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Baloo+Tammudu" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"/>
-    <script src="/Scripts/jquery-1.10.2.min.js"></script>
-
-    <style>
-        #bodyIndex
-        {
-            background-image: url('wallpaper-index.jpeg');
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat repeat;
-            background-size: cover;
-        }
-    </style>
+    <script src="/Scripts/jquery-1.10.2.min.js"></script>    
 </head>
 <body>
     <form id="form1" runat="server">
         <div class="menu-horizontal">
-            <div class="menu-item" id="btnOpen"><span class="glyphicon glyphicon-th-list"></div>
+            <div class="menu-item" id="btnOpen"><span class="glyphicon glyphicon-th-list"/></div>
             <div class="menu-item" id="login"><asp:LinkButton CssClass="asp_button" ID="btnLogin" runat="server">Login <i class="glyphicon glyphicon-log-in"></i></asp:LinkButton></div>
             <div class="menu-item" id="logo">LOGO</div>            
         </div>
