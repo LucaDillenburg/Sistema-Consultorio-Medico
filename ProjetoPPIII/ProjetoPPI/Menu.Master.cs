@@ -19,19 +19,19 @@ namespace ProjetoPPI
         protected void btnMenuMedico_Click(object sender, EventArgs e)
         {
             Session["tipoUsuario"] = TipoUsuario.medico;
-            Response.Redirect("Login.aspx");
+            Response.Redirect("/Login.aspx");
         }
 
         protected void btnMenuSecretaria_Click(object sender, EventArgs e)
         {
             Session["tipoUsuario"] = TipoUsuario.secretaria;
-            Response.Redirect("Login.aspx");
+            Response.Redirect("/Login.aspx");
         }
 
         protected void btnMenuPaciente_Click(object sender, EventArgs e)
         {
             Session["tipoUsuario"] = TipoUsuario.paciente;
-            Response.Redirect("Login.aspx");
+            Response.Redirect("/Login.aspx");
         }        
     }
 }

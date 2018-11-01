@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Baloo+Tammudu" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"/>
-    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="/Scripts/jquery-1.10.2.min.js"></script>
 
     <style>
         #bodyIndex
@@ -39,7 +39,7 @@
             <li class="menu-item"><asp:LinkButton CssClass="asp_button" ID="btnMenuSecretaria" runat="server" OnClick="btnMenuSecretaria_Click"><i class="glyphicon glyphicon-inbox"></i>SECRETARIA</asp:LinkButton></li>
             <li class="menu-item"><asp:LinkButton CssClass="asp_button" ID="btnMenuMedico" runat="server" OnClick="btnMenuMedico_Click"><i class="glyphicon glyphicon-plus-sign"></i>MÉDICO</asp:LinkButton></li>         
         </ul>
-        <script src="NScript.js"></script>
+        <script src="/NScript.js"></script>
         <div id="da-espaco"></div>          
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>              

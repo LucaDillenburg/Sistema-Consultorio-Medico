@@ -13,7 +13,7 @@ namespace ProjetoPPI.PagSecretaria
         {
             if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() != typeof(Secretaria))
             {
-                Response.Redirect("../Index.aspx");
+                Response.Redirect("/Index.aspx");
                 return;
             }
         }
