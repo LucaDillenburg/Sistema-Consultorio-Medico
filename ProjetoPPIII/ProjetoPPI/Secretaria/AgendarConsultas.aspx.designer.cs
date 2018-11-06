@@ -10,7 +10,7 @@
 namespace ProjetoPPI.PagSecretaria {
     
     
-    public partial class AgendarConsulta {
+    public partial class AgendarConsultas {
         
         /// <summary>
         /// Controle form1.

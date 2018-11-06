@@ -7,25 +7,25 @@ using System.Web.UI.WebControls;
 
 namespace ProjetoPPI.PagSecretaria
 {
-    public partial class AgendarConsulta : System.Web.UI.Page
+    public partial class AgendarConsultas : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //estah no .aspx
+
         }
-        
+
         protected void btnAgendar_Click(object sender, EventArgs e)
         {
             AtributosConsulta atributos = new AtributosConsulta();
             bool podeIncluir = true;
-            
+
             //proposito
             try
             {
                 atributos.Proposito = this.txtProposito.Text;
                 this.lbMsgProposito.Text = "";
             }
-            catch(Exception err)
+            catch (Exception err)
             { this.lbMsgProposito.Text = err.Message; podeIncluir = false; }
 
             //email medico
@@ -36,7 +36,7 @@ namespace ProjetoPPI.PagSecretaria
                 atributos.SetEmailMedico(this.ddlMedicos.SelectedValue, (ConexaoBD)Session["conexao"]);
                 this.lbMsgMedico.Text = "";
             }
-            catch(Exception err)
+            catch (Exception err)
             { this.lbMsgMedico.Text = err.Message; podeIncluir = false; }
 
             //email paciente
@@ -58,7 +58,8 @@ namespace ProjetoPPI.PagSecretaria
                 {
                     data = DateTime.ParseExact(this.txtDia.Text + " " + this.txtHorario.Text,
                         "yyyy-MM-dd HH:mm", System.Globalization.CultureInfo.InvariantCulture);
-                }catch(Exception err)
+                }
+                catch (Exception err)
                 { throw new Exception("Formato de data inválido!"); }
 
                 atributos.SetHorario(data, (ConexaoBD)Session["conexao"]);
@@ -81,7 +82,8 @@ namespace ProjetoPPI.PagSecretaria
                 try
                 {
                     ((Secretaria)Session["usuario"]).CadastrarConsulta(atributos);
-                }catch (Exception err)
+                }
+                catch (Exception err)
                 {
                     this.lbMsg.Attributes["style"] = "color: red";
                     this.lbMsg.Text = err.Message;

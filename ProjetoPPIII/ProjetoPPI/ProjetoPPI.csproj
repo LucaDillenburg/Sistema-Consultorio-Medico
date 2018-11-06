@@ -145,11 +145,11 @@
     <Content Include="Paciente\UltimasConsultas.aspx" />
     <Content Include="Paciente\VerConsulta.aspx" />
     <Content Include="Scripts\script.js" />
+    <Content Include="Secretaria\AgendarConsultas.aspx" />
     <Content Include="Secretaria\IndexSecretaria.aspx" />
     <Content Include="Secretaria\Servidor.aspx" />
     <Content Include="teste.aspx" />
     <Content Include="wallpaper-index.jpeg" />
-    <Content Include="Secretaria\AgendarConsulta.aspx" />
     <Content Include="Secretaria\CadastroUsuarios.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -267,16 +267,16 @@
     <Compile Include="Paciente\VerConsulta.aspx.designer.cs">
       <DependentUpon>VerConsulta.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Secretaria\AgendarConsulta.aspx.cs">
-      <DependentUpon>AgendarConsulta.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Secretaria\AgendarConsulta.aspx.designer.cs">
-      <DependentUpon>AgendarConsulta.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Atributos.cs" />
+    <Compile Include="Secretaria\AgendarConsultas.aspx.cs">
+      <DependentUpon>AgendarConsultas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Secretaria\AgendarConsultas.aspx.designer.cs">
+      <DependentUpon>AgendarConsultas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Secretaria\CadastroUsuarios.aspx.cs">
       <DependentUpon>CadastroUsuarios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

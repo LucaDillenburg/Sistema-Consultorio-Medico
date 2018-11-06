@@ -1,6 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AgendarConsulta.aspx.cs" Inherits="ProjetoPPI.PagSecretaria.AgendarConsulta" %>
-
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AgendarConsultas.aspx.cs" Inherits="ProjetoPPI.PagSecretaria.AgendarConsultas" %>
 
 <!DOCTYPE html>
 
