@@ -192,7 +192,7 @@ ul.opcoes {
     background-image: linear-gradient(120deg, #89f7fe 0%, #63dfff 100%);    
 }
 
-.opcoes .asp_button {
+.opcoes li .asp_button {
     background: none;
     text-decoration: none;
 }
@@ -260,6 +260,10 @@ div.tab-paciente {
     padding: 30px;
 }
 
+.cadastros {
+    border: none;
+}
+
 .perfil h2{
     font-family: 'Comfortaa', cursive;
     font-size: 24px;
@@ -301,16 +305,24 @@ div.tab-paciente {
     margin: 0;
     margin: auto;
     text-align: center;
+    padding: 10px;
 }
 
 .cadastros ul li {
     font-size: 24px;
     display: inline-block;    
     margin: 0 5%;
-    box-sizing: border-box;    
-    border-radius: 10px;
-    background: rgb(47,198,47);
-    background: radial-gradient(circle, rgba(47,198,47,1) 0%, rgba(191,233,191,1) 100%);
+    box-sizing: border-box;        
+    background: rgb(47,198,47);   
+    background-image: linear-gradient(120deg, #89f7fe 0%, #63dfff 100%);
+    padding: 10px;
+    border-style: none solid;
+    border-color: black;
+    border-width: 2px;
+}
+
+.cadastros .asp_button {
+   
 }
 
 #body-verConsulta {
@@ -357,6 +369,35 @@ div.tab-paciente {
     font-size: 18px;
 }
 
+.tab-cadastro {
+    background-color: rgba(191, 191, 191, 0.5);
+    width: 100%;
+    font-size: 20px;
+    border-left: #63dfff solid 3px;
+    padding: 10px;
+}
+
+.tab-cadastro td{
+    padding: 8px;
+}
+
+.tab-cadastro tr td span{
+    font-size: 16px;
+}
+
+#btnCadastrar{
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+#btnCadastrar .asp_button {    
+    width: 150px;
+    padding: 10px 3px;
+    border: solid black 3px;
+    font-size: 24px;
+    font-family: 'Comfortaa', cursive;
+}
 
 .formulario {
     display: block;

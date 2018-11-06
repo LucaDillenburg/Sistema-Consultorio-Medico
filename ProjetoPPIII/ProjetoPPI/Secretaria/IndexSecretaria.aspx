@@ -6,10 +6,9 @@
     <hr class="hr-originais" />
 
     <ul class="opcoes">        
-        <li>Cadastrar</li>
-        <li>Todas as Agendas</li>
-        <li>Solicitações de Consulta</li>        
-        <li>Agendar Consulta</li>
+        <li class="ativo">Cadastrar</li>
+        <li><asp:Button CssClass="asp_button" ID="btnAgenda" runat="server" Text="Agenda" OnClick="btnAgenda_Click" /></li>        
+        <li><asp:Button CssClass="asp_button" ID="btnAgendarConsulta" runat="server" Text="Agendar Consulta" OnClick="btnAgendarConsulta_Click" /></li>
     </ul>
 
     <div class="tab-paciente">
@@ -19,8 +18,6 @@
                 <li><asp:Button CssClass="asp_button" ID="btnCadastrarPaciente" runat="server" Text="Cadastrar Paciente" OnClick="btnCadastrarPaciente_Click" /></li>
                 <li><asp:Button CssClass="asp_button" ID="btnCadastrarSecretaria" runat="server" Text="Cadastrar Secretaria" OnClick="btnCadastrarSecretaria_Click" /></li>
             </ul>                                    
-        </div>        
-        <asp:Button ID="btnAgendarConsulta" runat="server" Text="Agendar Consulta" OnClick="btnAgendarConsulta_Click" />
-        <asp:Button ID="btnAgenda" runat="server" Text="Agenda" OnClick="btnAgenda_Click" />
+        </div>                        
     </div>
 </asp:Content>

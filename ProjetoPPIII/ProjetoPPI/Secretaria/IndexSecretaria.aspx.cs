@@ -37,7 +37,8 @@ namespace ProjetoPPI.PagSecretaria
         }
 
         protected void btnAgendarConsulta_Click(object sender, EventArgs e)
-        { Response.Redirect("AgendarConsulta.aspx"); }
+        { Response.Redirect("/Secretaria/AgendarConsulta.aspx"); }
+
         protected void btnAgenda_Click(object sender, EventArgs e)
         { Response.Redirect("Agenda.aspx"); }
     }
