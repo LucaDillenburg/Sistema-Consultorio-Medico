@@ -146,6 +146,7 @@
     <Content Include="Paciente\VerConsulta.aspx" />
     <Content Include="Scripts\script.js" />
     <Content Include="Secretaria\IndexSecretaria.aspx" />
+    <Content Include="Secretaria\Servidor.aspx" />
     <Content Include="teste.aspx" />
     <Content Include="wallpaper-index.jpeg" />
     <Content Include="Secretaria\AgendarConsulta.aspx" />
@@ -290,6 +291,13 @@
     </Compile>
     <Compile Include="Secretaria\IndexSecretaria.aspx.designer.cs">
       <DependentUpon>IndexSecretaria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Secretaria\Servidor.aspx.cs">
+      <DependentUpon>Servidor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Secretaria\Servidor.aspx.designer.cs">
+      <DependentUpon>Servidor.aspx</DependentUpon>
     </Compile>
     <Compile Include="Secretaria\VerConsulta.aspx.cs">
       <DependentUpon>VerConsulta.aspx</DependentUpon>
