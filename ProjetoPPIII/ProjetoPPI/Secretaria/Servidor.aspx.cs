@@ -1,29 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Web;
+using System.Web.Configuration;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
-namespace ServidorApp
+namespace ProjetoPPI.PagSecretaria
 {
-    public partial class Form1 : Form
+    public partial class Servidor : System.Web.UI.Page
     {
-        protected SqlConnection con = new SqlConnection(ServidorApp.Properties.Settings.Default.PR317188ConnectionString);
+        protected SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["conexaoBD"].ConnectionString);
 
-        public Form1()
+        protected void Page_Load(object sender, EventArgs e)
         {
-            InitializeComponent();
-        }
+            if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() != typeof(Secretaria))
+            {
+                Response.Redirect("../Index.aspx");
+                return;
+            }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
             this.con.Open();
 
             new Thread(new ThreadStart(LoopMandarEmailSMS)).Start();
@@ -42,8 +43,9 @@ namespace ServidorApp
                 {
                     int res = cmd.ExecuteNonQuery();
                     if (res > 0)
-                        this.Invoke(new MethodInvoker(() => this.lbxConsultasCanceladas.Items.Insert(0, res+" consultas canceladas.")));
-                }catch(Exception e)
+                        this.lbxComandos.Items.Insert(0, res + " consultas canceladas.");
+                }
+                catch (Exception e)
                 { }
             }
         }
@@ -76,7 +78,7 @@ namespace ServidorApp
                         whereCmd += ((String.IsNullOrEmpty(whereCmd)) ? "" : ", ") + dr.ItemArray[0];
                         string texto = "Email enviado para " + emailPac + ", consulta " + (hoje ? "hoje" : "amanhã") +
                             " às " + horario.ToString("HH:mm");
-                        this.Invoke(new MethodInvoker(() => this.lbxEmailsEnviados.Items.Insert(0, texto)));
+                        this.lbxComandos.Items.Insert(0, texto);
                     }
                     catch (Exception err)
                     { }
@@ -114,7 +116,7 @@ namespace ServidorApp
                 "Olá " + nomePaciente + "! Estamos aqui apenas para te lembrar que você tem uma consulta marcada para " +
                 diaEscrito + " às " + horarioEmTexto + ".\nVocê será consultado pelo nosso médico de excelência " + nomeMedico + " e o " +
                 "propósito da consulta é " + proposito + ".\n\nObrigado por escolher a Clínica Máxima, até " +
-                (hoje?"daqui a pouco":"amanhã") + "!");
+                (hoje ? "daqui a pouco" : "amanhã") + "!");
             message.BodyEncoding = UTF8Encoding.UTF8;
             message.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
 
@@ -146,7 +148,8 @@ namespace ServidorApp
                 adapt.Fill(ds);
 
                 return ds.Tables[0].Rows;
-            }catch(Exception e)
+            }
+            catch (Exception e)
             { return null; }
         }
     }
