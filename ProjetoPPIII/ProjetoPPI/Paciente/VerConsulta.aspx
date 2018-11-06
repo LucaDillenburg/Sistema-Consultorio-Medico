@@ -17,38 +17,38 @@
 <form id="form1" runat="server">
 <div>
     <%
-        if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() != typeof(ProjetoPPI.Paciente))
+        if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() == typeof(ProjetoPPI.Secretaria))
         {
             Response.Redirect("../Index.aspx");
             return;
         }
 
-        if (Session["consulta"] == null)
+        
+        string url = HttpContext.Current.Request.Url.AbsoluteUri;
+        // se passou codigo consulta pela url
+        try
         {
-            string url = HttpContext.Current.Request.Url.AbsoluteUri;
-            // se passou codigo consulta pela url
-            try
-            {
-                int index = url.LastIndexOf('?');
-                if (index < 0)
-                    throw new Exception("");
-                string codStr = url.Substring(index+1);
-                int codConsulta = Convert.ToInt32(codStr);
-                Session["consulta"] = ProjetoPPI.Consulta.DeCodigo(codConsulta, (ProjetoPPI.ConexaoBD)Session["conexao"]);
-            }catch(Exception e)
-            {
-                Response.Redirect("Index.aspx");
-                return;
-            }
-        }
-
-        ProjetoPPI.AtributosConsultaCod atrConsulta = (ProjetoPPI.AtributosConsultaCod)Session["consulta"];
-        if (atrConsulta.EmailPaciente != ((ProjetoPPI.Paciente)Session["usuario"]).Atributos.Email)
+            int index = url.LastIndexOf('?');
+            if (index < 0)
+                throw new Exception("");
+            string codStr = url.Substring(index+1);
+            int codConsulta = Convert.ToInt32(codStr);
+            Session["consulta"] = ProjetoPPI.Consulta.DeCodigo(codConsulta, (ProjetoPPI.ConexaoBD)Session["conexao"]);
+        }catch(Exception e)
         {
-            Session["consulta"] = null;
             Response.Redirect("Index.aspx");
             return;
         }
+        
+
+        ProjetoPPI.AtributosConsultaCod atrConsulta = (ProjetoPPI.AtributosConsultaCod)Session["consulta"];
+        if(Session["usuario"].GetType() == typeof(ProjetoPPI.Paciente))
+            if (atrConsulta.EmailPaciente != ((ProjetoPPI.Paciente)Session["usuario"]).Atributos.Email)
+            {
+                Session["consulta"] = null;
+                Response.Redirect("Index.aspx");
+                return;
+            }
 
         this.codConsulta = atrConsulta.CodConsulta;
     %>
@@ -73,8 +73,17 @@
     </h1>     
     
     <div class="secao">
-        <h2>Médico</h2>
-        <p> <%=ProjetoPPI.Medico.DeEmail(atrConsulta.EmailMedico, (ProjetoPPI.ConexaoBD)Session["conexao"]).NomeCompleto %></p>
+        <h2><%if (Session["usuario"].GetType() == typeof(ProjetoPPI.Medico)) {%>
+                Paciente
+            <%} else{%>Médico<%}%>
+        </h2>
+        <p> 
+            <%if (Session["usuario"].GetType() == typeof(ProjetoPPI.Medico)) {
+                   %><%=ProjetoPPI.Medico.DeEmail(atrConsulta.EmailMedico, (ProjetoPPI.ConexaoBD)Session["conexao"]).NomeCompleto%><%}
+              else{
+                    %><%=ProjetoPPI.Paciente.DeEmail(atrConsulta.EmailPaciente, (ProjetoPPI.ConexaoBD)Session["conexao"]).NomeCompleto%>
+            <%}%>
+        </p>
     </div>    
     <div class="secao">
         <h2>Duração</h2>

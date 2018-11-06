@@ -6,20 +6,41 @@
     <hr class="hr-originais" />
 
     <% 
-        string emailMedico = ((ProjetoPPI.Medico)Session["usuario"]).Atributos.Email;    
-        ProjetoPPI.AtributosConsultaCod[] consultas = ProjetoPPI.Consulta.ConsultasDe(emailMedico, true, false, (ProjetoPPI.ConexaoBD)Session["conexao"]);    
+        string emailMedico = ((ProjetoPPI.Medico)Session["usuario"]).Atributos.Email;
+        ProjetoPPI.AtributosConsultaCod[] consultas = ProjetoPPI.Consulta.ConsultasDe(emailMedico, true, false, (ProjetoPPI.ConexaoBD)Session["conexao"]);
+
+        ProjetoPPI.Medico medico = (ProjetoPPI.Medico)Session["usuario"];
+        ProjetoPPI.AtributosMedico atributos = medico.Atributos;
     %>
         
     <ul class="opcoes">
-        <li id="btnConsultaAtual">Sua consulta agora</li>
+        <li class="ativo"  id="btnPerfil">Perfil</li>
         <li id="btnAgenda">Agenda</li>
-        <li id="btnPerfil">Perfil</li>
-    </ul>
+        <li id="btnConsultaAtual">Sua consulta agora</li>        
+    </ul>                        
+        <div class="tab-paciente">                            
+            <div class="perfil">
+                <div id="cabecalho">
+                    <h1><%=atributos.NomeCompleto %></h1>
+                    <div id="imagem"></div>
+                </div>            
+                <hr />
+                <h2>Email: <%=atributos.Email %></h2>
+                <hr />
+                <h2>Endereço: <%=atributos.Endereco %></h2>
+                <hr />
+                <h2>Celular: <%=atributos.Celular %></h2>
+                <hr />
+                <h2>Telefone: <%=atributos.TelefoneResidencial %></h2>
+                <hr />
+                <h2>CRM: <%=atributos.CRM %></h2>
+                <hr />
+                <h2>Data de Nascimento: <%=atributos.DataNascimento %></h2>            
+            </div>
 
-    <div class="tab-paciente">        
-         
              <%for (int i = 0; i<consultas.Length; i++)
               {%>
+            <a href="/Paciente/VerConsulta.aspx?<%=consultas[i].CodConsulta %>">
             <table class="consultas-paciente">
             <tr class="proposito">
                 <td>PROPÓSITO: </td>                
@@ -33,7 +54,7 @@
             </tr>
             <tr>
                 <td style="font-weight: bold; color: black;">PACIENTE: </td>
-                <td colspan="4"><%=ProjetoPPI.Paciente.DeEmail(consultas[i].EmailPaciente, (ProjetoPPI.ConexaoBD)Session["conexaoBD"]).NomeCompleto%></td>
+                <td colspan="4"><%=ProjetoPPI.Paciente.DeEmail(consultas[i].EmailPaciente, (ProjetoPPI.ConexaoBD)Session["conexao"]).NomeCompleto%></td>
             </tr>
             <tr class="observacoes">
                 <td style="font-weight: bold;">OBSERVAÇÕES</td>
@@ -64,12 +85,10 @@
                 %>
                 </td>
             </tr>
-            </table>
-            <br />
-             <%} %>
-        
-        <div class="agenda">Agenda</div>
-        <div class="perfil">Perfil</div>
-    </div>
-    <script src="scriptPaginas.js"></script>
+            </table> 
+            </a>
+             <%} %>        
+            <div class="consulta-atual">Consulta Atual</div>
+        </div>        
+    <script src="/scriptPaginas.js"></script>
 </asp:Content>

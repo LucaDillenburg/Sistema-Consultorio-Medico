@@ -11,7 +11,7 @@ namespace ProjetoPPI.PagMedico
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() != typeof(ProjetoPPI.Paciente))
+            if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() != typeof(ProjetoPPI.Medico))
             {
                 Response.Redirect("../Index.aspx");
                 return;

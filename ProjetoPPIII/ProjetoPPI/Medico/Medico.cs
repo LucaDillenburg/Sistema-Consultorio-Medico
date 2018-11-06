@@ -123,9 +123,16 @@ namespace ProjetoPPI
 
         public static double SatisfacaoMedia(string email, ConexaoBD conexaoBD)
         {
-            //os termos nulos sao ignorados (nao sao contados como zeros)
-            return (double)conexaoBD.ExecuteScalarSelect("select avg(Cast(satisfacao as Float)) from consulta where emailMedico = '"
+            try
+            {
+                return (double)conexaoBD.ExecuteScalarSelect("select avg(Cast(satisfacao as Float)) from consulta where emailMedico = '"
                 + email + "'");
+            }
+            catch(Exception e)
+            {
+                return 0;
+            }
+            //os termos nulos sao ignorados (nao sao contados como zeros)            
         }
 
         public static bool HorarioConsultaEhLivre(AtributosConsulta atrConsulta, ConexaoBD conexaoBD)

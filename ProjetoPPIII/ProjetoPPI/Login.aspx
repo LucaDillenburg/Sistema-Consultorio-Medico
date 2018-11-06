@@ -35,7 +35,7 @@
                     {
                         case ProjetoPPI.TipoUsuario.medico:
                             if (Session["usuario"] != null && Session["usuario"].GetType() == typeof(ProjetoPPI.Medico))
-                                Response.Redirect("Medico/index.aspx");
+                                Response.Redirect("Medico/indexMedico.aspx");
                             %>Login Médico<%
                             break;
                         case ProjetoPPI.TipoUsuario.paciente:
@@ -45,7 +45,7 @@
                             break;
                         case ProjetoPPI.TipoUsuario.secretaria:
                             if (Session["usuario"] != null && Session["usuario"].GetType() == typeof(ProjetoPPI.Secretaria))
-                                Response.Redirect("Secretaria/index.aspx");
+                                Response.Redirect("Secretaria/indexSecretaria.aspx");
                             %>Login Secretária<%
                             break;
                         default:
