@@ -5,11 +5,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+    <title></title>    
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Tammudu" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"/>
+    <script src="/Scripts/jquery-1.10.2.min.js"></script>    
+    <link rel="stylesheet" href="/estilo.css" />
 </head>
 <body>
 <form id="form1" runat="server">
-<div>
+<div class="consulta">
     <%
         if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() != typeof(ProjetoPPI.Secretaria))
         {
@@ -18,9 +23,9 @@
         }
     %>
 
-    <h1>Agendar Consulta</h1>
-
-    <table>
+    <h1 class="title-originais">Agendar Consulta</h1>
+    
+    <table class="tab-cadastro">
         <tr>
             <td>
                 Propósito: 
@@ -81,10 +86,11 @@
         </tr>
     </table>
     
-    <asp:Label ID="lbMsg" runat="server" Text=""></asp:Label>
-    <br />
-    <br />
-    <asp:button ID="btnAgendar" runat="server" text="Agendar" OnClick="btnAgendar_Click" />
+    <div class="btnFinal">
+        <asp:Label ID="lbMsg" runat="server" Text=""></asp:Label>    
+        <asp:button CssClass="asp_button" ID="btnAgendar" runat="server" text="Agendar" OnClick="btnAgendar_Click" />
+    </div>
+    
 </div>
 </form>
 </body>

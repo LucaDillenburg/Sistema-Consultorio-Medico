@@ -138,7 +138,7 @@
         </tr>
     </table>
 
-    <div id="btnCadastrar">
+    <div class="btnFinal">
         <asp:Label ID="lbMsg" runat="server" Text=""></asp:Label>    
         <asp:Button CssClass="asp_button" ID="btnCadastrar" runat="server" Text="Cadastrar" OnClick="btnCadastrar_Click" />
     </div>
