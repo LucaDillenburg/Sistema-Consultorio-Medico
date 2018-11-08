@@ -6,37 +6,66 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+    <link href="/estilo.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Tammudu" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"/>
+    <style>
+        body {
+            background-image: url('/charts-cup-of-coffee-desk-1345089.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
 </head>
 <body>
 <form id="form1" runat="server">
-<div>
+<div class="consulta">
     <%
         if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() != typeof(ProjetoPPI.Secretaria))
         {
-            Response.Redirect("../Index.aspx");
+            Response.Redirect("/Index.aspx");
             return;
-        }
-
-        if (Session["consulta"] == null)
+        }       
+            
+        string url = HttpContext.Current.Request.Url.AbsoluteUri;
+        // se passou codigo consulta pela url
+        try
+        {
+            int index = url.LastIndexOf('?');
+            if (index < 0)
+                throw new Exception("");
+            string codStr = url.Substring(index+1);
+            int codConsulta = Convert.ToInt32(codStr);
+            Session["consulta"] = ProjetoPPI.Consulta.DeCodigo(codConsulta, (ProjetoPPI.ConexaoBD)Session["conexao"]);
+        }catch(Exception e)
         {
             Response.Redirect("Index.aspx");
             return;
         }
-            
+        
+
         ProjetoPPI.AtributosConsultaCod atrConsulta = (ProjetoPPI.AtributosConsultaCod)Session["consulta"];
-        this.txtProposito.Text = atrConsulta.Proposito;
+        if(Session["usuario"].GetType() == typeof(ProjetoPPI.Paciente))
+            if (atrConsulta.EmailPaciente != ((ProjetoPPI.Paciente)Session["usuario"]).Atributos.Email)
+            {
+                Session["consulta"] = null;
+                Response.Redirect("Index.aspx");
+                return;
+            }
 
         this.codConsulta = atrConsulta.CodConsulta;
-    %>
+    %>    
     <!-- SECRETÁRIA -->
 
-    <center>
-        <asp:Label runat="server">Propósito: </asp:Label><asp:TextBox ID="txtProposito" runat="server"></asp:TextBox> <br />
-        <asp:Label ID="lbMsgProposito" runat="server" Text=""></asp:Label> <br />
-    </center>
-    
-    <br /><br />
+    <h1 class="title-originais">
+        Propósito: <asp:TextBox ID="txtProposito" runat="server"></asp:TextBox>
+        <asp:Label ID="lbMsgProposito" runat="server" Text=""></asp:Label>
+    </h1>
 
+    <div class="secao">
     <asp:Label runat="server" Text="Médico: "></asp:Label> 
     <asp:DropDownList ID="ddlMedicos" runat="server" DataSourceID="SqlDataSourceMedicos" DataTextField="nomeCompleto" DataValueField="email">
     </asp:DropDownList>
@@ -52,7 +81,9 @@
                 break;
             }
     %>
+    </div>
 
+    <div class="secao">
     <asp:Label ID="lbPaciente" runat="server" Text="Paciente: "></asp:Label> 
     <asp:DropDownList ID="ddlPacientes" runat="server" DataSourceID="SqlDataSourcePacientes" DataTextField="nomeCompleto" DataValueField="email">
     </asp:DropDownList>
@@ -70,7 +101,9 @@
     %>
 
     <br />
+    </div>
 
+    <div class="secao">
     <asp:Label ID="lbHorario" runat="server" Text="Horário: "></asp:Label> <br />
     <label>Horário: </label> <asp:TextBox ID="txtDia" runat="server" TextMode="Date"></asp:TextBox> <asp:TextBox ID="txtHorario" runat="server"></asp:TextBox>
     <asp:Label ID="lbMsgHorario" runat="server" Text=""></asp:Label> <br />
@@ -79,7 +112,9 @@
         this.txtDia.Text = atrConsulta.Horario.ToString("yyyy - MM - dd");
         this.txtHorario.Text = atrConsulta.Horario.ToString("HH:mm");
     %>
+    </div>
 
+    <div class="secao">
     <asp:Label ID="lbDuracao" runat="server" Text="Duração: "></asp:Label>
     <asp:DropDownList ID="ddlTempoConsulta" runat="server">
         <asp:ListItem Value="30">30 minutos</asp:ListItem>
@@ -93,11 +128,9 @@
             this.ddlTempoConsulta.Items[1].Selected = true;
     %>
     <asp:Label ID="lbMsgDuracao" runat="server" Text=""></asp:Label> <br />
-    <br />
-    
-
-    <br />
-
+    </div>
+        
+    <div class="secao">
     <label>Status: </label>
     <!-- 's': ocorrido, 'n': ainda nao ocorrido, 'c': cancelado -->
     <asp:DropDownList ID="ddlStatus" runat="server">
@@ -105,9 +138,8 @@
         <asp:ListItem Value="n">Ainda não Ocorrido</asp:ListItem>
         <asp:ListItem Value="c">Cancelado</asp:ListItem>
     </asp:DropDownList>
-    <asp:Label ID="lbMsgStatus" runat="server" Text=""></asp:Label> <br />
-    <br />
-
+    <asp:Label ID="lbMsgStatus" runat="server" Text=""></asp:Label> <br />   
+     </div>
     <%
         switch(atrConsulta.Status)
         {
@@ -167,9 +199,11 @@
     }
     %>
     
-    <br />
-    <asp:Button ID="btnAtualizarDados" runat="server" Text="Atualizar dados consulta" OnClick="btnAtualizarDados_Click" /> <br /> 
-    <asp:Label ID="lbMsg" runat="server" Text=""></asp:Label>
+    <div class="btnFinal">
+        <asp:Button CssClass="asp_button" ID="btnAtualizarDados" runat="server" Text="Atualizar dados consulta" OnClick="btnAtualizarDados_Click" /> <br /> 
+        <asp:Label ID="lbMsg" runat="server" Text=""></asp:Label>
+    </div>
+    
 </div>
 </form>
 </body>

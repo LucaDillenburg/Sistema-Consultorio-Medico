@@ -50,7 +50,7 @@
                 <td style="font-weight: bold; color: black;">HORÁRIO: </td>
                 <td><%=consultas[i].Horario.ToString("dd-MM-yyyy HH:mm")%></td> 
                 <td style="font-weight: bold; color: black;">DURAÇÃO: </td>
-                <td><%=(consultas[i].UmaHora)?"1 hora":"30 minutos"%></td>
+                <td colspan="2"><%=(consultas[i].UmaHora)?"1 hora":"30 minutos"%></td>
             </tr>
             <tr>
                 <td style="font-weight: bold; color: black;">PACIENTE: </td>

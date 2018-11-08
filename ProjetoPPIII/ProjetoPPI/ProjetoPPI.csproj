@@ -131,6 +131,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="arms-care-check-905874.jpg" />
+    <Content Include="assistant-beard-boss-630836.jpg" />
+    <Content Include="charts-cup-of-coffee-desk-1345089.jpg" />
     <Content Include="Content\architecture-buildings-city-1139556.jpg" />
     <Content Include="Index.aspx" />
     <Content Include="Medico\IndexMedico.aspx" />

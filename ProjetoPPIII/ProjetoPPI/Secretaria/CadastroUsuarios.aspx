@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"/>
     <title></title>
 </head>
-<body>
+<body style="background-image: url('../assistant-beard-boss-630836.jpg');background-attachment: fixed; background-position: center; background-size: cover; background-repeat: no-repeat;>
 <form id="form1" runat="server">
 <!---->
     <%

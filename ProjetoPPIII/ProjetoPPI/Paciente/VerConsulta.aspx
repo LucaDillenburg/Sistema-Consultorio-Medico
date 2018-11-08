@@ -19,10 +19,9 @@
     <%
         if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() == typeof(ProjetoPPI.Secretaria))
         {
-            Response.Redirect("../Index.aspx");
+            Response.Redirect("/Index.aspx");
             return;
         }
-
         
         string url = HttpContext.Current.Request.Url.AbsoluteUri;
         // se passou codigo consulta pela url

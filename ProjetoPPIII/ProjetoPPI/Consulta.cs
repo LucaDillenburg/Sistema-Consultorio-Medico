@@ -93,6 +93,22 @@ namespace ProjetoPPI
             return atributos;
         }
 
+        public static AtributosConsultaCod[] TodasAsConsultas (ConexaoBD conexaoBD)
+        {
+            DataSet dataSet = conexaoBD.ExecuteSelect("select codConsulta, proposito, horario, umaHora, observacoes, status, " +
+               "emailMedico, emailPac, satisfacao, comentario, horarioSatisfacao, medicoJahViuSatisfacao from consulta " +
+                "order by horario desc");
+
+            if (dataSet.Tables[0].Rows.Count <= 0)
+                return null;
+
+            AtributosConsultaCod[] atributos = new AtributosConsultaCod[dataSet.Tables[0].Rows.Count];
+            for (int i = 0; i < atributos.Length; i++)                        
+                atributos[i] = Consulta.AtributosConsultaFromDataSet(dataSet, i, conexaoBD);                                
+
+            return atributos;
+        }
+
         protected static AtributosConsultaCod AtributosConsultaFromDataSet(DataSet dataSet, int i, ConexaoBD conexaoBD)
         {
             AtributosConsultaCod atributos = new AtributosConsultaCod();

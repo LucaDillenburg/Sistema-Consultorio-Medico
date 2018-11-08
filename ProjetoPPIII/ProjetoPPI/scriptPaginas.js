@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
     $("#btnPerfilPaciente").trigger("click");
     $("#btnPerfil").trigger("click");
+    $("#btnAgendaSecretaria").trigger("click");
 });
 
 $("#btnPerfilPaciente").on("click", function () {
@@ -54,3 +55,17 @@ $("#btnPerfil").on("click", function () {
         $(".perfil").fadeIn();
     });
 });
+
+$("#btnCadastros").on("click", function () {    
+    $("#subMenu-cadastros").slideToggle();
+    $(".opcoes > li").removeClass("ativo");
+    $(this).addClass("ativo");
+})
+
+$("#btnAgendaSecretaria").on("click", function () {
+    $(".opcoes > li").removeClass("ativo");
+    $(this).addClass("ativo");
+    $("#subMenu-cadastros").slideUp();
+    $(".consultas-paciente").fadeIn("fast");
+})
+
