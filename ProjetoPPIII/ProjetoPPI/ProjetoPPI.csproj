@@ -58,6 +58,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -138,6 +139,7 @@
     <Content Include="Index.aspx" />
     <Content Include="Medico\IndexMedico.aspx" />
     <Content Include="Paciente\Index.aspx" />
+    <Content Include="Relatorios.aspx" />
     <Content Include="scriptPaginas.js" />
     <Content Include="medico-paciente.jpg" />
     <Content Include="medico-sorrindo.jpg" />
@@ -273,6 +275,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Atributos.cs" />
+    <Compile Include="Relatorios.aspx.cs">
+      <DependentUpon>Relatorios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Relatorios.aspx.designer.cs">
+      <DependentUpon>Relatorios.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Secretaria\AgendarConsultas.aspx.cs">
       <DependentUpon>AgendarConsultas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

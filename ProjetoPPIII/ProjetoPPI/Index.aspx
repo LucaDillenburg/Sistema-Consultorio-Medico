@@ -2,9 +2,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <body id="bodyIndex">
+    <body id="bodyIndex">        
         <div class="banner" id="index-1">
-            <h1 class="text-shadow-drop-center">BEM-VINDO</h1>
+            <h1 class="text-shadow-drop-center">Bem-Vindo</h1>
         </div>
         
         <div id="gradient-1"></div>
@@ -18,7 +18,7 @@
             </p>
         </div>
 
-        <div class ="section">
+        <div class ="section" id="section-esquerda-index">
             <h1>Nossos Profissionais</h1>
             <p>Queremos que nossos clientes tenham o melhor atendimento possível, por isso contratamos somente os melhores dos melhores. Seja na administração, na clínica ou até na
                 informática, nossos profissionais tiveram o melhor desempenho durante suas carreiras. São os mais confiáveis disponíveis no mercado, garantindo a você conforto e segurança
@@ -26,6 +26,26 @@
             </p>
         </div>
 
-        <footer>FOOTER</footer>
+        <div class="section">
+            <div class="polaroid">
+                <img src="assistant-beard-boss-630836.jpg" />
+                <div class="container">
+                    <p>Agendamento Flexível</p>
+                </div>
+            </div>   
+            <div class="polaroid">
+                <img src="medico-paciente.jpg" />
+                <div class="container">
+                    <p>Atendimento Amigável</p>
+                </div>
+            </div> 
+        </div>
+
+        <footer class="footer">
+            <h3>Autores: </h3>
+            <p>
+                Fábio Minguini Faúndes & Luca Dillenburg
+            </p>
+        </footer>
     </body>
 </asp:Content>

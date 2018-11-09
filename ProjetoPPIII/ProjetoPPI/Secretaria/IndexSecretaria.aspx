@@ -14,6 +14,7 @@
         <li id="btnCadastros">Cadastrar</li>                
         <li><asp:Button CssClass="asp_button" ID="btnAgendarConsulta" runat="server" Text="Agendar Consulta" OnClick="btnAgendarConsulta_Click" /></li>
         <a href="Servidor.aspx"><li>Servidor</li></a>
+        <a href="Relatorios.aspx"><li>Relatórios</li></a>
     </ul>
     <ul id="subMenu-cadastros">
         <li><asp:Button CssClass="asp_button" ID="btnCadastrarMedico" runat="server" Text="Cadastrar Médico" OnClick="btnCadastrarMedico_Click" /></li>
@@ -23,7 +24,11 @@
             
             
 
-    <div class="tab-paciente">        
+    <div class="tab-paciente">
+            <ul class="filtros">
+               <li>Filtrar por: </li>
+                <li></li>
+            </ul>        
         <%            
             for (int i = 0; i<consultas.Length; i++)
             {%>
