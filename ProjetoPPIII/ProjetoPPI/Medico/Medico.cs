@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
@@ -28,27 +29,13 @@ namespace ProjetoPPI
         {
             this.atributos = new AtributosMedico();
             this.atributos.AdicionarSenha(senha);
-            
-            DataSet data = conexaoBD.ExecuteSelect("select nomeCompleto, crm, celular, telefoneResidencial, endereco, dataDeNascimento, foto " +
+
+            DataSet data = conexaoBD.ExecuteSelect("select email, nomeCompleto, crm, celular, telefoneResidencial, endereco, dataDeNascimento, caminhoFoto " +
                 " from medico where email='" + email + "' and senha='" + this.atributos.SenhaCriptografada + "'");
             if (data.Tables[0].Rows.Count <= 0)
                 return false;
-            
-            this.atributos.Email = email;
-            
-            this.atributos.NomeCompleto = (string)data.Tables[0].Rows[0].ItemArray[0];
-            this.atributos.CRM = (string)data.Tables[0].Rows[0].ItemArray[1];
-            this.atributos.Celular = (string)data.Tables[0].Rows[0].ItemArray[2];
-            this.atributos.TelefoneResidencial = (string)data.Tables[0].Rows[0].ItemArray[3];
-            this.atributos.Endereco = (string)data.Tables[0].Rows[0].ItemArray[4];
-            this.atributos.DataNascimento = (DateTime)data.Tables[0].Rows[0].ItemArray[5];
 
-            if (data.Tables[0].Rows[0].ItemArray[6] != System.DBNull.Value)
-            {
-                byte[] vetorImagem = (byte[])data.Tables[0].Rows[0].ItemArray[6];
-                this.atributos.Foto = ImageMethods.ImageFromBytes(vetorImagem);
-            }
-
+            Medico.ColocarAtributosFromDs(ref this.atributos, 0, data);
             return true;
         }
 
@@ -71,15 +58,16 @@ namespace ProjetoPPI
 
         public void AdicionarImagem(FileUpload fileUpload)
         {
-            //adicionar vetor de bytes no banco
-            SqlCommand sqlCmd = new SqlCommand("update medico set foto = @imagem where email = @email",
-                this.conexaoBD.Connection);
-            sqlCmd.Parameters.Add("@IMAGEM", SqlDbType.Image);
-            sqlCmd.Parameters["@IMAGEM"].Value = fileUpload.FileBytes;
-            sqlCmd.Parameters.AddWithValue("@email", this.Atributos.Email);
-            sqlCmd.ExecuteNonQuery();
+            string caminho = "~/Fotos/ftMed" + this.atributos.Email +
+                fileUpload.FileName.Substring(fileUpload.FileName.LastIndexOf('.')); // o tipo da imagem
 
-            this.Atributos.Foto = ImageMethods.ImageFromBytes(fileUpload.FileBytes);
+            //salvar imagem em pasta do servidor
+            string path = System.Web.HttpContext.Current.Server.MapPath(caminho);
+            File.WriteAllBytes("file", fileUpload.FileBytes);
+
+            //guardar o caminho no banco
+            this.conexaoBD.ExecuteInUpDel("update medico set caminhoFoto = '" + caminho + "' where email = @email");
+            this.Atributos.CaminhoFoto = caminho;
         }
 
         public void ViuNovasSatisfacoes()
@@ -90,7 +78,7 @@ namespace ProjetoPPI
 
         public AtributosConsultaCod ConsultaAtual()
         {
-            AtributosConsultaCod[] vetor = Consulta.ConsultasOcorrendoEmHorarioEspecifico(DateTime.Now, this.Atributos.Email, null, 
+            AtributosConsultaCod[] vetor = Consulta.ConsultasOcorrendoEmHorarioEspecifico(DateTime.Now, this.Atributos.Email, null,
                 this.conexaoBD);
             if (vetor == null)
                 return null;
@@ -107,31 +95,18 @@ namespace ProjetoPPI
                 "where emailMedico = '" + this.Atributos.Email + "' and medicoJahViuSatisfacao = 0");
             }
         }
-        
+
 
         //outros dados de medicos especificos (STATIC)
         public static AtributosMedico DeEmail(string email, ConexaoBD conexaoBD)
         {
-            DataSet data = conexaoBD.ExecuteSelect("select nomeCompleto, crm, celular, telefoneResidencial, endereco, dataDeNascimento, foto " +
+            DataSet data = conexaoBD.ExecuteSelect("select email, nomeCompleto, crm, celular, telefoneResidencial, endereco, dataDeNascimento, caminhoFoto " +
                 " from medico where email='" + email + "'");
             if (data.Tables[0].Rows.Count <= 0)
                 throw new Exception("Esse medico nao existe!");
 
             AtributosMedico atributos = new AtributosMedico();
-            atributos.Email = email;
-            atributos.NomeCompleto = (string)data.Tables[0].Rows[0].ItemArray[0];
-            atributos.CRM = (string)data.Tables[0].Rows[0].ItemArray[1];
-            atributos.Celular = (string)data.Tables[0].Rows[0].ItemArray[2];
-            atributos.TelefoneResidencial = (string)data.Tables[0].Rows[0].ItemArray[3];
-            atributos.Endereco = (string)data.Tables[0].Rows[0].ItemArray[4];
-            atributos.DataNascimento = (DateTime)data.Tables[0].Rows[0].ItemArray[5];
-
-            if (data.Tables[0].Rows[0].ItemArray[6] != System.DBNull.Value)
-            {
-                byte[] vetorImagem = (byte[])data.Tables[0].Rows[0].ItemArray[6];
-                atributos.Foto = ImageMethods.ImageFromBytes(vetorImagem);
-            }
-
+            Medico.ColocarAtributosFromDs(ref atributos, 0, data);
             return atributos;
         }
 
@@ -146,7 +121,7 @@ namespace ProjetoPPI
             {
                 return 0;
             }
-            //os termos nulos sao ignorados (nao sao contados como zeros)            
+            //os termos nulos sao ignorados (nao sao contados como zeros)
         }
 
         public static bool HorarioConsultaEhLivre(AtributosConsulta atrConsulta, ConexaoBD conexaoBD)
@@ -172,6 +147,19 @@ namespace ProjetoPPI
             return ret;
         }
 
+        //aux
+        protected static void ColocarAtributosFromDs(ref AtributosMedico atributos, int i, DataSet data)
+        {
+            atributos.Email = (string)data.Tables[0].Rows[i].ItemArray[0];
+            atributos.NomeCompleto = (string)data.Tables[0].Rows[i].ItemArray[1];
+            atributos.CRM = (string)data.Tables[0].Rows[i].ItemArray[2];
+            atributos.Celular = (string)data.Tables[0].Rows[i].ItemArray[3];
+            atributos.TelefoneResidencial = (string)data.Tables[0].Rows[i].ItemArray[4];
+            atributos.Endereco = (string)data.Tables[0].Rows[i].ItemArray[5];
+            atributos.DataNascimento = (DateTime)data.Tables[0].Rows[i].ItemArray[6];
+            if (data.Tables[0].Rows[i].ItemArray[7] != System.DBNull.Value)
+                atributos.CaminhoFoto = (string)data.Tables[0].Rows[i].ItemArray[7];
+        }
 
         //getter
         public AtributosMedico Atributos

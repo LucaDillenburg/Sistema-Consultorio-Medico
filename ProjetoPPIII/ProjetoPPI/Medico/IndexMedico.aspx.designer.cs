@@ -13,6 +13,15 @@ namespace ProjetoPPI.PagMedico {
     public partial class IndexMedico {
         
         /// <summary>
+        /// Controle imgFoto.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgFoto;
+        
+        /// <summary>
         /// Controle fileUpload.
         /// </summary>
         /// <remarks>

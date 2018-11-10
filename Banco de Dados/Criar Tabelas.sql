@@ -6,7 +6,7 @@ celular varchar(14) not null,
 telefoneResidencial varchar(13) not null,
 endereco varchar(100) not null,
 dataDeNascimento datetime not null,
-foto image null,
+caminhoFoto varchar(200) null,
 senha varchar(256) not null
 )
 
@@ -17,7 +17,7 @@ celular varchar(14) not null,
 telefoneResidencial varchar(13) not null,
 endereco varchar(100) not null,
 dataDeNascimento datetime not null,
-foto image null,
+caminhoFoto varchar(200) null,
 senha varchar(256) not null
 )
 

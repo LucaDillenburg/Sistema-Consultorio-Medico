@@ -73,8 +73,9 @@
             <div id="cabecalho">
                 <h1><%=atributos.NomeCompleto %></h1>
                 <div id="imagem">
-                    <% if (atributos.Foto != null) { %>
-                        <%=atributos.Foto%>
+                    <% if (!String.IsNullOrEmpty(atributos.CaminhoFoto)) { %>
+                        <asp:Image ID="imgFoto" runat="server" /> 
+                        <% this.imgFoto.ImageUrl = atributos.CaminhoFoto; %>
                     <%
                     } else { %>
                         Sem Foto
