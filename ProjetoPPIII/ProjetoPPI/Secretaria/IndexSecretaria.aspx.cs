@@ -11,7 +11,7 @@ namespace ProjetoPPI.PagSecretaria
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() != typeof(Secretaria))
+            if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() != typeof(ProjetoPPI.Secretaria))
             {
                 Response.Redirect("/Index.aspx");
                 return;
@@ -41,5 +41,8 @@ namespace ProjetoPPI.PagSecretaria
 
         protected void btnAgenda_Click(object sender, EventArgs e)
         { Response.Redirect("Agenda.aspx"); }
+
+        protected void btnPesquisar_Click(object sender, EventArgs e)
+        { /*recarrega a pagina*/ }
     }
 }

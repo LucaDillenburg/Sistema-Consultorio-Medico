@@ -22,7 +22,16 @@
             <div class="perfil">
                 <div id="cabecalho">
                     <h1><%=atributos.NomeCompleto %></h1>
-                    <div id="imagem"></div>
+                    <div id="imagem">
+                        <% if (atributos.Foto != null) { %>
+                            <%=atributos.Foto%>
+                        <%
+                        } else { %>
+                            Sem Foto
+                        <% } %>
+                    </div>
+                    <asp:FileUpload ID="fileUpload" runat="server" />
+                    <asp:Button ID="btnFileUpload" runat="server" Text="Adicionar/Mudar foto" OnClick="btnFileUpload_Click" />
                 </div>            
                 <hr />
                 <h2>Email: <%=atributos.Email %></h2>
@@ -35,12 +44,12 @@
                 <hr />
                 <h2>CRM: <%=atributos.CRM %></h2>
                 <hr />
-                <h2>Data de Nascimento: <%=atributos.DataNascimento %></h2>            
+                <h2>Data de Nascimento: <%=atributos.DataNascimento.ToString("dd/MM/yyyy") %></h2>            
             </div>
 
              <%for (int i = 0; i<consultas.Length; i++)
               {%>
-            <a href="/Paciente/VerConsulta.aspx?<%=consultas[i].CodConsulta %>">
+            <a href="VerConsulta.aspx?<%=consultas[i].CodConsulta %>">
             <table class="consultas-paciente">
             <tr class="proposito">
                 <td>PROPÓSITO: </td>                

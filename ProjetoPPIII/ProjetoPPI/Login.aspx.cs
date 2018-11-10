@@ -47,7 +47,7 @@ namespace ProjetoPPI
                     {
                         Session["usuario"] = new Paciente(this.txtEmail.Text, this.txtSenha.Text, (ConexaoBD)Session["conexao"]);
                         Acesso.AdicionarAcesso(this.txtEmail.Text, TipoUsuario.paciente, (ConexaoBD)Session["conexao"]);
-                        Response.Redirect("Paciente/Index.aspx");
+                        Response.Redirect("Paciente/IndexPaciente.aspx");
                         if (Session["usuario"] == null) { int i = 0; }
                         return;
                     }

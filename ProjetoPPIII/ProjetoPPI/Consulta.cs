@@ -109,7 +109,7 @@ namespace ProjetoPPI
             return atributos;
         }
 
-        protected static AtributosConsultaCod AtributosConsultaFromDataSet(DataSet dataSet, int i, ConexaoBD conexaoBD)
+        public static AtributosConsultaCod AtributosConsultaFromDataSet(DataSet dataSet, int i, ConexaoBD conexaoBD)
         {
             AtributosConsultaCod atributos = new AtributosConsultaCod();
             atributos.CodConsulta = (int)dataSet.Tables[0].Rows[i].ItemArray[0];

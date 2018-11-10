@@ -15,14 +15,6 @@
 <body style="background-image: url('../assistant-beard-boss-630836.jpg');background-attachment: fixed; background-position: center; background-size: cover; background-repeat: no-repeat; overflow-y: hidden;">
 <form id="form1" runat="server">
 <div class="consulta">    
-    <%
-        if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() != typeof(ProjetoPPI.Secretaria))
-        {
-            Response.Redirect("../Index.aspx");
-            return;
-        }
-    %>
-
     <h1 class="title-originais">Agendar Consulta</h1>
     
     <table class="tab-cadastro">

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Web;
+using System.Web.UI.WebControls;
 
 namespace ProjetoPPI
 {
@@ -66,6 +67,19 @@ namespace ProjetoPPI
             this.conexaoBD.ExecuteInUpDel("update consulta set observacoes = '"
                 + atributosConsulta.Observacoes + "', status='s' " +
                 "where codConsulta=" + atributosConsulta.CodConsulta);
+        }
+
+        public void AdicionarImagem(FileUpload fileUpload)
+        {
+            //adicionar vetor de bytes no banco
+            SqlCommand sqlCmd = new SqlCommand("update medico set foto = @imagem where email = @email",
+                this.conexaoBD.Connection);
+            sqlCmd.Parameters.Add("@IMAGEM", SqlDbType.Image);
+            sqlCmd.Parameters["@IMAGEM"].Value = fileUpload.FileBytes;
+            sqlCmd.Parameters.AddWithValue("@email", this.Atributos.Email);
+            sqlCmd.ExecuteNonQuery();
+
+            this.Atributos.Foto = ImageMethods.ImageFromBytes(fileUpload.FileBytes);
         }
 
         public void ViuNovasSatisfacoes()

@@ -1,0 +1,5 @@
+primeiro OnLoad (.cs), depois .aspx
+
+eventos: OnLoad, evento, .aspx
+
+o que acontece se a variavel soh eh definida no aspx? ele chega no evento sem estar definida ainda

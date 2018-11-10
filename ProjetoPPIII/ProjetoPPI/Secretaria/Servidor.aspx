@@ -9,9 +9,8 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            <asp:ListBox ID="lbxComandos" runat="server"></asp:ListBox>
-        </div>        
+        <center><h1>SERVIDOR</h1></center>
+        <center><asp:ListBox ID="lbxComandos" runat="server" Rows="20" SelectionMode="Multiple"></asp:ListBox></center>      
     </form>
 </body>
 </html>

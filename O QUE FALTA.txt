@@ -1,3 +1,12 @@
+O QUE FALTA:
+ - testar adicionar satisfacao (VerConsulta paciente)
+ - testar adicionar observacao (VerConsulta medico)
+
+ - adicionar foto de perfil ?
+ - opcao para mudar atributos dos usuarios ?
+ - opcao para usuario pedir consulta ??
+
+
 PÁGINAS:
  - HOME. (falta colocar texto de verdade)
  - LOGIN. OK

@@ -27,6 +27,8 @@ namespace ProjetoPPI.PagSecretaria
 
             this.con.Open();
 
+            this.lbxComandos.Items.Insert(0, "Funcionando...");
+
             new Thread(new ThreadStart(LoopMandarEmailSMS)).Start();
             new Thread(new ThreadStart(CancelarConsultasNaoOcorreram)).Start();
         }

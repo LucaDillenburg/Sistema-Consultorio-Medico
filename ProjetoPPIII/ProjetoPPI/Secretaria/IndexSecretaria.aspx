@@ -2,10 +2,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <%         
-         ProjetoPPI.AtributosConsultaCod[] consultas = ProjetoPPI.Consulta.TodasAsConsultas((ProjetoPPI.ConexaoBD)Session["conexao"]);
-
-    %>
     <h1 class="title-originais">ÁREA DA SECRETARIA</h1>
     <hr class="hr-originais" />
 
@@ -25,38 +21,55 @@
             
 
     <div class="tab-paciente">
+            <label>Filtrar por: </label>
             <ul class="filtros">
-               <li>Filtrar por: </li>
-                <li></li>
-            </ul>        
-        <%            
-            for (int i = 0; i<consultas.Length; i++)
+                <li>Paciente: <asp:TextBox ID="txtPesqPac" runat="server"></asp:TextBox></li>
+                <li>Médico: <asp:TextBox ID="txtPesqMed" runat="server"></asp:TextBox></li>
+                <li>Dia: <asp:TextBox ID="txtPesqDia" runat="server" TextMode="Date"></asp:TextBox> 
+                    <asp:DropDownList ID="ddlTipoDia" runat="server">
+                        <asp:ListItem Value="-1">Antes</asp:ListItem>
+                        <asp:ListItem Selected="True" Value="0">No dia</asp:ListItem>
+                        <asp:ListItem Value="1">Depois</asp:ListItem>
+                    </asp:DropDownList>
+                </li>
+            </ul>
+            <asp:Button ID="btnPesquisar" runat="server" Text="Pesquisar" OnClick="btnPesquisar_Click" />
+            <br/><br/>
+            <%
+            string data = "";
+            try
+            {
+                data = DateTime.ParseExact(this.txtPesqDia.Text, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture).ToString("dd/MM/yyyy");
+            }catch (Exception e) { }
+            object[,] infoConsultas = ((ProjetoPPI.Secretaria)Session["usuario"]).PesquisarConsultas(this.txtPesqMed.Text, this.txtPesqPac.Text, data, Convert.ToInt32(this.ddlTipoDia.SelectedValue));
+
+            for (int i = 0; i<infoConsultas.GetLength(0); i++)
             {%>
-            <a href="VerConsulta.aspx?<%=consultas[i].CodConsulta %>">
+            <a href="VerConsulta.aspx?<%=((ProjetoPPI.AtributosConsultaCod)infoConsultas[i,0]).CodConsulta %>">
             <table class="consultas-paciente">
             <tr class="proposito">
                 <td>PROPÓSITO: </td>                
-                <td colspan="4"><%=consultas[i].Proposito%></td>
+                <td colspan="4"><%=((ProjetoPPI.AtributosConsultaCod)infoConsultas[i,0]).Proposito%></td>
             </tr>
             <tr>
                 <td style="font-weight: bold; color: black;">HORÁRIO: </td>
-                <td><%=consultas[i].Horario.ToString("dd-MM-yyyy HH:mm")%></td> 
+                <td><%=((ProjetoPPI.AtributosConsultaCod)infoConsultas[i,0]).Horario.ToString("dd-MM-yyyy HH:mm")%></td> 
                 <td style="font-weight: bold; color: black;">DURAÇÃO: </td>
-                <td><%=(consultas[i].UmaHora)?"1 hora":"30 minutos"%></td>
+                <td><%=(((ProjetoPPI.AtributosConsultaCod)infoConsultas[i,0]).UmaHora)?"1 hora":"30 minutos"%></td>
             </tr>
             <tr>
                 <td style="font-weight: bold; color: black;">MÉDICO: </td>
-                <td colspan="4"><%= ProjetoPPI.Medico.DeEmail(consultas[i].EmailMedico, (ProjetoPPI.ConexaoBD)Session["conexao"]).NomeCompleto %></td>
+                <td colspan="4"><%=((string)infoConsultas[i,1])%></td>
             </tr>
             <tr>
                 <td style="font-weight: bold; color: black;">PACIENTE: </td>
-                <td colspan="4"><%=ProjetoPPI.Paciente.DeEmail(consultas[i].EmailPaciente, (ProjetoPPI.ConexaoBD)Session["conexao"]).NomeCompleto%></td>
+                <td colspan="4"><%=((string)infoConsultas[i,2])%></td>
             </tr>
             <tr class="observacoes">
                 <td style="font-weight: bold;">OBSERVAÇÕES</td>
                 <td colspan="4">
                     <%
-                    switch(consultas[i].Status)
+                    switch(((ProjetoPPI.AtributosConsultaCod)infoConsultas[i,0]).Status)
                     {
                         case 'n':
                             %>Ainda não ocorreu<%
@@ -67,13 +80,13 @@
                         case 's':
                           %>
                             Ocorreu
-                            Observações: <%=consultas[i].Observacoes%>
+                            Observações: <%=((ProjetoPPI.AtributosConsultaCod)infoConsultas[i,0]).Observacoes%>
                           <%
-                            if (consultas[i].Satisfacao >= 0)
+                            if (((ProjetoPPI.AtributosConsultaCod)infoConsultas[i,0]).Satisfacao >= 0)
                             {
-                                %>Satisfação: <%=consultas[i].Satisfacao%><%
-                                if (!String.IsNullOrEmpty(consultas[i].Comentario))
-                                    %>Comentário: <%=consultas[i].Comentario%><%
+                                %>Satisfação: <%=((ProjetoPPI.AtributosConsultaCod)infoConsultas[i,0]).Satisfacao%><%
+                                if (!String.IsNullOrEmpty(((ProjetoPPI.AtributosConsultaCod)infoConsultas[i,0]).Comentario))
+                                    %>Comentário: <%=((ProjetoPPI.AtributosConsultaCod)infoConsultas[i,0]).Comentario%><%
                             }
                             break;
                     }
@@ -83,7 +96,7 @@
             </tr>
             </table> 
             </a>
-             <%} %>
+            <%} %>
     </div>
     <script src="/scriptPaginas.js"></script>
 </asp:Content>

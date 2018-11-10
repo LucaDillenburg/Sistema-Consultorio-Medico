@@ -138,22 +138,18 @@
     <Content Include="Content\architecture-buildings-city-1139556.jpg" />
     <Content Include="Index.aspx" />
     <Content Include="Medico\IndexMedico.aspx" />
-    <Content Include="Paciente\Index.aspx" />
+    <Content Include="Paciente\IndexPaciente.aspx" />
     <Content Include="Relatorios.aspx" />
     <Content Include="scriptPaginas.js" />
     <Content Include="medico-paciente.jpg" />
     <Content Include="medico-sorrindo.jpg" />
-    <Content Include="Medico\Index.aspx" />
-    <Content Include="Medico\UltimasConsultas.aspx" />
     <Content Include="Medico\VerConsulta.aspx" />
     <Content Include="NScript.js" />
-    <Content Include="Paciente\UltimasConsultas.aspx" />
     <Content Include="Paciente\VerConsulta.aspx" />
     <Content Include="Scripts\script.js" />
     <Content Include="Secretaria\AgendarConsultas.aspx" />
     <Content Include="Secretaria\IndexSecretaria.aspx" />
     <Content Include="Secretaria\Servidor.aspx" />
-    <Content Include="teste.aspx" />
     <Content Include="wallpaper-index.jpeg" />
     <Content Include="Secretaria\CadastroUsuarios.aspx" />
     <Content Include="Content\bootstrap.css" />
@@ -172,7 +168,6 @@
     <Content Include="Menu.Master" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Login.aspx" />
-    <Content Include="Secretaria\Index.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -216,26 +211,12 @@
     <Compile Include="Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Medico\Index.aspx.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Medico\Index.aspx.designer.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Medico\IndexMedico.aspx.cs">
       <DependentUpon>IndexMedico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Medico\IndexMedico.aspx.designer.cs">
       <DependentUpon>IndexMedico.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Medico\UltimasConsultas.aspx.cs">
-      <DependentUpon>UltimasConsultas.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Medico\UltimasConsultas.aspx.designer.cs">
-      <DependentUpon>UltimasConsultas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Medico\VerConsulta.aspx.cs">
       <DependentUpon>VerConsulta.aspx</DependentUpon>
@@ -251,19 +232,12 @@
     <Compile Include="Menu.Master.designer.cs">
       <DependentUpon>Menu.Master</DependentUpon>
     </Compile>
-    <Compile Include="Paciente\Index.aspx.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
+    <Compile Include="Paciente\IndexPaciente.aspx.cs">
+      <DependentUpon>IndexPaciente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Paciente\Index.aspx.designer.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Paciente\UltimasConsultas.aspx.cs">
-      <DependentUpon>UltimasConsultas.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paciente\UltimasConsultas.aspx.designer.cs">
-      <DependentUpon>UltimasConsultas.aspx</DependentUpon>
+    <Compile Include="Paciente\IndexPaciente.aspx.designer.cs">
+      <DependentUpon>IndexPaciente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paciente\VerConsulta.aspx.cs">
       <DependentUpon>VerConsulta.aspx</DependentUpon>
@@ -332,22 +306,8 @@
     </Compile>
     <Compile Include="Medico\Medico.cs" />
     <Compile Include="Paciente\Paciente.cs" />
-    <Compile Include="Secretaria\Index.aspx.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Secretaria\Index.aspx.designer.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Secretaria\Secretaria.cs" />
-    <Compile Include="teste.aspx.cs">
-      <DependentUpon>teste.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="teste.aspx.designer.cs">
-      <DependentUpon>teste.aspx</DependentUpon>
-    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

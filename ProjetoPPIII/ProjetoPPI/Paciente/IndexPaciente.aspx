@@ -1,16 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Menu.Master" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="ProjetoPPI.PagPaciente.Index" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Menu.Master" AutoEventWireup="true" CodeBehind="IndexPaciente.aspx.cs" Inherits="ProjetoPPI.PagPaciente.IndexPaciente" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">     
     <h1 class="title-originais">ÁREA DO PACIENTE</h1>
     <hr class="hr-originais" />
     <%
-        if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() != typeof(ProjetoPPI.Paciente))
-        {
-            Response.Redirect("../Index.aspx");
-            return;
-        }
-
         string emailPaciente = ((ProjetoPPI.Paciente)Session["usuario"]).Atributos.Email;
         ProjetoPPI.AtributosConsultaCod[] consultas = ProjetoPPI.Consulta.ConsultasDe(emailPaciente, false, false, (ProjetoPPI.ConexaoBD)Session["conexao"]);
 
@@ -78,14 +72,28 @@
         <div class="perfil">
             <div id="cabecalho">
                 <h1><%=atributos.NomeCompleto %></h1>
-                <div id="imagem"></div>
+                <div id="imagem">
+                    <% if (atributos.Foto != null) { %>
+                        <%=atributos.Foto%>
+                    <%
+                    } else { %>
+                        Sem Foto
+                    <% } %>
+                </div>
+                <asp:FileUpload ID="fileUpload" runat="server" />
+                <asp:Button ID="btnFileUpload" runat="server" Text="Adicionar/Mudar foto" OnClick="btnFileUpload_Click" />
             </div>            
             <hr />
-            <h2>Email: <%=atributos.Email %></h2>
             <hr />
-            <h2>Endereço: <%=atributos.Endereco %></h2>
-            <hr />
-            <h2>Telefone: <%=atributos.TelefoneResidencial %></h2>
+                <h2>Email: <%=atributos.Email %></h2>
+                <hr />
+                <h2>Endereço: <%=atributos.Endereco %></h2>
+                <hr />
+                <h2>Celular: <%=atributos.Celular %></h2>
+                <hr />
+                <h2>Telefone: <%=atributos.TelefoneResidencial %></h2>
+                <hr />
+                <h2>Data de Nascimento: <%=atributos.DataNascimento.ToString("dd/MM/yyyy") %></h2>  
         </div>
     </div>
     <script src="/scriptPaginas.js"></script>

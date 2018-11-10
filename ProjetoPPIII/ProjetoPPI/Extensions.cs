@@ -9,7 +9,6 @@ namespace ProjetoPPI
 {
     public class ImageMethods
     {
-
         //extensao para poder conseguir 
         public static Image ImageFromBytes(byte[] blob)
         {

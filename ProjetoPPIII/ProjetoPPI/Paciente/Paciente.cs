@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.UI.WebControls;
 
 namespace ProjetoPPI
 {
@@ -66,6 +70,18 @@ namespace ProjetoPPI
                     " where codConsulta=" + atributosConsulta.CodConsulta);
         }
 
+        public void AdicionarImagem(FileUpload fileUpload)
+        {
+            //adicionar vetor de bytes no banco
+            SqlCommand sqlCmd = new SqlCommand("update paciente set foto = @imagem where email = @email",
+                this.conexaoBD.Connection);
+            sqlCmd.Parameters.Add("@IMAGEM", SqlDbType.Image);
+            sqlCmd.Parameters["@IMAGEM"].Value = fileUpload.FileBytes;
+            sqlCmd.Parameters.AddWithValue("@email", this.Atributos.Email);
+            sqlCmd.ExecuteNonQuery();
+
+            this.Atributos.Foto = ImageMethods.ImageFromBytes(fileUpload.FileBytes);
+        }
 
         //cadastro
         public static bool Existe(string email, ConexaoBD conexaoBD)

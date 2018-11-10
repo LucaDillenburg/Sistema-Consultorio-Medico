@@ -17,12 +17,6 @@
 <form id="form1" runat="server">
 <!---->
     <%
-        if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() != typeof(ProjetoPPI.Secretaria))
-        {
-            Response.Redirect("../Index.aspx");
-            return;
-        }
-
         if (Session["tipoUsCadastrar"] == null)
             Session["tipoUsCadastrar"] = ProjetoPPI.TipoUsuario.paciente;
     %>
