@@ -24,8 +24,7 @@
                     <h1><%=atributos.NomeCompleto %></h1>
                     <div id="imagem">
                         <% if (!String.IsNullOrEmpty(atributos.CaminhoFoto)) { %>
-                            <asp:Image ID="imgFoto" runat="server" /> 
-                            <% this.imgFoto.ImageUrl = atributos.CaminhoFoto; %>
+                            <img src="<%=atributos.CaminhoFoto%>"/>
                         <%
                         } else { %>
                             Sem Foto

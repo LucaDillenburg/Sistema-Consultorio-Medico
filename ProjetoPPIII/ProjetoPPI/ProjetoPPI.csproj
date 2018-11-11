@@ -232,6 +232,7 @@
     <Compile Include="Menu.Master.designer.cs">
       <DependentUpon>Menu.Master</DependentUpon>
     </Compile>
+    <Compile Include="Outros.cs" />
     <Compile Include="Paciente\IndexPaciente.aspx.cs">
       <DependentUpon>IndexPaciente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

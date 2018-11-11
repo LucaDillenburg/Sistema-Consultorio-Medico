@@ -57,18 +57,7 @@ namespace ProjetoPPI
         }
 
         public void AdicionarImagem(FileUpload fileUpload)
-        {
-            string caminho = "~/Fotos/ftPac" + this.atributos.Email +
-                fileUpload.FileName.Substring(fileUpload.FileName.LastIndexOf('.')); // o tipo da imagem
-
-            //salvar imagem em pasta do servidor
-            string path = System.Web.HttpContext.Current.Server.MapPath(caminho);
-            File.WriteAllBytes("file", fileUpload.FileBytes);
-
-            //guardar o caminho no banco
-            this.conexaoBD.ExecuteInUpDel("update medico set caminhoFoto = '" + caminho + "' where email = @email");
-            this.Atributos.CaminhoFoto = caminho;
-        }
+        { Usuario.AuxAdicionarImagem(this.atributos, true, fileUpload, this.conexaoBD); }
 
         //cadastro
         public static bool Existe(string email, ConexaoBD conexaoBD)

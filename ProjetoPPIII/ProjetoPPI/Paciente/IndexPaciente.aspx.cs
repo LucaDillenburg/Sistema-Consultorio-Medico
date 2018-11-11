@@ -21,7 +21,7 @@ namespace ProjetoPPI.PagPaciente
 
         protected void btnFileUpload_Click(object sender, EventArgs e)
         {
-            if (this.fileUpload.HasFile)
+            if (this.fileUpload.HasFile && ImageMethods.EhImagem(this.fileUpload.FileName))
             {
                 ((Paciente)Session["usuario"]).AdicionarImagem(this.fileUpload);
                 Response.Redirect("IndexPaciente.aspx");
