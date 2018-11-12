@@ -2,8 +2,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1 class="title-originais">ÁREA DO MÉDICO</h1>
-    <hr class="hr-originais" />
+    <div class="banner" id="indexMedico">
+        <h1>Médico</h1>
+    </div>
+
+    <div class="gradient-1"></div>
+        
 
     <% 
         string emailMedico = ((ProjetoPPI.Medico)Session["usuario"]).Atributos.Email;
@@ -24,14 +28,20 @@
                     <h1><%=atributos.NomeCompleto %></h1>
                     <div id="imagem">
                         <% if (!String.IsNullOrEmpty(atributos.CaminhoFoto)) { %>
-                            <img src="<%=atributos.CaminhoFoto%>"/>
+                            <script>
+                            $(document).ready(function () {
+                                $("#imagem").css("background-image", "url('<%=atributos.CaminhoFoto%>')");
+                            });
+                        </script>
                         <%
                         } else { %>
                             Sem Foto
                         <% } %>
                     </div>
-                    <asp:FileUpload ID="fileUpload" runat="server" />
-                    <asp:Button ID="btnFileUpload" runat="server" Text="Adicionar/Mudar foto" OnClick="btnFileUpload_Click" />
+                    <div class="btnsUpload">                        
+                        <asp:Button CssClass="asp_button" ID="btnFileUpload" runat="server" Text="Adicionar/Mudar foto" OnClick="btnFileUpload_Click" />
+                        <asp:FileUpload CssClass="asp_button" ID="fileUpload" runat="server" />
+                    </div>
                 </div>            
                 <hr />
                 <h2>Email: <%=atributos.Email %></h2>

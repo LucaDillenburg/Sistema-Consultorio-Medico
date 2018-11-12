@@ -43,12 +43,12 @@
     </h1>
 
     <div class="secao">
-    <asp:Label runat="server" Text="Médico: "></asp:Label> 
-    <asp:DropDownList ID="ddlMedicos" runat="server" DataSourceID="SqlDataSourceMedicos" DataTextField="nomeCompleto" DataValueField="email">
-    </asp:DropDownList>
-    <asp:SqlDataSource ID="SqlDataSourceMedicos" runat="server" ConnectionString="<%$ ConnectionStrings:PR317188ConnectionString %>" SelectCommand="SELECT [email], [nomeCompleto] FROM [medico]"></asp:SqlDataSource>
-    <br />
-    <asp:Label ID="lbMsgMedico" runat="server" Text=""></asp:Label> <br />
+        <asp:Label runat="server" Text="Médico: "></asp:Label> 
+        <asp:DropDownList ID="ddlMedicos" runat="server" DataSourceID="SqlDataSourceMedicos" DataTextField="nomeCompleto" DataValueField="email">
+        </asp:DropDownList>
+        <asp:SqlDataSource ID="SqlDataSourceMedicos" runat="server" ConnectionString="<%$ ConnectionStrings:PR317188ConnectionString %>" SelectCommand="SELECT [email], [nomeCompleto] FROM [medico]"></asp:SqlDataSource>
+        <br />
+        <asp:Label ID="lbMsgMedico" runat="server" Text=""></asp:Label> <br />
     </div>
 
     <div class="secao">

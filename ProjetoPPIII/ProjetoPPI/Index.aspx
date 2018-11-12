@@ -7,7 +7,7 @@
             <h1 class="text-shadow-drop-center">Bem-Vindo</h1>
         </div>
         
-        <div id="gradient-1"></div>
+        <div class="gradient-1"></div>
 
         <div class="section">
             <h1>Quem Somos Nós</h1>
@@ -40,7 +40,6 @@
                 </div>
             </div> 
         </div>
-
         <footer class="footer">
             <h3>Autores: </h3>
             <p>

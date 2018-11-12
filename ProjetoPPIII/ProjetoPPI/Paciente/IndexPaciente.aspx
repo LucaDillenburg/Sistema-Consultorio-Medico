@@ -1,9 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Menu.Master" AutoEventWireup="true" CodeBehind="IndexPaciente.aspx.cs" Inherits="ProjetoPPI.PagPaciente.IndexPaciente" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">     
-    <h1 class="title-originais">ÁREA DO PACIENTE</h1>
-    <hr class="hr-originais" />
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="banner" id="indexPaciente">
+        <h1>Paciente</h1>
+    </div>
+
+    <div class="gradient-1"></div>
+    
     <%
         string emailPaciente = ((ProjetoPPI.Paciente)Session["usuario"]).Atributos.Email;
         ProjetoPPI.AtributosConsultaCod[] consultas = ProjetoPPI.Consulta.ConsultasDe(emailPaciente, false, false, (ProjetoPPI.ConexaoBD)Session["conexao"]);
@@ -74,14 +78,20 @@
                 <h1><%=atributos.NomeCompleto %></h1>
                 <div id="imagem">
                     <% if (!String.IsNullOrEmpty(atributos.CaminhoFoto)) { %>
-                        <img src="<%=atributos.CaminhoFoto%>"/>
+                        <script>
+                            $(document).ready(function () {
+                                $("#imagem").css("background-image", "url('<%=atributos.CaminhoFoto%>')");
+                            });
+                        </script>
                     <%
                     } else { %>
                         Sem Foto
                     <% } %>
                 </div>
-                <asp:FileUpload ID="fileUpload" runat="server" />
-                <asp:Button ID="btnFileUpload" runat="server" Text="Adicionar/Mudar foto" OnClick="btnFileUpload_Click" />
+                <div class="btnsUpload">                    
+                    <asp:Button CssClass="asp_button" ID="btnFileUpload" runat="server" Text="Adicionar/Mudar foto" OnClick="btnFileUpload_Click" />
+                    <asp:FileUpload CssClass="asp_button" ID="fileUpload" runat="server" />
+                </div>
             </div>            
             <hr />
             <hr />

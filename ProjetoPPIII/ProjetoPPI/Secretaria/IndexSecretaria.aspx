@@ -2,8 +2,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1 class="title-originais">ÁREA DA SECRETARIA</h1>
-    <hr class="hr-originais" />
+    <div class="banner" id="indexSecretaria">
+        <h1>Secretária</h1>
+    </div>
+
+    <div class="gradient-1"></div>    
 
     <ul class="opcoes">        
         <li  class="ativo" id="btnAgendaSecretaria">Agenda</li>
@@ -17,24 +20,24 @@
         <li><asp:Button CssClass="asp_button" ID="btnCadastrarPaciente" runat="server" Text="Cadastrar Paciente" OnClick="btnCadastrarPaciente_Click" /></li>
         <li><asp:Button CssClass="asp_button" ID="btnCadastrarSecretaria" runat="server" Text="Cadastrar Secretaria" OnClick="btnCadastrarSecretaria_Click" /></li>
     </ul>
-            
-            
+                        
+    <div class="filtrar">
+        <label>Filtrar por: </label>
+        <ul class="filtros">
+            <li>Paciente: <asp:TextBox CssClass="asp_textbox" ID="txtPesqPac" runat="server"></asp:TextBox></li>
+            <li>Médico: <asp:TextBox CssClass="asp_textbox" ID="txtPesqMed" runat="server"></asp:TextBox></li>
+            <li>Dia: <asp:TextBox CssClass="asp_textbox" ID="txtPesqDia" runat="server" TextMode="Date"></asp:TextBox> 
+                <asp:DropDownList ID="ddlTipoDia" runat="server">
+                    <asp:ListItem Value="-1">Antes</asp:ListItem>
+                    <asp:ListItem Selected="True" Value="0">No dia</asp:ListItem>
+                    <asp:ListItem Value="1">Depois</asp:ListItem>
+                </asp:DropDownList>
+            </li>
+        </ul>
+        <asp:Button CssClass="asp_button" ID="btnPesquisar" runat="server" Text="Pesquisar" OnClick="btnPesquisar_Click" />
+    </div>
 
-    <div class="tab-paciente">
-            <label>Filtrar por: </label>
-            <ul class="filtros">
-                <li>Paciente: <asp:TextBox ID="txtPesqPac" runat="server"></asp:TextBox></li>
-                <li>Médico: <asp:TextBox ID="txtPesqMed" runat="server"></asp:TextBox></li>
-                <li>Dia: <asp:TextBox ID="txtPesqDia" runat="server" TextMode="Date"></asp:TextBox> 
-                    <asp:DropDownList ID="ddlTipoDia" runat="server">
-                        <asp:ListItem Value="-1">Antes</asp:ListItem>
-                        <asp:ListItem Selected="True" Value="0">No dia</asp:ListItem>
-                        <asp:ListItem Value="1">Depois</asp:ListItem>
-                    </asp:DropDownList>
-                </li>
-            </ul>
-            <asp:Button ID="btnPesquisar" runat="server" Text="Pesquisar" OnClick="btnPesquisar_Click" />
-            <br/><br/>
+    <div class="tab-paciente">        
             <%
             string data = "";
             try
@@ -97,6 +100,6 @@
             </table> 
             </a>
             <%} %>
-    </div>
+    </div>    
     <script src="/scriptPaginas.js"></script>
 </asp:Content>

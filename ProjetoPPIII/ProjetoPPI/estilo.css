@@ -109,6 +109,18 @@ body {
     background-color: rgba(242, 242, 242, 0.7);
 }
 
+#bodyRelatorios {
+    background-image: url('analysis-analytics-application-590016.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat repeat;
+    background-size: cover;
+}
+
+#bodyRelatorios .consulta {
+    text-align: center;
+}
+
 #invisivel {
     width: 100%;
     height: 250px;
@@ -245,6 +257,8 @@ hr.hr-originais {
 ul.opcoes {
     font-family: 'Comfortaa', cursive;    
     margin: auto;
+    margin-top: 7vh;
+    margin-bottom: 7vh;
     width: 80%;
     list-style: none;
     display: block;
@@ -283,11 +297,9 @@ ul.opcoes {
 }
 
 div.tab-paciente {
-    width: 80%;
-    height: 500px;    
-    margin: auto;
-    margin-top: 50px;
-    margin-bottom: 170px;
+    width: 80%;    
+    margin: auto;    
+    padding-bottom: 10vh;
 }
 
 .consultas-paciente {
@@ -383,6 +395,9 @@ ul.cadastros {
     margin: 0;
     margin-bottom: 10px;
     padding: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:contain;
 }
 
 .perfil #cabecalho h1{
@@ -390,6 +405,20 @@ ul.cadastros {
     vertical-align: middle;
     line-height: 120px;
     margin-bottom: 10px;
+}
+
+.perfil .btnsUpload {
+    display: block;
+    width: auto;
+    margin-bottom: 50px;
+}
+
+.perfil #cabecalho .asp_button {
+    float: right;
+    display: inline-block;
+    border: 1px solid grey;
+    background-color: #edf3fc;
+    margin-left: 10px;
 }
 
 .cadastros ul{
@@ -429,11 +458,12 @@ ul.cadastros {
 .consulta {
     padding: 30px;
     margin: auto;
-    margin-top: 50px;
-    width: 70%;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    width: 70vw;
     background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 0px 0px 5px 3px rgba(50, 50, 50, 0.5);
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Comfortaa', cursive;    
 }
 
 .consulta .secao {
@@ -494,7 +524,7 @@ ul.cadastros {
 #subMenu-cadastros {
     position: absolute;
     left: calc(50% - 175px);
-    top: 300px;
+    top: calc(110vh + 30px);
     display: block;
     width: 350px;
     height: auto;    
@@ -621,16 +651,28 @@ ul.cadastros {
     margin-top: 25px;   
 }
 
+#indexPaciente {
+    background-image: url('aerial-background-beautiful-990830.jpg');
+}
+
+#indexMedico {
+    background-image: url('clinic-doctors-glass-127873.jpg');
+}
+
+#indexSecretaria {
+    background-image: url('accounting-achievement-aerial-1043506.jpg');
+}
+
 #index-1 {
-    z-index: -999;    
+    z-index: -999;
+    background-image: url("arms-care-check-905874.jpg");
 }
 
 .banner {
     display: block;
     width: 100%;
     line-height: 92vh;
-    height: 92vh;
-    background-image: url("arms-care-check-905874.jpg");
+    height: 92vh;    
     background-position-x: center;
     background-position-y: top;
     background-repeat: no-repeat;
@@ -651,7 +693,7 @@ ul.cadastros {
     letter-spacing: 0.5em;
 }
 
-#gradient-1 {
+.gradient-1 {
     width: 100vw;
     height: 3vh;
     background-image: linear-gradient(to left, #689be7, #4ca9ef, #2bb7f1, #05c3f0, #12cfeb);
@@ -717,4 +759,57 @@ div.polaroid {
 div.container {
     text-align: center;
     padding: 10px 20px;
+}
+
+.filtrar {
+    display: block;
+    width: 80vw;
+    line-height: 5vh;
+    margin-left: 10vw;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 3vh;
+    background-color: #edf3fc;
+    border-radius: 5px; 
+    padding: 10px;
+}
+
+.filtrar label{
+    display:inline-block;
+    width: 10%;
+    font-size: 1.2em;
+    text-align: center;  
+    margin: 0;
+}
+
+.filtrar .asp_button{    
+    margin: 0;
+    border: solid grey 3px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+ul.filtros {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    width: 80%;
+    line-height: 100%;
+    list-style: none;
+    text-align: center;
+    box-sizing: border-box;
+    font-size: 1.2em;    
+}
+
+ul.filtros li {
+    display: inline-block;
+    width: auto;
+    margin: 0;
+    padding: 0;
+}
+
+ul.filtros li .asp_textbox{
+    width: auto;
 }

@@ -13,15 +13,6 @@ namespace ProjetoPPI.PagPaciente {
     public partial class IndexPaciente {
         
         /// <summary>
-        /// Controle fileUpload.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fileUpload;
-        
-        /// <summary>
         /// Controle btnFileUpload.
         /// </summary>
         /// <remarks>
@@ -29,5 +20,14 @@ namespace ProjetoPPI.PagPaciente {
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnFileUpload;
+        
+        /// <summary>
+        /// Controle fileUpload.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fileUpload;
     }
 }
