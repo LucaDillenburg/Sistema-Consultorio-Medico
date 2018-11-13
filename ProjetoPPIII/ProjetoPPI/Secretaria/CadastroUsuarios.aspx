@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CadastroUsuarios.aspx.cs" Inherits="ProjetoPPI.PagSecretaria.CadastroUsuarios" EnableEventValidation="false"%>
-=======
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CadastroUsuarios.aspx.cs" Inherits="ProjetoPPI.PagSecretaria.CadastroUsuarios" EnableEventValidation="false" %>
->>>>>>> e284d6ceaf50aeafe86974d2a639bc88c00d6bc3
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
@@ -139,12 +135,8 @@
     </table>
 
     <div class="btnFinal">
-        <asp:Label ID="lbMsg" runat="server" Text=""></asp:Label>    
-<<<<<<< HEAD
-        <asp:Button CssClass="asp_button" ID="btnCadastrarUsuarios" runat="server" Text="Cadastrar" OnClick="btnCadastrar_Click" CausesValidation="False"/>  
-=======
+        <asp:Label ID="lbMsg" runat="server" Text=""></asp:Label>
         <asp:Button CssClass="asp_button" ID="btnCadastrar" runat="server" Text="Cadastrar" OnClick="btnCadastrar_Click" CausesValidation="False"/>
->>>>>>> e284d6ceaf50aeafe86974d2a639bc88c00d6bc3
     </div>
 </div>
 </form>
