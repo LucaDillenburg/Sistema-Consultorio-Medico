@@ -149,15 +149,15 @@
             <br />
             <asp:Label ID="lbMsgSatisfacao" runat="server" Text=""></asp:Label>
             <br />
-            <asp:Button ID="btnRegistrarSatisfacao" runat="server" Text="Registrar Avaliação" OnClick="btnRegistrarSatisfacao_Click" /> <br /> 
-            <asp:Label ID="lbMsg" runat="server" Text=""></asp:Label>
-        <%
-        }else
-        {
-        %>
+        <% }else { %>
             <label><%=atrConsulta.Satisfacao%> Estrelas</label>
         <% } %>
         </div>
+
+        <% if (podeDeixarSatisfacao) { %>
+            <asp:Button ID="btnRegistrarSatisfacao" runat="server" Text="Registrar Avaliação" OnClick="btnRegistrarSatisfacao_Click" /> <br /> 
+            <asp:Label ID="lbMsg" runat="server" Text=""></asp:Label>
+        <% } %>
         </div>
     <%
     } else

@@ -1,15 +1,17 @@
 O QUE FALTA:
- - colocar máscaras nos campos
-
+ - colocar máscaras nos campos (AgendarConsulta, CadastroUsuarios, VerConsulta)
  - arrumar VerConsultas de secretaria
+
  - botao de voltar em Relatorio.aspx
  - botao de login em cima do label de resposta
  - deixar mensagens de erro em vermelho
  - colocar todas as imagens em uma pasta
+ - arrumar os text area e textbox MultiLine(deixar bonito e de maneira que nao de para mudar o tamanho)
+ - nao tem btn voltar no login
+ - menu dos usuarios (mudar no Menu.Master: mexer com Session)
 
- - design VerConsultas do medico quando fez observacao e vai fazer observacao
- - design VerConsultas do paciente quando vai fazer comentario e satisfacao, e quando fez soh satisfacao, ou quando fez satisfacao e comentario
-
+ - design VerConsultas do medico quando fez observacao e vai fazer observacao. OK
+ - design VerConsultas do paciente quando vai fazer comentario e satisfacao, e quando fez soh satisfacao, ou quando fez satisfacao e comentario. OK
  - adicionar foto de perfil. OK
  - testar e arrumar VerConsultas (de paciente, medico e secretaria). OK
  - media de satisfacao. OK

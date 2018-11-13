@@ -119,12 +119,8 @@
                 <p id="lbSemSatisfacao">O paciente não registrou nenhuma satisfação...</p>
             </div>
         <% } %>
-
-        <br />
         
         <%
-        
-
         this.txtObservacoes.Text = atrConsulta.Observacoes;
         if (podeDeixarObservacoes || !String.IsNullOrEmpty(atrConsulta.Observacoes))
         {
@@ -137,7 +133,7 @@
                 
                 <%
                 this.txtObservacoes.Text = atrConsulta.Observacoes;
-                if (podeDeixarObservacoes) { %> <br />
+                if (podeDeixarObservacoes && atrConsulta.Status == 'n') { %> <br />
                     <label>Para confirmar que a consulta ocorreu, faça um comentário sobre a mesma.</label> <br />
                     <asp:Label ID="lbMsgObservacoes" runat="server" Text=""></asp:Label>
                 <% } %>
