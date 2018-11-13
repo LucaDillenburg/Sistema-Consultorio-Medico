@@ -44,11 +44,11 @@ namespace ProjetoPPI
             }
         }
 
-        protected Image foto;
-        public Image Foto
+        protected string caminhoFoto;
+        public string CaminhoFoto
         {
-            get { return this.foto; }
-            set { this.foto = value; }
+            get { return this.caminhoFoto; }
+            set { this.caminhoFoto = value; }
         }
 
         protected const string dataNascimentoPattern = @"^\d{2}/\d{2}/\d{4}$";

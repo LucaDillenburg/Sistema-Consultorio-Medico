@@ -9,31 +9,34 @@ namespace ProjetoPPI.PagMedico
 {
     public partial class VerConsulta : System.Web.UI.Page
     {
-        protected int codConsulta; //o resto esta no Session["consulta"]
-        protected bool podeDeixarObservacoes;
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            // resto do OnLoad (o que nao da pra fazer no .aspx)
-            AtributosConsultaCod atrConsulta = (AtributosConsultaCod)Session["consulta"];
-            if (!this.podeDeixarObservacoes || !String.IsNullOrEmpty(atrConsulta.Observacoes))
+            if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() != typeof(Medico))
             {
-                this.txtObservacoes.Text = atrConsulta.Observacoes;
-                if (this.podeDeixarObservacoes)
+                Response.Redirect("../Index.aspx");
+                return;
+            }
+            if (Session["consulta"] == null)
+            {
+                string url = HttpContext.Current.Request.Url.AbsolutePath;
+                // se passou codigo consulta pela url
+                try
                 {
-                    if (String.IsNullOrEmpty(atrConsulta.Observacoes))
-                        this.btnMandarObservacoes.Text = "Mandar Observações e Marcar Consulta como Ocorrida";
-                    else
-                        this.btnMandarObservacoes.Text = "Mudar Observações";
+                    string codStr = url.Substring(url.LastIndexOf('?') + 1);
+                    Int32.TryParse(codStr, out int codConsulta);
+                    Session["consulta"] = Consulta.DeCodigo(codConsulta, (ConexaoBD)Session["conexao"]);
                 }
-                else
-                    this.txtObservacoes.ReadOnly = true;
+                catch (Exception err)
+                {
+                    Response.Redirect("Index.aspx");
+                    return;
+                }
             }
         }
 
         protected void btnMandarObservacoes_Click(object sender, EventArgs e)
         {
-            if (!this.podeDeixarObservacoes)
+            if (!(bool)Session["podeDeixarObservacoes"])
             {
                 this.btnMandarObservacoes.Visible = false;
                 return;

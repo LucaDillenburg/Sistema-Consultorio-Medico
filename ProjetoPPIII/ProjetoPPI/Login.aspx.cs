@@ -35,7 +35,7 @@ namespace ProjetoPPI
                     {
                         Session["usuario"] = new Medico(this.txtEmail.Text, this.txtSenha.Text, (ConexaoBD)Session["conexao"]);
                         Acesso.AdicionarAcesso(this.txtEmail.Text, TipoUsuario.medico, (ConexaoBD)Session["conexao"]);
-                        Response.Redirect("Medico/Index.aspx");
+                        Response.Redirect("Medico/IndexMedico.aspx");
                         return;
                     } catch(Exception err)
                     {
@@ -47,7 +47,7 @@ namespace ProjetoPPI
                     {
                         Session["usuario"] = new Paciente(this.txtEmail.Text, this.txtSenha.Text, (ConexaoBD)Session["conexao"]);
                         Acesso.AdicionarAcesso(this.txtEmail.Text, TipoUsuario.paciente, (ConexaoBD)Session["conexao"]);
-                        Response.Redirect("Paciente/Index.aspx");
+                        Response.Redirect("Paciente/IndexPaciente.aspx");
                         if (Session["usuario"] == null) { int i = 0; }
                         return;
                     }
@@ -61,7 +61,7 @@ namespace ProjetoPPI
                     {
                         Session["usuario"] = new Secretaria(this.txtEmail.Text, this.txtSenha.Text, (ConexaoBD)Session["conexao"]);
                         Acesso.AdicionarAcesso(this.txtEmail.Text, TipoUsuario.secretaria, (ConexaoBD)Session["conexao"]);
-                        Response.Redirect("Secretaria/Index.aspx", false);
+                        Response.Redirect("/Secretaria/IndexSecretaria.aspx", false);
                         return;
                     }
                     catch (Exception err)

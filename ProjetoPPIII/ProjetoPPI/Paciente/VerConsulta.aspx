@@ -4,35 +4,19 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="/estilo.css" />
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Tammudu" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"/>
+    <link href="/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="/Scripts/jquery-1.10.2.min.js"></script>
     <title></title>
 </head>
-<body>
+<body id="body-verConsulta">
 <form id="form1" runat="server">
 <div>
     <%
-        if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() != typeof(ProjetoPPI.Paciente))
-        {
-            Response.Redirect("../Index.aspx");
-            return;
-        }
-
-        if (Session["consulta"] == null)
-        {
-            string url = HttpContext.Current.Request.Url.AbsolutePath;
-            // se passou codigo consulta pela url
-            try
-            {
-                string codStr = url.Substring(url.LastIndexOf('?')+1);
-                Int32.TryParse(codStr, out int codConsulta);
-                Session["consulta"] = ProjetoPPI.Consulta.DeCodigo(codConsulta, (ProjetoPPI.ConexaoBD)Session["conexao"]);
-            }catch(Exception e)
-            {
-                Response.Redirect("Index.aspx");
-                return;
-            }
-        }
-
         ProjetoPPI.AtributosConsultaCod atrConsulta = (ProjetoPPI.AtributosConsultaCod)Session["consulta"];
         if (atrConsulta.EmailPaciente != ((ProjetoPPI.Paciente)Session["usuario"]).Atributos.Email)
         {
@@ -40,15 +24,15 @@
             Response.Redirect("Index.aspx");
             return;
         }
-
-        this.codConsulta = atrConsulta.CodConsulta;
     %>
 
     <!-- DIA\MES(SE NAO EH ESSE ANO:\ANO?) PROPOSITO -->
     <!-- (soh mostrar ano se for diferente do ano atual) -->
-    <% string titulo = atrConsulta.Horario.ToString("dd/MM" + (DateTime.Now.Year != atrConsulta.Horario.Year ? "/yyyy" : "") + " HH:mm") + 
-                " - " + atrConsulta.Proposito; %>
-    <center><h1>
+    <% string titulo =  atrConsulta.Proposito + 
+                " - " + atrConsulta.Horario.ToString("dd/MM" + (DateTime.Now.Year != atrConsulta.Horario.Year ? "/yyyy" : "") + " HH:mm"); %>
+    <div class="consulta">
+    
+    <h1 class="title-originais">
         <%  if (atrConsulta.Status == 'c')
             { 
         %>
@@ -59,37 +43,36 @@
                 %> <%= titulo %> <%
             }
         %>    
-    </h1></center>
+    </h1>     
     
-    <br /><br />
-
-    <label id="lbMedico">
-        <%= "Médico: " + ProjetoPPI.Medico.DeEmail(atrConsulta.EmailMedico, (ProjetoPPI.ConexaoBD)Session["conexao"]).NomeCompleto %>
-    </label> <br />
-    <label id="lbDuracao"">
-        <%= "Duração: " + (atrConsulta.UmaHora?"1 hora.":"30 minutos.") %>
-    </label> <br />
-
-    <br />
-
-    <label id="lbStatus">
-        <% 
+    <div class="secao">
+        <h2>Médico</h2>
+        <p> <%=ProjetoPPI.Medico.DeEmail(atrConsulta.EmailMedico, (ProjetoPPI.ConexaoBD)Session["conexao"]).NomeCompleto %></p>
+    </div>    
+    <div class="secao">
+        <h2>Duração</h2>
+        <p><%=(atrConsulta.UmaHora?"1 hora.":"30 minutos.") %></p>
+    </div>       
+    <div class="secao">
+        <h2>Status</h2>
+        <p><% 
             switch(atrConsulta.Status)
             {
                 case 'n':
-                    %>Status: ainda não ocorreu<%
+                    %>Ainda não ocorreu<%
                     break;
                 case 'c':
-                    %>Status: CANCELADA<%
+                    %>CANCELADA<%
                     break;
                 default:
-                    %>Status: já ocorreu<%
+                    %>Já ocorreu<%
                     break;
             }
-        %>
-    </label> <br />
+        %></p>
+    </div>    
 
     <%
+    bool podeDeixarSatisfacao;
     if (atrConsulta.Status == 's')
     {
     %>
@@ -110,12 +93,10 @@
         <%
         }
         %>
-
         <br />
-
         <%
-        this.podeDeixarSatisfacao = atrConsulta.Satisfacao < 0;
-        if (this.podeDeixarSatisfacao)
+        podeDeixarSatisfacao = atrConsulta.Satisfacao < 0;
+        if (podeDeixarSatisfacao)
         {
         %>
             <label>Comentário: </label>
@@ -136,18 +117,15 @@
         <%
         }
         %>
-
         <br />
-
         <!-- ESTRELAS / SATISFACAO-->
         <label>Satisfação: </label>
         <%
-        if (this.podeDeixarSatisfacao)
+        if (podeDeixarSatisfacao)
         {
         %>
             <asp:TextBox ID="txtSatisfacao" runat="server"></asp:TextBox> <br />
             <asp:Label ID="lbMsgSatisfacao" runat="server" Text=""></asp:Label>
-
             <br />
             <asp:Button ID="btnRegistrarSatisfacao" runat="server" Text="Registrar Avaliação" OnClick="btnRegistrarSatisfacao_Click" /> <br /> 
             <asp:Label ID="lbMsg" runat="server" Text=""></asp:Label>
@@ -162,8 +140,10 @@
         </div>
     <%
     } else
-        this.podeDeixarSatisfacao = false;
+        podeDeixarSatisfacao = false;
+    Session["podeDeixarSatisfacao"] = podeDeixarSatisfacao;
     %>
+    </div>
 </div>
 </form>
 </body>

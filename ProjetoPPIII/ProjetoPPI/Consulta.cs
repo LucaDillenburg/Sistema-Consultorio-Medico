@@ -10,26 +10,14 @@ namespace ProjetoPPI
     {
         public static AtributosConsultaCod DeCodigo(int codConsulta, ConexaoBD conexaoBD)
         {
-            DataSet dataSet = conexaoBD.ExecuteSelect("select proposito, horario, umaHora, observacoes, status, " +
+            DataSet dataSet = conexaoBD.ExecuteSelect("select codConsulta, proposito, horario, umaHora, observacoes, status, " +
                 "emailMedico, emailPac, satisfacao, comentario, horarioSatisfacao, medicoJahViuSatisfacao " +
                 "from consulta where codConsulta = " + codConsulta);
 
             if (dataSet.Tables[0].Rows.Count != 1)
                 return null;
 
-            AtributosConsultaCod atributos = new AtributosConsultaCod();
-            atributos.CodConsulta = codConsulta;
-            atributos.Proposito = (string)dataSet.Tables[0].Rows[0].ItemArray[0];
-            atributos.SetHorario((DateTime)dataSet.Tables[0].Rows[0].ItemArray[1], conexaoBD);
-            atributos.UmaHora = (bool)dataSet.Tables[0].Rows[0].ItemArray[2];
-            atributos.Observacoes = (string)dataSet.Tables[0].Rows[0].ItemArray[3];
-            atributos.Status = (char)dataSet.Tables[0].Rows[0].ItemArray[4];
-            atributos.SetEmailMedico((string)dataSet.Tables[0].Rows[0].ItemArray[5], conexaoBD);
-            atributos.SetEmailPaciente((string)dataSet.Tables[0].Rows[0].ItemArray[6], conexaoBD);
-            atributos.Satisfacao = (int)dataSet.Tables[0].Rows[0].ItemArray[7];
-            atributos.Comentario = (string)dataSet.Tables[0].Rows[0].ItemArray[8];
-            atributos.HorarioSatisfacao = (DateTime)dataSet.Tables[0].Rows[0].ItemArray[9];
-            atributos.MedicoJahViuSatisfacao = (bool)dataSet.Tables[0].Rows[0].ItemArray[10];
+            AtributosConsultaCod atributos = Consulta.AtributosConsultaFromDataSet(dataSet, 0, conexaoBD);
 
             return atributos;
         }
@@ -83,20 +71,7 @@ namespace ProjetoPPI
 
             AtributosConsultaCod[] atributosConsultas = new AtributosConsultaCod[dadosConsulta.Tables[0].Rows.Count];
             for (int i = 0; i<dadosConsulta.Tables[0].Rows.Count; i++)
-            {
-                atributosConsultas[i] = new AtributosConsultaCod();
-                atributosConsultas[i].CodConsulta = (int)dadosConsulta.Tables[0].Rows[i].ItemArray[0];
-                atributosConsultas[i].Proposito = (string)dadosConsulta.Tables[0].Rows[i].ItemArray[1];
-                atributosConsultas[i].SetHorario((DateTime)dadosConsulta.Tables[0].Rows[i].ItemArray[2], conexaoBD);
-                atributosConsultas[i].UmaHora = (bool)dadosConsulta.Tables[0].Rows[i].ItemArray[3];
-                atributosConsultas[i].Observacoes = (string)dadosConsulta.Tables[0].Rows[i].ItemArray[4];
-                atributosConsultas[i].Status = (char)dadosConsulta.Tables[0].Rows[i].ItemArray[5];
-                atributosConsultas[i].SetEmailMedico((string)dadosConsulta.Tables[0].Rows[i].ItemArray[6], conexaoBD);
-                atributosConsultas[i].SetEmailPaciente((string)dadosConsulta.Tables[0].Rows[i].ItemArray[7], conexaoBD);
-                atributosConsultas[i].Satisfacao = (int)dadosConsulta.Tables[0].Rows[i].ItemArray[8];
-                atributosConsultas[i].Comentario = (string)dadosConsulta.Tables[0].Rows[i].ItemArray[9];
-                atributosConsultas[i].HorarioSatisfacao = (DateTime)dadosConsulta.Tables[0].Rows[i].ItemArray[10];
-            }
+                atributosConsultas[i] = Consulta.AtributosConsultaFromDataSet(dadosConsulta, i, conexaoBD);
 
             return atributosConsultas;
         }
@@ -113,26 +88,47 @@ namespace ProjetoPPI
 
             AtributosConsultaCod[] atributos = new AtributosConsultaCod[dataSet.Tables[0].Rows.Count];
             for (int i = 0; i<atributos.Length; i++)
-            {
-                atributos[i] = new AtributosConsultaCod();
-                atributos[i].CodConsulta = (int)dataSet.Tables[0].Rows[0].ItemArray[0];
-                atributos[i].Proposito = (string)dataSet.Tables[0].Rows[0].ItemArray[1];
-                atributos[i].SetHorario((DateTime)dataSet.Tables[0].Rows[0].ItemArray[2], conexaoBD);
-                atributos[i].UmaHora = (bool)dataSet.Tables[0].Rows[0].ItemArray[3];
-                if (dataSet.Tables[0].Rows[0].ItemArray[4] != System.DBNull.Value)
-                    atributos[i].Observacoes = (string)dataSet.Tables[0].Rows[0].ItemArray[4];
-                atributos[i].Status = ((string)dataSet.Tables[0].Rows[0].ItemArray[5])[0];
-                atributos[i].SetEmailMedico((string)dataSet.Tables[0].Rows[0].ItemArray[6], conexaoBD);
-                atributos[i].SetEmailPaciente((string)dataSet.Tables[0].Rows[0].ItemArray[7], conexaoBD);
-                if (dataSet.Tables[0].Rows[0].ItemArray[8] != System.DBNull.Value)
-                    atributos[i].Satisfacao = (int)dataSet.Tables[0].Rows[0].ItemArray[8];
-                if (dataSet.Tables[0].Rows[0].ItemArray[9] != System.DBNull.Value)
-                    atributos[i].Comentario = (string)dataSet.Tables[0].Rows[0].ItemArray[9];
-                if (dataSet.Tables[0].Rows[0].ItemArray[10] != System.DBNull.Value)
-                    atributos[i].HorarioSatisfacao = (DateTime)dataSet.Tables[0].Rows[0].ItemArray[10];
-                if (dataSet.Tables[0].Rows[0].ItemArray[11] != System.DBNull.Value)
-                    atributos[i].MedicoJahViuSatisfacao = (bool)dataSet.Tables[0].Rows[0].ItemArray[11];
-            }
+                atributos[i] = Consulta.AtributosConsultaFromDataSet(dataSet, i, conexaoBD);
+
+            return atributos;
+        }
+
+        public static AtributosConsultaCod[] TodasAsConsultas (ConexaoBD conexaoBD)
+        {
+            DataSet dataSet = conexaoBD.ExecuteSelect("select codConsulta, proposito, horario, umaHora, observacoes, status, " +
+               "emailMedico, emailPac, satisfacao, comentario, horarioSatisfacao, medicoJahViuSatisfacao from consulta " +
+                "order by horario desc");
+
+            if (dataSet.Tables[0].Rows.Count <= 0)
+                return null;
+
+            AtributosConsultaCod[] atributos = new AtributosConsultaCod[dataSet.Tables[0].Rows.Count];
+            for (int i = 0; i < atributos.Length; i++)                        
+                atributos[i] = Consulta.AtributosConsultaFromDataSet(dataSet, i, conexaoBD);                                
+
+            return atributos;
+        }
+
+        public static AtributosConsultaCod AtributosConsultaFromDataSet(DataSet dataSet, int i, ConexaoBD conexaoBD)
+        {
+            AtributosConsultaCod atributos = new AtributosConsultaCod();
+            atributos.CodConsulta = (int)dataSet.Tables[0].Rows[i].ItemArray[0];
+            atributos.Proposito = (string)dataSet.Tables[0].Rows[i].ItemArray[1];
+            atributos.SetHorario((DateTime)dataSet.Tables[0].Rows[i].ItemArray[2], conexaoBD);
+            atributos.UmaHora = (bool)dataSet.Tables[0].Rows[i].ItemArray[3];
+            if (dataSet.Tables[0].Rows[i].ItemArray[4] != System.DBNull.Value)
+                atributos.Observacoes = (string)dataSet.Tables[0].Rows[i].ItemArray[4];
+            atributos.Status = ((string)dataSet.Tables[0].Rows[i].ItemArray[5])[0];
+            atributos.SetEmailMedico((string)dataSet.Tables[0].Rows[i].ItemArray[6], conexaoBD);
+            atributos.SetEmailPaciente((string)dataSet.Tables[0].Rows[i].ItemArray[7], conexaoBD);
+            if (dataSet.Tables[0].Rows[i].ItemArray[8] != System.DBNull.Value)
+                atributos.Satisfacao = (int)dataSet.Tables[0].Rows[i].ItemArray[8];
+            if (dataSet.Tables[0].Rows[i].ItemArray[9] != System.DBNull.Value)
+                atributos.Comentario = (string)dataSet.Tables[0].Rows[i].ItemArray[9];
+            if (dataSet.Tables[0].Rows[i].ItemArray[10] != System.DBNull.Value)
+                atributos.HorarioSatisfacao = (DateTime)dataSet.Tables[0].Rows[i].ItemArray[10];
+            if (dataSet.Tables[0].Rows[i].ItemArray[11] != System.DBNull.Value)
+                atributos.MedicoJahViuSatisfacao = (bool)dataSet.Tables[0].Rows[i].ItemArray[11];
 
             return atributos;
         }

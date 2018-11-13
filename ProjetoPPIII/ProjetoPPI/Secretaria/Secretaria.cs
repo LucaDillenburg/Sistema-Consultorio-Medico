@@ -131,5 +131,45 @@ namespace ProjetoPPI
                 "status='" + atributos.Status + "', observacoes='" + atributos.Observacoes + "' " +
                 "where codConsulta = " + atributos.CodConsulta);
         }
+
+        public object[,] PesquisarConsultas(string medico, string paciente, string data, int tipoData)
+        {
+            string cmd_s = "select c.codConsulta, c.proposito, c.horario, c.umaHora, c.observacoes, c.status, " +
+                "c.emailMedico, c.emailPac, c.satisfacao, c.comentario, c.horarioSatisfacao, c.medicoJahViuSatisfacao, " +
+                "m.nomeCompleto, p.nomeCompleto from " +
+                "consulta as c, " +
+                "medico as m, " +
+                "paciente as p " +
+                "where " +
+                "c.emailMedico = m.email and " +
+                "m.nomeCompleto like '%" + medico + "%' and " +
+                "c.emailPac = p.email and " +
+                "p.nomeCompleto like '%" + paciente + "%' ";
+        
+            if (!String.IsNullOrEmpty(data))
+            {
+                cmd_s += " and ";
+                if (tipoData < 0)
+                    cmd_s += " c.horario <";
+                else
+                if (tipoData > 0)
+                    cmd_s += " c.horario >";
+                else
+                    cmd_s += " CONVERT(VARCHAR(10), c.horario, 103) = "; // dd/mm/yyyy
+                cmd_s += "'"+ data + "'";
+            }
+
+            cmd_s += " order by c.horario desc";
+            DataSet ds = this.conexaoBD.ExecuteSelect(cmd_s);
+            object[,] ret = new object[ds.Tables[0].Rows.Count, 3];
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                ret[i, 0] = Consulta.AtributosConsultaFromDataSet(ds, i, this.conexaoBD);
+                ret[i, 1] = (string)ds.Tables[0].Rows[i].ItemArray[13];
+                ret[i, 2] = (string)ds.Tables[0].Rows[i].ItemArray[12];
+            }
+                
+            return ret;
+        }
     }
 }

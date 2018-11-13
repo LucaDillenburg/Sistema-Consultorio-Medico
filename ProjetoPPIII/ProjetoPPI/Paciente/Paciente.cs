@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.UI.WebControls;
 
 namespace ProjetoPPI
 {
@@ -26,26 +30,12 @@ namespace ProjetoPPI
             this.atributos = new AtributosPaciente();
             this.atributos.AdicionarSenha(senha);
 
-            DataSet data = conexaoBD.ExecuteSelect("select nomeCompleto, celular, telefoneResidencial, endereco, dataDeNascimento, foto " +
+            DataSet data = conexaoBD.ExecuteSelect("select email, nomeCompleto, celular, telefoneResidencial, endereco, dataDeNascimento, caminhoFoto " +
                 " from paciente where email='" + email + "' and senha='" + this.atributos.SenhaCriptografada + "'");
             if (data.Tables[0].Rows.Count <= 0)
                 return false;
 
-            this.atributos.Email = email;
-
-            this.atributos.NomeCompleto = (string)data.Tables[0].Rows[0].ItemArray[0];
-            this.atributos.Celular = (string)data.Tables[0].Rows[0].ItemArray[1];
-            this.atributos.TelefoneResidencial = (string)data.Tables[0].Rows[0].ItemArray[2];
-            this.atributos.Endereco = (string)data.Tables[0].Rows[0].ItemArray[3];
-            this.atributos.DataNascimento = (DateTime)data.Tables[0].Rows[0].ItemArray[4];
-
-            try
-            { 
-                byte[] vetorImagem = (byte[])data.Tables[0].Rows[0].ItemArray[5];
-                this.atributos.Foto = ImageMethods.ImageFromBytes(vetorImagem);
-            }catch(Exception e)
-            { /*se entrou aqui eh porque era nulo (ele nao reconhece como nulo)*/ }
-
+            Paciente.ColocarAtributosFromDs(ref this.atributos, 0, data);
             return true;
         }
 
@@ -66,6 +56,8 @@ namespace ProjetoPPI
                     " where codConsulta=" + atributosConsulta.CodConsulta);
         }
 
+        public void AdicionarImagem(FileUpload fileUpload)
+        { Usuario.AuxAdicionarImagem(this.atributos, true, fileUpload, this.conexaoBD); }
 
         //cadastro
         public static bool Existe(string email, ConexaoBD conexaoBD)
@@ -76,30 +68,22 @@ namespace ProjetoPPI
 
         public static AtributosPaciente DeEmail(string email, ConexaoBD conexaoBD)
         {
-            AtributosPaciente atributos = new AtributosPaciente();
-            DataSet data = conexaoBD.ExecuteSelect("select nomeCompleto, celular, telefoneResidencial, endereco, dataDeNascimento, foto " +
-                " from paciente where email='" + email + "'");
-            if (data.Tables[0].Rows.Count <= 0)
-                return null;
-
-            atributos.Email = email;
-            atributos.NomeCompleto = (string)data.Tables[0].Rows[0].ItemArray[0];
-            atributos.Celular = (string)data.Tables[0].Rows[0].ItemArray[1];
-            atributos.TelefoneResidencial = (string)data.Tables[0].Rows[0].ItemArray[2];
-            atributos.Endereco = (string)data.Tables[0].Rows[0].ItemArray[3];
-            atributos.DataNascimento = (DateTime)data.Tables[0].Rows[0].ItemArray[4];
-
             try
             {
-                byte[] vetorImagem = (byte[])data.Tables[0].Rows[0].ItemArray[5];
-                atributos.Foto = ImageMethods.ImageFromBytes(vetorImagem);
+                DataSet data = conexaoBD.ExecuteSelect("select email, nomeCompleto, celular, telefoneResidencial, endereco, dataDeNascimento, caminhoFoto " +
+                    " from paciente where email='" + email + "'");
+                if (data.Tables[0].Rows.Count <= 0)
+                    return null;
+
+                AtributosPaciente atributos = new AtributosPaciente();
+                Paciente.ColocarAtributosFromDs(ref atributos, 0, data);
+                return atributos;
             }
             catch (Exception e)
-            { /*se entrou aqui eh porque era nulo (ele nao reconhece como nulo)*/ }
-
-            return atributos;
+            {
+                return null;
+            }
         }
-
 
         //paciente especifico
         public static bool HorarioConsultaEhLivre(AtributosConsulta atrConsulta, ConexaoBD conexaoBD)
@@ -122,6 +106,19 @@ namespace ProjetoPPI
             }
 
             return ret;
+        }
+
+        //aux
+        protected static void ColocarAtributosFromDs(ref AtributosPaciente atributos, int i, DataSet data)
+        {
+            atributos.Email = (string)data.Tables[0].Rows[i].ItemArray[0];
+            atributos.NomeCompleto = (string)data.Tables[0].Rows[i].ItemArray[1];
+            atributos.Celular = (string)data.Tables[0].Rows[i].ItemArray[2];
+            atributos.TelefoneResidencial = (string)data.Tables[0].Rows[i].ItemArray[3];
+            atributos.Endereco = (string)data.Tables[0].Rows[i].ItemArray[4];
+            atributos.DataNascimento = (DateTime)data.Tables[0].Rows[i].ItemArray[5];
+            if (data.Tables[0].Rows[i].ItemArray[6] != System.DBNull.Value)
+                atributos.CaminhoFoto = (string)data.Tables[0].Rows[i].ItemArray[6];
         }
 
 

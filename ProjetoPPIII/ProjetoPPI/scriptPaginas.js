@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
     $("#btnPerfilPaciente").trigger("click");
-    $("#btnConsultaAtual").trigger("click");
+    $("#btnPerfil").trigger("click");
+    $("#btnAgendaSecretaria").trigger("click");
 });
 
 $("#btnPerfilPaciente").on("click", function () {
@@ -27,9 +28,9 @@ $("#btnConsultaAtual").on("click", function () {
     $("#btnAgenda").removeClass("ativo");
     $("#btnPerfil").removeClass("ativo");
 
-    $(".agenda").fadeOut("fast");
+    $(".consultas-paciente").fadeOut("fast");
     $(".perfil").fadeOut("fast", function () {
-        $(".consultas-paciente").fadeIn();
+        $(".consulta-atual").fadeIn();
     });
 });
 
@@ -39,8 +40,8 @@ $("#btnAgenda").on("click", function () {
     $("#btnPerfil").removeClass("ativo");
 
     $(".perfil").fadeOut("fast");
-    $(".consultas-paciente").fadeOut("fast", function () {
-        $(".agenda").fadeIn();
+    $(".consulta-atual").fadeOut("fast", function () {
+        $(".consultas-paciente").fadeIn();
     });
 });
 
@@ -49,8 +50,22 @@ $("#btnPerfil").on("click", function () {
     $("#btnConsultaAtual").removeClass("ativo");
     $("#btnAgenda").removeClass("ativo");
 
-    $(".agenda").fadeOut("fast");
-    $(".consultas-paciente").fadeOut("fast", function () {
+    $(".consultas-paciente").fadeOut("fast");
+    $(".consulta-atual").fadeOut("fast", function () {
         $(".perfil").fadeIn();
     });
 });
+
+$("#btnCadastros").on("click", function () {    
+    $("#subMenu-cadastros").slideToggle();
+    $(".opcoes > li").removeClass("ativo");
+    $(this).addClass("ativo");
+})
+
+$("#btnAgendaSecretaria").on("click", function () {
+    $(".opcoes > li").removeClass("ativo");
+    $(this).addClass("ativo");
+    $("#subMenu-cadastros").slideUp();
+    $(".consultas-paciente").fadeIn("fast");
+})
+

@@ -10,28 +10,8 @@
 <body>
 <form id="form1" runat="server">
 <div>
-    <%
-        if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() != typeof(ProjetoPPI.Medico))
-        {
-            Response.Redirect("../Index.aspx");
-            return;
-        }
+    <%        
         
-        if (Session["consulta"] == null)
-        {
-            string url = HttpContext.Current.Request.Url.AbsolutePath;
-            // se passou codigo consulta pela url
-            try
-            {
-                string codStr = url.Substring(url.LastIndexOf('?')+1);
-                Int32.TryParse(codStr, out int codConsulta);
-                Session["consulta"] = ProjetoPPI.Consulta.DeCodigo(codConsulta, (ProjetoPPI.ConexaoBD)Session["conexao"]);
-            }catch(Exception e)
-            {
-                Response.Redirect("Index.aspx");
-                return;
-            }
-        }
 
         //se a consulta nao eh desse medico
         ProjetoPPI.AtributosConsultaCod atrConsulta = (ProjetoPPI.AtributosConsultaCod)Session["consulta"];
@@ -41,8 +21,6 @@
             Response.Redirect("Index.aspx");
             return;
         }
-
-        this.codConsulta = atrConsulta.CodConsulta;
     %>
 
     <!-- MEDICO -->
@@ -93,6 +71,7 @@
     </label> <br />
 
     <%
+    bool podeDeixarObservacoes;
     if (atrConsulta.Status == 's')
     {
     %>
@@ -122,34 +101,45 @@
         //o medico tem ateh o final do dia para fazer os comentarios das consultas do dia
         DateTime dataFinalDoDia = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,
                 23, 59, 59);
-        this.podeDeixarObservacoes = atrConsulta.Horario.CompareTo(dataFinalDoDia) < 0;
+        podeDeixarObservacoes = atrConsulta.Horario.CompareTo(dataFinalDoDia) < 0;
 
         this.txtObservacoes.Text = atrConsulta.Observacoes;
-        if (this.podeDeixarObservacoes || !String.IsNullOrEmpty(atrConsulta.Observacoes))
+        if (podeDeixarObservacoes || !String.IsNullOrEmpty(atrConsulta.Observacoes))
         {
         %>
             <div id="pnlObservacoes">
                 <label id="lbObservacoes">Observações: </label>
                 <asp:TextBox ID="txtObservacoes" runat="server" TextMode="MultiLine"></asp:TextBox>
                 
-                <% if (this.podeDeixarObservacoes) { %> <br />
+                <%
+                this.txtObservacoes.Text = atrConsulta.Observacoes;
+                if (podeDeixarObservacoes) { %> <br />
                     <label>Para confirmar que a consulta ocorreu, faça um comentário sobre a mesma.</label> <br />
                     <asp:Label ID="lbMsgObservacoes" runat="server" Text=""></asp:Label>
                 <% } %>
             </div>
-            
-            <% if (this.podeDeixarObservacoes) { %>
+
+            <%
+            this.txtObservacoes.ReadOnly = !podeDeixarObservacoes;
+            if (podeDeixarObservacoes) { %>
                 <br />
                 <asp:Button ID="btnMandarObservacoes" runat="server" Text="Mandar Observações" OnClick="btnMandarObservacoes_Click" /> <br /> 
                 <asp:Label ID="lbMsg" runat="server" Text=""></asp:Label>
-            <% } %>
+            <%
+                if (String.IsNullOrEmpty(atrConsulta.Observacoes))
+                    this.btnMandarObservacoes.Text = "Mandar Observações e Marcar Consulta como Ocorrida";
+                else
+                    this.btnMandarObservacoes.Text = "Mudar Observações";
+            } %>
             </div>
         <% } else { %>
             <label id="lbSemObservacoes">Sem observações...</label>
         <% } %>
     <%
     } else
-        this.podeDeixarObservacoes = false;
+        podeDeixarObservacoes = false;
+
+    Session["podeDeixarObservacoes"] = podeDeixarObservacoes;
     %>
 </div>
 </form>

@@ -7,23 +7,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="/estilo.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Tammudu" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"/>
     <title></title>
 </head>
-<body>
+<body style="background-image: url('../assistant-beard-boss-630836.jpg');background-attachment: fixed; background-position: center; background-size: cover; background-repeat: no-repeat;>
 <form id="form1" runat="server">
 <!---->
     <%
-        if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() != typeof(ProjetoPPI.Secretaria))
-        {
-            Response.Redirect("../Index.aspx");
-            return;
-        }
-
         if (Session["tipoUsCadastrar"] == null)
             Session["tipoUsCadastrar"] = ProjetoPPI.TipoUsuario.paciente;
     %>
-<div>
-    <h1> Cadastrar 
+<div class="consulta">
+    <h1 class="title-originais"> Cadastrar 
         <%
             switch(Session["tipoUsCadastrar"])
             {
@@ -38,10 +36,9 @@
                     break;
             }
         %>
-    </h1>
-    <br /> <br />
-
-    <table>
+    </h1>    
+    
+    <table class="tab-cadastro">
         <tr>
             <td><label>Email: </label></td>
             <td><asp:TextBox ID="txtEmail" runat="server" MaxLength="50" OnTextChanged="txtEmail_TextChanged"></asp:TextBox>
@@ -135,11 +132,10 @@
         </tr>
     </table>
 
-    <asp:Label ID="lbMsg" runat="server" Text=""></asp:Label>
-    <br />
-    <br />
-
-    <asp:Button ID="btnCadastrar" runat="server" Text="Cadastrar" OnClick="btnCadastrar_Click" />
+    <div class="btnFinal">
+        <asp:Label ID="lbMsg" runat="server" Text=""></asp:Label>    
+        <asp:Button CssClass="asp_button" ID="btnCadastrar" runat="server" Text="Cadastrar" OnClick="btnCadastrar_Click" />
+    </div>
 </div>
 </form>
 </body>

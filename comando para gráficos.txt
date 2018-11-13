@@ -1,0 +1,2 @@
+1 -
+select count(codConsulta) from consulta where MONTH(horario) = MONTH(GETDATE()) group by emailMedico

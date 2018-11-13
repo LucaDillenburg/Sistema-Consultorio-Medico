@@ -9,17 +9,37 @@ namespace ProjetoPPI.PagPaciente
 {
     public partial class VerConsulta : System.Web.UI.Page
     {
-        protected int codConsulta; //o resto esta no Session["consulta"]
-        protected bool podeDeixarSatisfacao;
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            //OnLoad estah direto no .aspx
+            if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() != typeof(ProjetoPPI.Paciente))
+            {
+                Response.Redirect("../Index.aspx");
+                return;
+            }
+            if (Session["consulta"] == null)
+            {
+                string url = HttpContext.Current.Request.Url.AbsoluteUri;
+                // se passou codigo consulta pela url
+                try
+                {
+                    int index = url.LastIndexOf('?');
+                    if (index < 0)
+                        throw new Exception("");
+                    string codStr = url.Substring(index + 1);
+                    int codConsulta = Convert.ToInt32(codStr);
+                    Session["consulta"] = ProjetoPPI.Consulta.DeCodigo(codConsulta, (ProjetoPPI.ConexaoBD)Session["conexao"]);
+                }
+                catch (Exception err)
+                {
+                    Response.Redirect("Index.aspx");
+                    return;
+                }
+            }
         }
 
         protected void btnRegistrarSatisfacao_Click(object sender, EventArgs e)
         {
-            if (!this.podeDeixarSatisfacao)
+            if (!(bool)Session["podeDeixarSatisfacao"])
             {
                 this.btnRegistrarSatisfacao.Visible = false;
                 return;

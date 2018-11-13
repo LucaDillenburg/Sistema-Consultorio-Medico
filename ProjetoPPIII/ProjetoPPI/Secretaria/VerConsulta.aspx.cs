@@ -9,11 +9,33 @@ namespace ProjetoPPI.PagSecretaria
 {
     public partial class VerConsulta : System.Web.UI.Page
     {
-        protected int codConsulta; //o resto esta no Session["consulta"]
+        protected int codConsulta;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //tudo no .aspx
+            if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() != typeof(Secretaria))
+            {
+                Response.Redirect("../Index.aspx");
+                return;
+            }
+            string url = HttpContext.Current.Request.Url.AbsoluteUri;
+            // se passou codigo consulta pela url
+            try
+            {
+                int index = url.LastIndexOf('?');
+                if (index < 0)
+                    throw new Exception("");
+                string codStr = url.Substring(index + 1);
+                int codConsulta = Convert.ToInt32(codStr);
+                Session["consulta"] = Consulta.DeCodigo(codConsulta, (ConexaoBD)Session["conexao"]);
+            }
+            catch (Exception err)
+            {
+                Response.Redirect("Index.aspx");
+                return;
+            }
+            
+            this.codConsulta = ((AtributosConsultaCod)Session["consulta"]).CodConsulta;
         }
 
         protected void btnAtualizarDados_Click(object sender, EventArgs e)
