@@ -10,12 +10,24 @@ namespace ProjetoPPI
 {
     public partial class NMenu : System.Web.UI.MasterPage
     {
+        //PARA TUDO
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["conexao"] == null)
                 Session["conexao"] = new ConexaoBD(WebConfigurationManager.ConnectionStrings["conexaoBD"].ConnectionString);
         }
+        protected void btnLoginLogout_Click(object sender, EventArgs e)
+        {
+            if (Session["usuario"] == null)
+                this.btnMenuPaciente_Click(null, null);
+            else
+            {
+                Session["usuario"] = null;
+                Response.Redirect("/Index.aspx");
+            }
+        }
 
+        //AINDA SEM LOGAR
         protected void btnMenuMedico_Click(object sender, EventArgs e)
         {
             Session["tipoUsuario"] = TipoUsuario.medico;
@@ -32,6 +44,7 @@ namespace ProjetoPPI
         {
             Session["tipoUsuario"] = TipoUsuario.paciente;
             Response.Redirect("/Login.aspx");
-        }        
+        }
+
     }
 }
