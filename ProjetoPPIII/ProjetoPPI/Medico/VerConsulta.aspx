@@ -13,10 +13,10 @@
     <script src="/Scripts/jquery-1.10.2.min.js"></script>    
     <link rel="stylesheet" href="/estilo.css" />
 </head>
-<body>
+<body id="bodyVerConsultaMedico">
 <form id="form1" runat="server">
     <a href="/Medico/IndexMedico" class="btnVoltar"><i class="glyphicon glyphicon-chevron-left"></i></a>
-<div>
+<div class="consulta">
     <%        
         //se a consulta nao eh desse medico
         ProjetoPPI.AtributosConsultaCod atrConsulta = (ProjetoPPI.AtributosConsultaCod)Session["consulta"];
@@ -34,7 +34,7 @@
     <!-- (soh mostrar ano se for diferente do ano atual) -->
     <% string titulo = atrConsulta.Horario.ToString("dd/MM" + (DateTime.Now.Year != atrConsulta.Horario.Year ? "/yyyy" : "") + " HH:mm") +
                   " - " + atrConsulta.Proposito; %>
-    <center><h1> 
+    <h1 class="title-originais"> 
         <%  if (atrConsulta.Status == 'c')
             { 
         %>
@@ -45,35 +45,41 @@
                 %> <%= titulo %> <%
             }
         %>    
-    </h1></center>
-    
-    <br /><br />
+    </h1>
+        
+    <div class="secao">
+        <h2>Paciente</h2>
+        <p id="lbPaciente"> 
+            <%=ProjetoPPI.Paciente.DeEmail(atrConsulta.EmailPaciente, (ProjetoPPI.ConexaoBD)Session["conexao"]).NomeCompleto %> 
+        </p>
+    </div>
 
-    <label id="lbPaciente"> 
-        <%= "Paciente: " + ProjetoPPI.Paciente.DeEmail(atrConsulta.EmailPaciente, (ProjetoPPI.ConexaoBD)Session["conexao"]).NomeCompleto %> 
-    </label> <br />
-    <label id="lbDuracao">
-        <%= "Duração: " + (atrConsulta.UmaHora ? "1 hora." : "30 minutos.") %>
-    </label> <br />
-
-    <br />
-
-    <label id="lbStatus">
-        <% 
-            switch(atrConsulta.Status)
-            {
-                case 'n':
-                    %>Status: ainda não ocorreu<%
-                    break;
-                case 'c':
-                    %>Status: CANCELADA<%
-                    break;
-                default:
-                    %>Status: já ocorreu<%
-                    break;
-            }
-        %>
-    </label> <br />
+    <div class="secao">
+        <h2>Duração</h2>
+        <p id="lbDuracao">
+            <%=(atrConsulta.UmaHora ? "1 hora." : "30 minutos.") %>
+        </p>
+    </div>
+   
+    <div class="secao">
+        <h2>Status</h2>
+        <p id="lbStatus">
+            <% 
+                switch(atrConsulta.Status)
+                {
+                    case 'n':
+                        %>Ainda não ocorreu<%
+                        break;
+                    case 'c':
+                        %>CANCELADA<%
+                        break;
+                    default:
+                        %>Já ocorreu<%
+                        break;
+                }
+            %>
+        </p>
+    </div>
 
     <%
     //se ainda nao acabou o dia
@@ -88,22 +94,33 @@
         <% if (atrConsulta.Satisfacao >= 0) { %>
             <div id="pnlComentario"> 
                 <% if (!String.IsNullOrEmpty(atrConsulta.Comentario)) { %>
-                    <label id="lbComentario">Comentário: </label>
-                    <input type="text" id="txtComentario" value="
-                        <%= atrConsulta.Comentario%>
-                        " readonly> <br />
+                    <div class="secao">
+                        <h2 id="lbComentario">Comentário</h2>
+                        <p id="txtComentario" >
+                            "<%= atrConsulta.Comentario%>"
+                        </p>
+                    </div>
                 <% } else {  %>
-                    <label id="lbSemComentario">O paciente não fez nenhum comentário...</label> <br />
+                    <div class="secao">
+                        <h2>Comentário</h2>
+                        <p id="lbSemComentario">O paciente não fez nenhum comentário...</p>
+                    </div>
                 <% } %>
 
                 <!-- ESTRELAS / SATISFACAO-->
-                Satisfação: <label id="txtSatisfacao"> <%= atrConsulta.Satisfacao + "" %> </label>
+                <div class="secao">
+                    <h2>Satisfação</h2>
+                    <p id="txtSatisfacao"> <%= atrConsulta.Satisfacao + "" %> </p>
+                </div>
             </div>
         <% } else {  %>
-            <label id="lbSemSatisfacao">O paciente não registrou nenhuma satisfação...</label> <br />
+            <div class="secao">
+                <h2>Satisfação</h2>
+                <p id="lbSemSatisfacao">O paciente não registrou nenhuma satisfação...</p>
+            </div>
+            
         <% } %>
-
-        <br />
+        
         
         <%
         
@@ -113,9 +130,10 @@
         {
         %>
             <div id="pnlObservacoes">
-                <label id="lbObservacoes">Observações: </label>
-                <asp:TextBox ID="txtObservacoes" runat="server" TextMode="MultiLine"></asp:TextBox>
-                
+                <div class="secao">
+                    <h2 id="lbObservacoes">Observações: </h2>
+                    <asp:TextBox ID="txtObservacoes" runat="server" TextMode="MultiLine"></asp:TextBox>
+                </div>
                 <%
                 this.txtObservacoes.Text = atrConsulta.Observacoes;
                 if (podeDeixarObservacoes) { %> <br />
@@ -127,9 +145,10 @@
             <%
             this.txtObservacoes.ReadOnly = !podeDeixarObservacoes;
             if (podeDeixarObservacoes) { %>
-                <br />
-                <asp:Button ID="btnMandarObservacoes" runat="server" Text="Mandar Observações" OnClick="btnMandarObservacoes_Click" /> <br /> 
-                <asp:Label ID="lbMsg" runat="server" Text=""></asp:Label>
+                <div class="btnFinal">
+                    <asp:Button CssClass="asp_button" ID="btnMandarObservacoes" runat="server" Text="Mandar Observações" OnClick="btnMandarObservacoes_Click" /> <br /> 
+                    <asp:Label ID="lbMsg" runat="server" Text=""></asp:Label>
+                </div>
             <%
                 if (String.IsNullOrEmpty(atrConsulta.Observacoes))
                     this.btnMandarObservacoes.Text = "Mandar Observações e Marcar Consulta como Ocorrida";

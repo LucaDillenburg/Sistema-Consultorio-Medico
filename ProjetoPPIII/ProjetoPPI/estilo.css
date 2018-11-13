@@ -109,6 +109,14 @@ body {
     background-color: rgba(242, 242, 242, 0.7);
 }
 
+#bodyVerConsultaMedico {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat repeat;
+    background-size: cover;
+    background-image: url('medico-paciente.jpg');
+}
+
 #bodyRelatorios {
     background-image: url('analysis-analytics-application-590016.jpg');
     background-attachment: fixed;

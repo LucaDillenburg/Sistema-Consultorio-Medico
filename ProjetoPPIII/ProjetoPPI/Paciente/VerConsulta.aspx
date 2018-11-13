@@ -82,45 +82,58 @@
         if (!String.IsNullOrEmpty(atrConsulta.Observacoes))
         { 
         %>
-            <div id="pnlObservacoes"> 
-                <label id="lbObservacoes"">Observações: </label>
-                <textarea readonly><%= atrConsulta.Observacoes%></textarea>
+            <div id="pnlObservacoes">
+                <div class="secao">
+                    <h2 id="lbObservacoes"">Observações</h2>
+                    <textarea readonly><%= atrConsulta.Observacoes%></textarea>
+                </div>
             </div>
         <%
         }else
         {
         %>
-            <asp:Label ID="lbSemObservacoes" runat="server" Text="O médico não fez observações..."></asp:Label> <br />
+            <div class="secao">
+                <h2>Observações</h2>
+                <asp:Label ID="lbSemObservacoes" runat="server" Text="O médico não fez observações..."></asp:Label>
+            </div>
         <%
         }
         %>
-        <br />
+        
         <%
         podeDeixarSatisfacao = atrConsulta.Satisfacao < 0;
         if (podeDeixarSatisfacao)
         {
         %>
-            <label>Comentário: </label>
-            <asp:TextBox ID="txtComentario" runat="server" TextMode="MultiLine"></asp:TextBox> <br />
-            <asp:Label ID="lbMsgComentario" runat="server" Text=""></asp:Label>
+            <div class="secao">
+                <h2>Deixe um Comentário</h2>
+                <asp:TextBox ID="txtComentario" runat="server" TextMode="MultiLine"></asp:TextBox> <br />
+                <asp:Label ID="lbMsgComentario" runat="server" Text=""></asp:Label>
+            </div>
         <%
         }else
         if (!String.IsNullOrEmpty(atrConsulta.Comentario))
         {
         %>
-            <label>Comentário: </label>
-            <textarea readonly><%= atrConsulta.Comentario%></textarea>
+            <div class="secao">
+                <h2>Comentário</h2>
+                <textarea readonly><%= atrConsulta.Comentario%></textarea>
+            </div>
         <%
         }else
         {
         %>
-            <label>Não há nenhum comentário...</label>
+            <div class="secao">
+                <h2>Comentário</h2>
+                <p>Não há nenhum comentário...</p>
+            </div>
         <%
         }
         %>
-        <br />
+        
         <!-- ESTRELAS / SATISFACAO-->
-        <label>Satisfação: </label>
+        <div class="secao">
+        <h2>Satisfação: </h2>
         <%
         if (podeDeixarSatisfacao)
         {
@@ -144,6 +157,7 @@
         %>
             <label><%=atrConsulta.Satisfacao%> Estrelas</label>
         <% } %>
+        </div>
         </div>
     <%
     } else
