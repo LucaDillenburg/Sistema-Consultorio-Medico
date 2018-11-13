@@ -1,4 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CadastroUsuarios.aspx.cs" Inherits="ProjetoPPI.PagSecretaria.CadastroUsuarios" %>
+<<<<<<< HEAD
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CadastroUsuarios.aspx.cs" Inherits="ProjetoPPI.PagSecretaria.CadastroUsuarios" EnableEventValidation="false"%>
+=======
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CadastroUsuarios.aspx.cs" Inherits="ProjetoPPI.PagSecretaria.CadastroUsuarios" EnableEventValidation="false" %>
+>>>>>>> e284d6ceaf50aeafe86974d2a639bc88c00d6bc3
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
@@ -11,9 +15,10 @@
     <link href="https://fonts.googleapis.com/css?family=Baloo+Tammudu" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"/>
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
     <title></title>
 </head>
-<body style="background-image: url('../assistant-beard-boss-630836.jpg');background-attachment: fixed; background-position: center; background-size: cover; background-repeat: no-repeat;>
+<body style="background-image: url('../assistant-beard-boss-630836.jpg');background-attachment: fixed; background-position: center; background-size: cover; background-repeat: no-repeat;">
 <form id="form1" runat="server">
 <!---->
     <%
@@ -21,6 +26,7 @@
             Session["tipoUsCadastrar"] = ProjetoPPI.TipoUsuario.paciente;
     %>
 <div class="consulta">
+    <a href="/Secretaria/IndexSecretaria" class="btnVoltar"><i class="glyphicon glyphicon-chevron-left"></i></a>
     <h1 class="title-originais"> Cadastrar 
         <%
             switch(Session["tipoUsCadastrar"])
@@ -134,7 +140,11 @@
 
     <div class="btnFinal">
         <asp:Label ID="lbMsg" runat="server" Text=""></asp:Label>    
-        <asp:Button CssClass="asp_button" ID="btnCadastrar" runat="server" Text="Cadastrar" OnClick="btnCadastrar_Click" />
+<<<<<<< HEAD
+        <asp:Button CssClass="asp_button" ID="btnCadastrarUsuarios" runat="server" Text="Cadastrar" OnClick="btnCadastrar_Click" CausesValidation="False"/>  
+=======
+        <asp:Button CssClass="asp_button" ID="btnCadastrar" runat="server" Text="Cadastrar" OnClick="btnCadastrar_Click" CausesValidation="False"/>
+>>>>>>> e284d6ceaf50aeafe86974d2a639bc88c00d6bc3
     </div>
 </div>
 </form>

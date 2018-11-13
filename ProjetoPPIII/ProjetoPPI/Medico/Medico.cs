@@ -99,16 +99,16 @@ namespace ProjetoPPI
             return atributos;
         }
 
-        public static double SatisfacaoMedia(string email, ConexaoBD conexaoBD)
+        public double SatisfacaoMedia()
         {
             try
             {
-                return (double)conexaoBD.ExecuteScalarSelect("select avg(Cast(satisfacao as Float)) from consulta where emailMedico = '"
-                + email + "'");
+                return (double)this.conexaoBD.ExecuteScalarSelect("select avg(Cast(satisfacao as Float)) from consulta where emailMedico = '"
+                + this.Atributos.Email + "'");
             }
             catch(Exception e)
             {
-                return 0;
+                return -1;
             }
             //os termos nulos sao ignorados (nao sao contados como zeros)
         }

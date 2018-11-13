@@ -350,9 +350,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49461</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:15011/</IISUrl>
+          <IISUrl>http://localhost:11435/</IISUrl>
           <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost:15011/</IISAppRootUrl>
+          <IISAppRootUrl>http://localhost:11435/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

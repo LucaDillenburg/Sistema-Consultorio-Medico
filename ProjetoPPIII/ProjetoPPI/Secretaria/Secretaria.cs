@@ -133,6 +133,7 @@ namespace ProjetoPPI
         }
 
         public object[,] PesquisarConsultas(string medico, string paciente, string data, int tipoData)
+        //0: consulta, 1: paciente, 2:medico
         {
             string cmd_s = "select c.codConsulta, c.proposito, c.horario, c.umaHora, c.observacoes, c.status, " +
                 "c.emailMedico, c.emailPac, c.satisfacao, c.comentario, c.horarioSatisfacao, c.medicoJahViuSatisfacao, " +

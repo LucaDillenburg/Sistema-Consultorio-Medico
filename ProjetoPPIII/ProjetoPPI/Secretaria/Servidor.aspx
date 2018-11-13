@@ -8,6 +8,7 @@
     <title></title>
 </head>
 <body>
+    <a href="/Secretaria/IndexSecretaria" class="btnVoltar"><i class="glyphicon glyphicon-chevron-left"></i></a>
     <form id="form1" runat="server">
         <center><h1>SERVIDOR</h1></center>
         <center><asp:ListBox ID="lbxComandos" runat="server" Rows="20" SelectionMode="Multiple"></asp:ListBox></center>      

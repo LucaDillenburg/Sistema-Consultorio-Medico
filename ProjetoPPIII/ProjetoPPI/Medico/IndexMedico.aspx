@@ -42,7 +42,15 @@
                         <asp:Button CssClass="asp_button" ID="btnFileUpload" runat="server" Text="Adicionar/Mudar foto" OnClick="btnFileUpload_Click" />
                         <asp:FileUpload CssClass="asp_button" ID="fileUpload" runat="server" />
                     </div>
-                </div>            
+                </div>
+                <% 
+                    double satisfMedia = ((ProjetoPPI.Medico)Session["usuario"]).SatisfacaoMedia();
+                    if (satisfMedia < 0)
+                    { 
+                        %> <h4>Você não tem satisfações...</h4><%
+                    }else {
+                        %><h4>Satisfação Média: <%=satisfMedia%></h4><% }
+                %>
                 <hr />
                 <h2>Email: <%=atributos.Email %></h2>
                 <hr />

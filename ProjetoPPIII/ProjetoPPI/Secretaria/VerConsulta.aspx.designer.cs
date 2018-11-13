@@ -103,15 +103,6 @@ namespace ProjetoPPI.PagSecretaria {
         protected global::System.Web.UI.WebControls.Label lbMsgPaciente;
         
         /// <summary>
-        /// Controle lbHorario.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbHorario;
-        
-        /// <summary>
         /// Controle txtDia.
         /// </summary>
         /// <remarks>

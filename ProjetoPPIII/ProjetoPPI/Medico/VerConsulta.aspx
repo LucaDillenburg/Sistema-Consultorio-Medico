@@ -6,13 +6,18 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Tammudu" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"/>
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <script src="/Scripts/jquery-1.10.2.min.js"></script>    
+    <link rel="stylesheet" href="/estilo.css" />
 </head>
 <body>
 <form id="form1" runat="server">
+    <a href="/Medico/IndexMedico" class="btnVoltar"><i class="glyphicon glyphicon-chevron-left"></i></a>
 <div>
     <%        
-        
-
         //se a consulta nao eh desse medico
         ProjetoPPI.AtributosConsultaCod atrConsulta = (ProjetoPPI.AtributosConsultaCod)Session["consulta"];
         if (atrConsulta.EmailMedico != ((ProjetoPPI.Medico)Session["usuario"]).Atributos.Email)
@@ -71,8 +76,12 @@
     </label> <br />
 
     <%
-    bool podeDeixarObservacoes;
-    if (atrConsulta.Status == 's')
+    //se ainda nao acabou o dia
+    //o medico tem ateh o final do dia para fazer os comentarios das consultas do dia
+    bool podeDeixarObservacoes = (atrConsulta.Status == 's' || atrConsulta.Status == 'n') &&
+            atrConsulta.Horario.CompareTo(new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,
+            23, 59, 59)) < 0;
+    if (podeDeixarObservacoes)
     {
     %>
         <div id="pnlOcorrido">
@@ -97,11 +106,7 @@
         <br />
         
         <%
-        //se ainda nao acabou o dia
-        //o medico tem ateh o final do dia para fazer os comentarios das consultas do dia
-        DateTime dataFinalDoDia = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,
-                23, 59, 59);
-        podeDeixarObservacoes = atrConsulta.Horario.CompareTo(dataFinalDoDia) < 0;
+        
 
         this.txtObservacoes.Text = atrConsulta.Observacoes;
         if (podeDeixarObservacoes || !String.IsNullOrEmpty(atrConsulta.Observacoes))
@@ -136,8 +141,7 @@
             <label id="lbSemObservacoes">Sem observações...</label>
         <% } %>
     <%
-    } else
-        podeDeixarObservacoes = false;
+    }
 
     Session["podeDeixarObservacoes"] = podeDeixarObservacoes;
     %>

@@ -12,9 +12,11 @@
     <link href="https://fonts.googleapis.com/css?family=Baloo+Tammudu" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"/>
-    <script src="/Scripts/jquery-1.10.2.min.js"></script>    
+    <script src="/Scripts/jquery-1.10.2.min.js"></script>
+    <link href="Content/bootstrap.css" rel="stylesheet" />   
 </head>
 <body id="bodyRelatorios">
+    <a href="/Secretaria/IndexSecretaria" class="btnVoltar"><i class="glyphicon glyphicon-chevron-left"></i></a>
     <form id="form1" runat="server">
         <div class="consulta">
             <h1 class="title-originais">Relatórios de Gestão de Qualidade</h1>

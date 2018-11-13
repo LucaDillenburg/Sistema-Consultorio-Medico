@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Baloo+Tammudu" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"/>
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
     <style>
         body {
             background-image: url('/charts-cup-of-coffee-desk-1345089.jpg');
@@ -22,6 +23,7 @@
 </head>
 <body>
 <form id="form1" runat="server">
+    <a href="/Secretaria/IndexSecretaria" class="btnVoltar"><i class="glyphicon glyphicon-chevron-left"></i></a>
 <div class="consulta">
     <%
         ProjetoPPI.AtributosConsultaCod atrConsulta = (ProjetoPPI.AtributosConsultaCod)Session["consulta"];
@@ -32,13 +34,11 @@
             Response.Redirect("Index.aspx");
             return;
         }
-        
     %>    
     <!-- SECRETÁRIA -->
 
     <h1 class="title-originais">
         Propósito: <asp:TextBox ID="txtProposito" runat="server"></asp:TextBox>
-        <% this.txtProposito.Text = atrConsulta.Proposito; %>
         <asp:Label ID="lbMsgProposito" runat="server" Text=""></asp:Label>
     </h1>
 
@@ -62,34 +62,27 @@
     </div>
 
     <%
-        //selecionar medico no combobox
-        for (int i = 0; i<this.ddlMedicos.Items.Count; i++)
-            if (this.ddlMedicos.Items[i].Value == atrConsulta.EmailMedico)
-            {
-                this.ddlMedicos.Items[i].Selected = true;
-                break;
-            }else
-                this.ddlMedicos.Items[i].Selected = false;
+    //selecionar medico no combobox
+    for (int i = 0; i < this.ddlMedicos.Items.Count; i++)
+        if (this.ddlMedicos.Items[i].Value == atrConsulta.EmailMedico)
+        {
+            this.ddlMedicos.SelectedIndex = i;
+            break;
+        }
 
-        //selecionar paciente no combobox
-        for (int i = 0; i<this.ddlPacientes.Items.Count; i++)
-            if (this.ddlPacientes.Items[i].Value == atrConsulta.EmailPaciente)
-            {
-                this.ddlPacientes.Items[i].Selected = true;
-                break;
-            }else
-                this.ddlPacientes.Items[i].Selected = false;
+    //selecionar paciente no combobox
+    for (int i = 0; i < this.ddlPacientes.Items.Count; i++)
+        if (this.ddlPacientes.Items[i].Value == atrConsulta.EmailPaciente)
+        {
+            this.ddlPacientes.SelectedIndex = i;
+            break;
+        }
     %>
 
     <div class="secao">
-    <asp:Label ID="lbHorario" runat="server" Text="Horário: "></asp:Label> <br />
+    <br />
     <label>Horário: </label> <asp:TextBox ID="txtDia" runat="server" TextMode="Date"></asp:TextBox> <asp:TextBox ID="txtHorario" runat="server"></asp:TextBox>
     <asp:Label ID="lbMsgHorario" runat="server" Text=""></asp:Label> <br />
-    <%
-    //horario
-    this.txtDia.Text = atrConsulta.Horario.ToString("yyyy - MM - dd");
-    this.txtHorario.Text = atrConsulta.Horario.ToString("HH:mm");
-    %>
     </div>
 
     <div class="secao">
@@ -98,13 +91,6 @@
         <asp:ListItem Value="30">30 minutos</asp:ListItem>
         <asp:ListItem Value="60">1 hora</asp:ListItem>
     </asp:DropDownList>
-    <%
-    //duracao
-    if (!atrConsulta.UmaHora) //se 30 min
-        this.ddlTempoConsulta.Items[0].Selected = true;
-    else
-        this.ddlTempoConsulta.Items[1].Selected = true;
-    %>
 
     <asp:Label ID="lbMsgDuracao" runat="server" Text=""></asp:Label> <br />
     </div>
@@ -118,21 +104,7 @@
         <asp:ListItem Value="c">Cancelado</asp:ListItem>
     </asp:DropDownList>
     <asp:Label ID="lbMsgStatus" runat="server" Text=""></asp:Label> <br />   
-     </div>
-    <%
-    switch (atrConsulta.Status)
-    {
-        case 's':
-            this.ddlStatus.Items[0].Selected = true;
-            break;
-        case 'n':
-            this.ddlStatus.Items[1].Selected = true;
-            break;
-        case 'c':
-            this.ddlStatus.Items[2].Selected = true;
-            break;
-    }
-    %>
+    </div>
 
     <%
     if (atrConsulta.Status == 's' && atrConsulta.Satisfacao >= 0)

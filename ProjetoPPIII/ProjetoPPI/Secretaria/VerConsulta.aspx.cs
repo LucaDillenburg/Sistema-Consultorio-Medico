@@ -34,8 +34,36 @@ namespace ProjetoPPI.PagSecretaria
                 Response.Redirect("Index.aspx");
                 return;
             }
-            
+
+
+            //resto
             this.codConsulta = ((AtributosConsultaCod)Session["consulta"]).CodConsulta;
+
+            AtributosConsulta atrConsulta = (AtributosConsultaCod)Session["consulta"];
+            this.txtProposito.Text = atrConsulta.Proposito;
+
+            //horario
+            this.txtDia. Text = atrConsulta.Horario.ToString("yyyy - MM - dd");
+            this.txtHorario.Text = atrConsulta.Horario.ToString("HH:mm");
+
+            //duracao
+            if (!atrConsulta.UmaHora) //se 30 min
+                this.ddlTempoConsulta.SelectedIndex = 0;
+            else
+                this.ddlTempoConsulta.SelectedIndex = 1;
+
+            switch (atrConsulta.Status)
+            {
+                case 's':
+                    this.ddlStatus.SelectedIndex = 0;
+                    break;
+                case 'n':
+                    this.ddlStatus.SelectedIndex = 1;
+                    break;
+                case 'c':
+                    this.ddlStatus.SelectedIndex = 2;
+                    break;
+            }
         }
 
         protected void btnAtualizarDados_Click(object sender, EventArgs e)
@@ -135,7 +163,7 @@ namespace ProjetoPPI.PagSecretaria
                     this.lbMsg.Text = err.Message;
                     return;
                 }
-                
+
                 this.lbMsgProposito.Text = "";
                 this.lbMsgMedico.Text = "";
                 this.lbMsgPaciente.Text = "";
@@ -148,5 +176,6 @@ namespace ProjetoPPI.PagSecretaria
                 this.lbMsg.Text = "Dados da consulta alterada!";
             }
         }
+
     }
 }

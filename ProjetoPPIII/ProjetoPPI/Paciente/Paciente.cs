@@ -47,13 +47,13 @@ namespace ProjetoPPI
             if (String.IsNullOrEmpty(atributosConsulta.Comentario))
                 this.conexaoBD.ExecuteInUpDel("update consulta set " +
                     " satisfacao = " + atributosConsulta.Satisfacao + ", medicoJahViuSatisfacao = 0, " +
-                    " horarioSatisfacao = " + atributosConsulta.HorarioSatisfacao +
-                    " where codConsulta=" + atributosConsulta.CodConsulta);
+                    " horarioSatisfacao = '" + atributosConsulta.HorarioSatisfacao +
+                    "' where codConsulta=" + atributosConsulta.CodConsulta);
             else
                 this.conexaoBD.ExecuteInUpDel("update consulta set comentario = '"
                     + atributosConsulta.Comentario + "', satisfacao = " + atributosConsulta.Satisfacao +
-                    ", medicoJahViuSatisfacao = 0, horarioSatisfacao = " + atributosConsulta.HorarioSatisfacao +
-                    " where codConsulta=" + atributosConsulta.CodConsulta);
+                    ", medicoJahViuSatisfacao = 0, horarioSatisfacao = '" + atributosConsulta.HorarioSatisfacao +
+                    "' where codConsulta=" + atributosConsulta.CodConsulta);
         }
 
         public void AdicionarImagem(FileUpload fileUpload)

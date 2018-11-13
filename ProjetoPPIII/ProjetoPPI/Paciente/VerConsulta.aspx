@@ -15,6 +15,7 @@
 </head>
 <body id="body-verConsulta">
 <form id="form1" runat="server">
+    <a href="/Paciente/IndexPaciente" class="btnVoltar"><i class="glyphicon glyphicon-chevron-left"></i></a>
 <div>
     <%
         ProjetoPPI.AtributosConsultaCod atrConsulta = (ProjetoPPI.AtributosConsultaCod)Session["consulta"];
@@ -124,7 +125,15 @@
         if (podeDeixarSatisfacao)
         {
         %>
-            <asp:TextBox ID="txtSatisfacao" runat="server"></asp:TextBox> <br />
+            <asp:DropDownList ID="ddlSatisfacao" runat="server">
+                <asp:ListItem Selected="True">5</asp:ListItem>
+                <asp:ListItem>4</asp:ListItem>
+                <asp:ListItem>3</asp:ListItem>
+                <asp:ListItem>2</asp:ListItem>
+                <asp:ListItem>1</asp:ListItem>
+                <asp:ListItem>0</asp:ListItem>
+            </asp:DropDownList>
+            <br />
             <asp:Label ID="lbMsgSatisfacao" runat="server" Text=""></asp:Label>
             <br />
             <asp:Button ID="btnRegistrarSatisfacao" runat="server" Text="Registrar Avaliação" OnClick="btnRegistrarSatisfacao_Click" /> <br /> 
@@ -133,10 +142,8 @@
         }else
         {
         %>
-            <textarea readonly><%= atrConsulta.Satisfacao%></textarea>
-        <%
-        }
-        %>
+            <label><%=atrConsulta.Satisfacao%> Estrelas</label>
+        <% } %>
         </div>
     <%
     } else

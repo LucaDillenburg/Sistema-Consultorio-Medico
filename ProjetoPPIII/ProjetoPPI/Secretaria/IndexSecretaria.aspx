@@ -61,11 +61,11 @@
                 <td><%=(((ProjetoPPI.AtributosConsultaCod)infoConsultas[i,0]).UmaHora)?"1 hora":"30 minutos"%></td>
             </tr>
             <tr>
-                <td style="font-weight: bold; color: black;">MÉDICO: </td>
+                <td style="font-weight: bold; color: black;">PACIENTE: </td>
                 <td colspan="4"><%=((string)infoConsultas[i,1])%></td>
             </tr>
             <tr>
-                <td style="font-weight: bold; color: black;">PACIENTE: </td>
+                <td style="font-weight: bold; color: black;">MÉDICO: </td>
                 <td colspan="4"><%=((string)infoConsultas[i,2])%></td>
             </tr>
             <tr class="observacoes">

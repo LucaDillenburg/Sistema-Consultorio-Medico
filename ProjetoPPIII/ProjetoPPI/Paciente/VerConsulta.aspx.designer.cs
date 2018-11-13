@@ -49,13 +49,13 @@ namespace ProjetoPPI.PagPaciente {
         protected global::System.Web.UI.WebControls.Label lbMsgComentario;
         
         /// <summary>
-        /// Controle txtSatisfacao.
+        /// Controle ddlSatisfacao.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSatisfacao;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSatisfacao;
         
         /// <summary>
         /// Controle lbMsgSatisfacao.

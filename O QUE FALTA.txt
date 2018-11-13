@@ -1,10 +1,20 @@
 O QUE FALTA:
- - testar adicionar satisfacao (VerConsulta paciente)
- - testar adicionar observacao (VerConsulta medico)
+ - media de satisfacao
+ - logout e menu
+ - adicionar especialidade e adicionar especialidades a medicos
 
- - adicionar foto de perfil ?
+ - testar e arrumar VerConsultas (de paciente, medico e secretaria). OK
+ - design VerConsultas do medico quando fez observacao e vai fazer observacao
+ - design VerConsultas do paciente quando vai fazer comentario e satisfacao, e quando fez soh satisfacao, ou quando fez satisfacao e comentario
+
+ - fazer escape
+ - colocar máscaras nos campos
+
+ - mostrar horarios possiveis para o medico ?
  - opcao para mudar atributos dos usuarios ?
  - opcao para usuario pedir consulta ??
+
+ - adicionar foto de perfil. OK
 
 
 PÁGINAS:

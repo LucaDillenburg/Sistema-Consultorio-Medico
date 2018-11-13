@@ -16,24 +16,22 @@ namespace ProjetoPPI.PagPaciente
                 Response.Redirect("../Index.aspx");
                 return;
             }
-            if (Session["consulta"] == null)
+
+            string url = HttpContext.Current.Request.Url.AbsoluteUri;
+            // se passou codigo consulta pela url
+            try
             {
-                string url = HttpContext.Current.Request.Url.AbsoluteUri;
-                // se passou codigo consulta pela url
-                try
-                {
-                    int index = url.LastIndexOf('?');
-                    if (index < 0)
-                        throw new Exception("");
-                    string codStr = url.Substring(index + 1);
-                    int codConsulta = Convert.ToInt32(codStr);
-                    Session["consulta"] = ProjetoPPI.Consulta.DeCodigo(codConsulta, (ProjetoPPI.ConexaoBD)Session["conexao"]);
-                }
-                catch (Exception err)
-                {
-                    Response.Redirect("Index.aspx");
-                    return;
-                }
+                int index = url.LastIndexOf('?');
+                if (index < 0)
+                    throw new Exception("");
+                string codStr = url.Substring(index + 1);
+                int codConsulta = Convert.ToInt32(codStr);
+                Session["consulta"] = ProjetoPPI.Consulta.DeCodigo(codConsulta, (ProjetoPPI.ConexaoBD)Session["conexao"]);
+            }
+            catch (Exception err)
+            {
+                Response.Redirect("Index.aspx");
+                return;
             }
         }
 
@@ -59,7 +57,7 @@ namespace ProjetoPPI.PagPaciente
             //satisfacao
             try
             {
-                satisfacao = Convert.ToInt32(this.txtSatisfacao.Text);
+                satisfacao = Convert.ToInt32(this.ddlSatisfacao.SelectedValue);
                 new AtributosConsulta().Satisfacao = satisfacao;
             }
             catch (Exception err)

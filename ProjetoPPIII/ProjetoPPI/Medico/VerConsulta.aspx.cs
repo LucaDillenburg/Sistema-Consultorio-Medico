@@ -16,14 +16,18 @@ namespace ProjetoPPI.PagMedico
                 Response.Redirect("../Index.aspx");
                 return;
             }
-            if (Session["consulta"] == null)
+            if (Session["consulta"] == null || 
+                (Session["consulta"]!=null && (((AtributosConsulta)Session["consulta"]).EmailMedico != ((Medico)Session["usuario"]).Atributos.Email)))
             {
-                string url = HttpContext.Current.Request.Url.AbsolutePath;
+                string url = HttpContext.Current.Request.Url.AbsoluteUri;
                 // se passou codigo consulta pela url
                 try
                 {
-                    string codStr = url.Substring(url.LastIndexOf('?') + 1);
-                    Int32.TryParse(codStr, out int codConsulta);
+                    int index = url.LastIndexOf('?');
+                    if (index < 0)
+                        throw new Exception("");
+                    string codStr = url.Substring(index + 1);
+                    int codConsulta = Convert.ToInt32(codStr);
                     Session["consulta"] = Consulta.DeCodigo(codConsulta, (ConexaoBD)Session["conexao"]);
                 }
                 catch (Exception err)
@@ -63,7 +67,7 @@ namespace ProjetoPPI.PagMedico
                 ((Medico)Session["usuario"]).MudarObservacoes((AtributosConsultaCod)Session["consulta"]);
 
                 this.lbMsgObservacoes.Text = "";
-                this.lbMsg.Text = "Comentário e satisfação registradas... Consulta marcada como ocorrida.";
+                this.lbMsg.Text = "Observações registradas... Consulta marcada como ocorrida.";
 
                 this.btnMandarObservacoes.Text = "Mudar Observações";
             }
