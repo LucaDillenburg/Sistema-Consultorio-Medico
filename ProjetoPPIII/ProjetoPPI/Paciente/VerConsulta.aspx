@@ -15,6 +15,7 @@
 </head>
 <body id="body-verConsulta">
 <form id="form1" runat="server">
+    <a href="/Paciente/IndexPaciente" class="btnVoltar"><i class="glyphicon glyphicon-chevron-left"></i></a>
 <div>
     <%
         ProjetoPPI.AtributosConsultaCod atrConsulta = (ProjetoPPI.AtributosConsultaCod)Session["consulta"];

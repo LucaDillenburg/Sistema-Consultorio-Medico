@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Baloo+Tammudu" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"/>
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
     <style>
         body {
             background-image: url('/charts-cup-of-coffee-desk-1345089.jpg');
@@ -22,6 +23,7 @@
 </head>
 <body>
 <form id="form1" runat="server">
+    <a href="/Secretaria/IndexSecretaria" class="btnVoltar"><i class="glyphicon glyphicon-chevron-left"></i></a>
 <div class="consulta">
     <%
         ProjetoPPI.AtributosConsultaCod atrConsulta = (ProjetoPPI.AtributosConsultaCod)Session["consulta"];

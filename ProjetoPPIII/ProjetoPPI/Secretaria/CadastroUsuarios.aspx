@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Baloo+Tammudu" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"/>
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
     <title></title>
 </head>
 <body style="background-image: url('../assistant-beard-boss-630836.jpg');background-attachment: fixed; background-position: center; background-size: cover; background-repeat: no-repeat;>
@@ -21,6 +22,7 @@
             Session["tipoUsCadastrar"] = ProjetoPPI.TipoUsuario.paciente;
     %>
 <div class="consulta">
+    <a href="/Secretaria/IndexSecretaria" class="btnVoltar"><i class="glyphicon glyphicon-chevron-left"></i></a>
     <h1 class="title-originais"> Cadastrar 
         <%
             switch(Session["tipoUsCadastrar"])
