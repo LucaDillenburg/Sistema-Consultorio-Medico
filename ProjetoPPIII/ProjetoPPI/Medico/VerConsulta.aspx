@@ -6,9 +6,16 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Tammudu" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"/>
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <script src="/Scripts/jquery-1.10.2.min.js"></script>    
+    <link rel="stylesheet" href="/estilo.css" />
 </head>
 <body>
 <form id="form1" runat="server">
+    <a href="/Medico/IndexMedico" class="btnVoltar"><i class="glyphicon glyphicon-chevron-left"></i></a>
 <div>
     <%        
         
