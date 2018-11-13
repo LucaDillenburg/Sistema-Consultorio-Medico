@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CadastroUsuarios.aspx.cs" Inherits="ProjetoPPI.PagSecretaria.CadastroUsuarios" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CadastroUsuarios.aspx.cs" Inherits="ProjetoPPI.PagSecretaria.CadastroUsuarios" EnableEventValidation="false" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
@@ -14,7 +14,7 @@
     <link href="/Content/bootstrap.css" rel="stylesheet" />
     <title></title>
 </head>
-<body style="background-image: url('../assistant-beard-boss-630836.jpg');background-attachment: fixed; background-position: center; background-size: cover; background-repeat: no-repeat;>
+<body style="background-image: url('../assistant-beard-boss-630836.jpg');background-attachment: fixed; background-position: center; background-size: cover; background-repeat: no-repeat;">
 <form id="form1" runat="server">
 <!---->
     <%
@@ -136,7 +136,7 @@
 
     <div class="btnFinal">
         <asp:Label ID="lbMsg" runat="server" Text=""></asp:Label>    
-        <asp:Button CssClass="asp_button" ID="btnCadastrar" runat="server" Text="Cadastrar" OnClick="btnCadastrar_Click" />
+        <asp:Button CssClass="asp_button" ID="btnCadastrar" runat="server" Text="Cadastrar" OnClick="btnCadastrar_Click" CausesValidation="False"/>
     </div>
 </div>
 </form>
