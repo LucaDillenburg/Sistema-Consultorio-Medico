@@ -62,7 +62,7 @@ namespace ProjetoPPI.PagSecretaria
             //endereco
             try
             {
-                ((ExAtributos)atributos).Endereco = this.txtEndereco.Text;
+                atributos.Endereco = this.txtEndereco.Text;
             }
             catch (Exception err)
             {

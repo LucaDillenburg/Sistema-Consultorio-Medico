@@ -1,5 +1,5 @@
 O QUE FALTA:
- - media de satisfacao
+ - media de satisfacao. OK
  - logout e menu
  - adicionar especialidade e adicionar especialidades a medicos
 
