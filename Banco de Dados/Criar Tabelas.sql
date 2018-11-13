@@ -50,7 +50,7 @@ references paciente(email)
 )
 
 create table especialidade(
-codEspecialidade int primary key,
+codEspecialidade int identity(1,1) primary key,
 nomeEspecialidade varchar(30) not null
 )
 

@@ -431,7 +431,6 @@ C:\Users\Fábio\Documents\Temp\Pratica-Profissional-III\ProjetoPPIII\ProjetoPPI\
 C:\Users\Fábio\Documents\Temp\Pratica-Profissional-III\ProjetoPPIII\ProjetoPPI\obj\Debug\ProjetoPPI.csproj.CopyComplete
 C:\Users\Fábio\Documents\Temp\Pratica-Profissional-III\ProjetoPPIII\ProjetoPPI\obj\Debug\ProjetoPPI.dll
 C:\Users\Fábio\Documents\Temp\Pratica-Profissional-III\ProjetoPPIII\ProjetoPPI\obj\Debug\ProjetoPPI.pdb
-F:\PROJETOS\Pratica-Profissional-III\ProjetoPPIII\ProjetoPPI\bin\AjaxControlToolkit.dll
 C:\Users\u17173\Desktop\Luca\Pratica-Profissional-III-Design_Paciente\ProjetoPPIII\ProjetoPPI\bin\ApplicationInsights.config
 C:\Users\u17173\Desktop\Luca\Pratica-Profissional-III-Design_Paciente\ProjetoPPIII\ProjetoPPI\bin\ProjetoPPI.dll.config
 C:\Users\u17173\Desktop\Luca\Pratica-Profissional-III-Design_Paciente\ProjetoPPIII\ProjetoPPI\bin\ProjetoPPI.dll

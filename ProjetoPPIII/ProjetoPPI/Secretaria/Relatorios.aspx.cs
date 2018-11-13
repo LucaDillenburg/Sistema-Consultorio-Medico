@@ -11,7 +11,11 @@ namespace ProjetoPPI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["usuario"] == null || Session["conexao"] == null || Session["usuario"].GetType() != typeof(ProjetoPPI.Secretaria))
+            {
+                Response.Redirect("/Index.aspx");
+                return;
+            }
         }
     }
 }

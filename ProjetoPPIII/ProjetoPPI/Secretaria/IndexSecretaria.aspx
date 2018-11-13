@@ -10,7 +10,8 @@
 
     <ul class="opcoes">        
         <li  class="ativo" id="btnAgendaSecretaria">Agenda</li>
-        <li id="btnCadastros">Cadastrar</li>                
+        <li id="btnCadastros">Cadastrar</li>             
+        <a href="AdicionarEspecialidade.aspx"><li>Adicionar Especialidade</li></a>
         <li><asp:Button CssClass="asp_button" ID="btnAgendarConsulta" runat="server" Text="Agendar Consulta" OnClick="btnAgendarConsulta_Click" /></li>
         <a href="Servidor.aspx"><li>Servidor</li></a>
         <a href="Relatorios.aspx"><li>Relatórios</li></a>
@@ -44,7 +45,7 @@
             {
                 data = DateTime.ParseExact(this.txtPesqDia.Text, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture).ToString("dd/MM/yyyy");
             }catch (Exception e) { }
-            object[,] infoConsultas = ((ProjetoPPI.Secretaria)Session["usuario"]).PesquisarConsultas(this.txtPesqMed.Text, this.txtPesqPac.Text, data, Convert.ToInt32(this.ddlTipoDia.SelectedValue));
+            object[,] infoConsultas = ((ProjetoPPI.Secretaria)Session["usuario"]).PesquisarConsultas(HttpUtility.HtmlEncode(this.txtPesqMed.Text), HttpUtility.HtmlEncode(this.txtPesqPac.Text), data, Convert.ToInt32(this.ddlTipoDia.SelectedValue));
 
             for (int i = 0; i<infoConsultas.GetLength(0); i++)
             {%>

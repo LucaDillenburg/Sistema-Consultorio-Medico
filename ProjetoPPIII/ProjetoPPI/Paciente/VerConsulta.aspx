@@ -99,7 +99,7 @@
         <%
         }
         %>
-        
+
         <%
         podeDeixarSatisfacao = atrConsulta.Satisfacao < 0;
         if (podeDeixarSatisfacao)

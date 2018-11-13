@@ -835,3 +835,10 @@ ul.filtros li .asp_textbox{
     border-radius: 5px;
     font-size: 1.5em;
 }
+
+
+.msgErro
+{
+    color: red;
+    font-size: 40px;
+}

@@ -85,6 +85,21 @@ namespace ProjetoPPI
             }
         }
 
+        public string[] Especialidades()
+        {
+            DataSet ds = this.conexaoBD.ExecuteSelect(
+                "select e.nomeEspecialidade from " +
+                "especialidade as e," +
+                "especialidadeMedico as em " +
+                "where " +
+                "e.codEspecialidade = em.codEspecialidade and " +
+                "em.emailMedico = '" + this.Atributos.Email + "'");
+            string[] ret = new string[ds.Tables[0].Rows.Count];
+            for (int i = 0; i < ret.Length; i++)
+                ret[i] = (string)ds.Tables[0].Rows[i].ItemArray[0];
+            return ret;
+        }
+
 
         //outros dados de medicos especificos (STATIC)
         public static AtributosMedico DeEmail(string email, ConexaoBD conexaoBD)

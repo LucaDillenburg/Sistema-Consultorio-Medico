@@ -193,12 +193,12 @@ namespace ProjetoPPI.PagSecretaria {
         protected global::System.Web.UI.WebControls.Label lbMsg;
         
         /// <summary>
-        /// Controle btnCadastrarUsuarios.
+        /// Controle btnCadastrar.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCadastrarUsuarios;
+        protected global::System.Web.UI.WebControls.Button btnCadastrar;
     }
 }

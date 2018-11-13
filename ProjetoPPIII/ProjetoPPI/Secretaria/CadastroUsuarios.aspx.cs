@@ -38,7 +38,7 @@ namespace ProjetoPPI.PagSecretaria
             //email
             try
             {
-                atributos.Email = this.txtEmail.Text;
+                atributos.Email = HttpUtility.HtmlEncode(this.txtEmail.Text);
                 this.ProcEmailValidoOuNao(true);
             }
             catch (Exception err)
@@ -50,7 +50,7 @@ namespace ProjetoPPI.PagSecretaria
             //nome
             try
             {
-                atributos.NomeCompleto = this.txtNome.Text;
+                atributos.NomeCompleto = HttpUtility.HtmlEncode(this.txtNome.Text);
                 this.ProcNomeValidoOuNao(true);
             }
             catch (Exception err)
@@ -62,7 +62,7 @@ namespace ProjetoPPI.PagSecretaria
             //endereco
             try
             {
-                atributos.Endereco = this.txtEndereco.Text;
+                atributos.Endereco = HttpUtility.HtmlEncode(this.txtEndereco.Text);
             }
             catch (Exception err)
             {
@@ -113,7 +113,7 @@ namespace ProjetoPPI.PagSecretaria
                 //celular
                 try
                 {
-                    ((ExAtributos)atributos).Celular = this.txtCelular.Text;
+                    ((ExAtributos)atributos).Celular = this.txtCelular.Text; //nao precisa dar escape pois tem Pattern/Regex especifica
                     this.ProcCelularValidoOuNao(true);
                 }
                 catch (Exception err)
@@ -125,7 +125,7 @@ namespace ProjetoPPI.PagSecretaria
                 //telefone
                 try
                 {
-                    ((ExAtributos)atributos).TelefoneResidencial = this.txtTelefone.Text;
+                    ((ExAtributos)atributos).TelefoneResidencial = this.txtTelefone.Text; //nao precisa dar escape pois tem Pattern/Regex especifica
                     this.ProcTelefoneValidoOuNao(true);
                 }
                 catch (Exception err)
@@ -138,9 +138,9 @@ namespace ProjetoPPI.PagSecretaria
                 try
                 {
                     if ((TipoUsuario)Session["tipoUsCadastrar"] == TipoUsuario.medico)
-                        ((AtributosMedico)atributos).DataNascimento = this.DataNascimentoAtual();
+                        ((AtributosMedico)atributos).DataNascimento = this.DataNascimentoAtual(); //nao precisa de escape pois verifica-se se eh uma data antes
                     else
-                        ((AtributosPaciente)atributos).DataNascimento = this.DataNascimentoAtual();
+                        ((AtributosPaciente)atributos).DataNascimento = this.DataNascimentoAtual(); //nao precisa de escape pois verifica-se se eh uma data antes
                     this.ProcNascimentoValidaOuNao(true);
                 }
                 catch (Exception err)
@@ -153,7 +153,7 @@ namespace ProjetoPPI.PagSecretaria
                     //CRM
                     try
                     {
-                        ((AtributosMedico)atributos).CRM = this.txtCRM.Text;
+                        ((AtributosMedico)atributos).CRM = this.txtCRM.Text; //nao precisa dar escape pois tem Pattern/Regex especifica
                         this.ProcCRMValidoOuNao(true);
                     }
                     catch (Exception err)

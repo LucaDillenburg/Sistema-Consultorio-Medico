@@ -172,5 +172,34 @@ namespace ProjetoPPI
                 
             return ret;
         }
+
+
+        //especialidade
+        public bool AdicionarEspecialidade(string nomeEspecialidade)
+        {
+            if (this.EspecialidadeExiste(nomeEspecialidade))
+                return false;
+            this.conexaoBD.ExecuteInUpDel("insert into especialidade(nomeEspecialidade) values('" + nomeEspecialidade + "')");
+            return true;
+        }
+        protected bool EspecialidadeExiste(string nomeEspecialidade)
+        {
+            return ((int)this.conexaoBD.ExecuteScalarSelect("select count(*) from especialidade where " +
+                "nomeEspecialidade = '" + nomeEspecialidade + "'")) > 0;
+        }
+
+        public bool AdicionarEspecialidadeMedico(string emailMedico, int codEspecialidade)
+        {
+            if (this.EspecialidadeMedicoExiste(emailMedico, codEspecialidade))
+                return false;
+            this.conexaoBD.ExecuteInUpDel("insert into especialidadeMedico values('" + emailMedico + "', "
+                + codEspecialidade + ")");
+            return true;
+        }
+        protected bool EspecialidadeMedicoExiste(string emailMedico, int codEspecialidade)
+        {
+            return ((int)this.conexaoBD.ExecuteScalarSelect("select count(*) from especialidadeMedico where " +
+                "emailMedico = '" + emailMedico+ "' and codEspecialidade=" + codEspecialidade)) > 0;
+        }
     }
 }

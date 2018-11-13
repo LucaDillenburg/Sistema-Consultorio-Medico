@@ -60,9 +60,19 @@
                 <hr />
                 <h2>Telefone: <%=atributos.TelefoneResidencial %></h2>
                 <hr />
+                <h2>Data de Nascimento: <%=atributos.DataNascimento.ToString("dd/MM/yyyy") %></h2>
+                <hr />
                 <h2>CRM: <%=atributos.CRM %></h2>
                 <hr />
-                <h2>Data de Nascimento: <%=atributos.DataNascimento.ToString("dd/MM/yyyy") %></h2>            
+                <h2>Especialidades: 
+                    <% 
+                        string strEsp = "";
+                        string[] especialidades = ((ProjetoPPI.Medico)Session["usuario"]).Especialidades();
+                        for (int i = 0; i < especialidades.Length; i++)
+                            strEsp += especialidades[i] + ((i==especialidades.Length-1)?".":", ");
+                    %>
+                    <%=strEsp%>
+                </h2>
             </div>
 
              <%for (int i = 0; i<consultas.Length; i++)

@@ -46,7 +46,7 @@
             }
         %>    
     </h1>
-        
+
     <div class="secao">
         <h2>Paciente</h2>
         <p id="lbPaciente"> 
@@ -60,7 +60,7 @@
             <%=(atrConsulta.UmaHora ? "1 hora." : "30 minutos.") %>
         </p>
     </div>
-   
+
     <div class="secao">
         <h2>Status</h2>
         <p id="lbStatus">
@@ -118,9 +118,9 @@
                 <h2>Satisfação</h2>
                 <p id="lbSemSatisfacao">O paciente não registrou nenhuma satisfação...</p>
             </div>
-            
         <% } %>
-        
+
+        <br />
         
         <%
         
@@ -134,6 +134,7 @@
                     <h2 id="lbObservacoes">Observações: </h2>
                     <asp:TextBox ID="txtObservacoes" runat="server" TextMode="MultiLine"></asp:TextBox>
                 </div>
+                
                 <%
                 this.txtObservacoes.Text = atrConsulta.Observacoes;
                 if (podeDeixarObservacoes) { %> <br />

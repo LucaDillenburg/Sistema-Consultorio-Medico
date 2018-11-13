@@ -76,7 +76,7 @@ namespace ProjetoPPI.PagSecretaria
             //proposito
             try
             {
-                atributos.Proposito = this.txtProposito.Text;
+                atributos.Proposito = HttpUtility.HtmlEncode(this.txtProposito.Text);
                 this.lbMsgProposito.Text = "";
             }
             catch (Exception err)
@@ -146,7 +146,7 @@ namespace ProjetoPPI.PagSecretaria
             if (!String.IsNullOrEmpty(this.txtObservacoes.Text))
                 try
                 {
-                    atributos.Observacoes = this.txtObservacoes.Text;
+                    atributos.Observacoes = HttpUtility.HtmlEncode(this.txtObservacoes.Text);
                 }
                 catch (Exception err)
                 { this.lbMsgObservacoes.Text = err.Message; podeIncluir = false; }

@@ -143,7 +143,8 @@
     <Content Include="Index.aspx" />
     <Content Include="Medico\IndexMedico.aspx" />
     <Content Include="Paciente\IndexPaciente.aspx" />
-    <Content Include="Relatorios.aspx" />
+    <Content Include="Secretaria\AdicionarEspecialidadeAMédico.aspx" />
+    <Content Include="Secretaria\Relatorios.aspx" />
     <Content Include="scriptPaginas.js" />
     <Content Include="medico-paciente.jpg" />
     <Content Include="medico-sorrindo.jpg" />
@@ -151,6 +152,7 @@
     <Content Include="NScript.js" />
     <Content Include="Paciente\VerConsulta.aspx" />
     <Content Include="Scripts\script.js" />
+    <Content Include="Secretaria\AdicionarEspecialidade.aspx" />
     <Content Include="Secretaria\AgendarConsultas.aspx" />
     <Content Include="Secretaria\IndexSecretaria.aspx" />
     <Content Include="Secretaria\Servidor.aspx" />
@@ -254,12 +256,26 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Atributos.cs" />
-    <Compile Include="Relatorios.aspx.cs">
+    <Compile Include="Secretaria\AdicionarEspecialidadeAMédico.aspx.cs">
+      <DependentUpon>AdicionarEspecialidadeAMédico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Secretaria\AdicionarEspecialidadeAMédico.aspx.designer.cs">
+      <DependentUpon>AdicionarEspecialidadeAMédico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Secretaria\Relatorios.aspx.cs">
       <DependentUpon>Relatorios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Relatorios.aspx.designer.cs">
+    <Compile Include="Secretaria\Relatorios.aspx.designer.cs">
       <DependentUpon>Relatorios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Secretaria\AdicionarEspecialidade.aspx.cs">
+      <DependentUpon>AdicionarEspecialidade.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Secretaria\AdicionarEspecialidade.aspx.designer.cs">
+      <DependentUpon>AdicionarEspecialidade.aspx</DependentUpon>
     </Compile>
     <Compile Include="Secretaria\AgendarConsultas.aspx.cs">
       <DependentUpon>AgendarConsultas.aspx</DependentUpon>
@@ -350,9 +366,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49461</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:11435/</IISUrl>
+          <IISUrl>http://localhost:21362/</IISUrl>
           <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost:11435/</IISAppRootUrl>
+          <IISAppRootUrl>http://localhost:21362/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

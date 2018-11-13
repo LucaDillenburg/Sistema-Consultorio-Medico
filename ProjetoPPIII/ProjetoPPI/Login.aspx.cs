@@ -28,13 +28,15 @@ namespace ProjetoPPI
 
             this.lbMsg.Text = "";
 
+            string email = HttpUtility.HtmlEncode(this.txtEmail.Text);
+            string senha = HttpUtility.HtmlEncode(this.txtSenha.Text);
             switch ((ProjetoPPI.TipoUsuario)Session["tipoUsuario"])
             {
                 case TipoUsuario.medico:
                     try
                     {
-                        Session["usuario"] = new Medico(this.txtEmail.Text, this.txtSenha.Text, (ConexaoBD)Session["conexao"]);
-                        Acesso.AdicionarAcesso(this.txtEmail.Text, TipoUsuario.medico, (ConexaoBD)Session["conexao"]);
+                        Session["usuario"] = new Medico(email, senha, (ConexaoBD)Session["conexao"]);
+                        Acesso.AdicionarAcesso(email, TipoUsuario.medico, (ConexaoBD)Session["conexao"]);
                         Response.Redirect("Medico/IndexMedico.aspx");
                         return;
                     } catch(Exception err)
@@ -45,8 +47,8 @@ namespace ProjetoPPI
                 case TipoUsuario.paciente:
                     try
                     {
-                        Session["usuario"] = new Paciente(this.txtEmail.Text, this.txtSenha.Text, (ConexaoBD)Session["conexao"]);
-                        Acesso.AdicionarAcesso(this.txtEmail.Text, TipoUsuario.paciente, (ConexaoBD)Session["conexao"]);
+                        Session["usuario"] = new Paciente(email, senha, (ConexaoBD)Session["conexao"]);
+                        Acesso.AdicionarAcesso(email, TipoUsuario.paciente, (ConexaoBD)Session["conexao"]);
                         Response.Redirect("Paciente/IndexPaciente.aspx");
                         if (Session["usuario"] == null) { int i = 0; }
                         return;
@@ -59,8 +61,8 @@ namespace ProjetoPPI
                 case TipoUsuario.secretaria:
                     try
                     {
-                        Session["usuario"] = new Secretaria(this.txtEmail.Text, this.txtSenha.Text, (ConexaoBD)Session["conexao"]);
-                        Acesso.AdicionarAcesso(this.txtEmail.Text, TipoUsuario.secretaria, (ConexaoBD)Session["conexao"]);
+                        Session["usuario"] = new Secretaria(email, senha, (ConexaoBD)Session["conexao"]);
+                        Acesso.AdicionarAcesso(email, TipoUsuario.secretaria, (ConexaoBD)Session["conexao"]);
                         Response.Redirect("/Secretaria/IndexSecretaria.aspx", false);
                         return;
                     }

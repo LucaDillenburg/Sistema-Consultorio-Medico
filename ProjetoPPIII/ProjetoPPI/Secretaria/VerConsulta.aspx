@@ -38,7 +38,7 @@
     <!-- SECRETÁRIA -->
 
     <h1 class="title-originais">
-        Propósito: <asp:TextBox ID="txtProposito" runat="server"></asp:TextBox>
+        Propósito: <asp:TextBox ID="txtProposito" runat="server"></asp:TextBox>  <br />
         <asp:Label ID="lbMsgProposito" runat="server" Text=""></asp:Label>
     </h1>
 
@@ -81,8 +81,8 @@
 
     <div class="secao">
     <br />
-    <label>Horário: </label> <asp:TextBox ID="txtDia" runat="server" TextMode="Date"></asp:TextBox> <asp:TextBox ID="txtHorario" runat="server"></asp:TextBox>
-    <asp:Label ID="lbMsgHorario" runat="server" Text=""></asp:Label> <br />
+    <label>Horário: </label> <asp:TextBox ID="txtDia" runat="server" TextMode="Date"></asp:TextBox> <asp:TextBox ID="txtHorario" runat="server"></asp:TextBox>  <br />
+    <asp:Label ID="lbMsgHorario" runat="server" Text=""></asp:Label>
     </div>
 
     <div class="secao">
@@ -91,8 +91,8 @@
         <asp:ListItem Value="30">30 minutos</asp:ListItem>
         <asp:ListItem Value="60">1 hora</asp:ListItem>
     </asp:DropDownList>
-
-    <asp:Label ID="lbMsgDuracao" runat="server" Text=""></asp:Label> <br />
+     <br />
+    <asp:Label ID="lbMsgDuracao" runat="server" Text=""></asp:Label>
     </div>
         
     <div class="secao">
@@ -103,7 +103,8 @@
         <asp:ListItem Value="n">Ainda não Ocorrido</asp:ListItem>
         <asp:ListItem Value="c">Cancelado</asp:ListItem>
     </asp:DropDownList>
-    <asp:Label ID="lbMsgStatus" runat="server" Text=""></asp:Label> <br />   
+    <br />
+    <asp:Label ID="lbMsgStatus" runat="server" Text=""></asp:Label>
     </div>
 
     <%

@@ -26,7 +26,7 @@ namespace ProjetoPPI.PagSecretaria
             //proposito
             try
             {
-                atributos.Proposito = this.txtProposito.Text;
+                atributos.Proposito = HttpUtility.HtmlEncode(this.txtProposito.Text);
                 this.lbMsgProposito.Text = "";
             }
             catch (Exception err)

@@ -49,9 +49,10 @@ namespace ProjetoPPI.PagMedico
             bool tudoCerto = true;
 
             //observacoes
+            string observacoes = HttpUtility.HtmlEncode(this.txtObservacoes.Text);
             try
             {
-                new AtributosConsulta().Observacoes = this.txtObservacoes.Text;
+                new AtributosConsulta().Observacoes = observacoes;
             }
             catch (Exception err)
             { this.lbMsgObservacoes.Text = "Observações inválido!"; tudoCerto = false; }
@@ -59,7 +60,7 @@ namespace ProjetoPPI.PagMedico
             if (tudoCerto)
             {
                 //colocar no session da consulta 
-                ((AtributosConsultaCod)Session["consulta"]).Observacoes = this.txtObservacoes.Text;
+                ((AtributosConsultaCod)Session["consulta"]).Observacoes = observacoes;
                 //marcar consulta como ocorrida
                 ((AtributosConsultaCod)Session["consulta"]).Status = 's';
 
