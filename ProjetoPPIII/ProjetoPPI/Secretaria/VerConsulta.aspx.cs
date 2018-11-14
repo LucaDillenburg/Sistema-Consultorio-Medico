@@ -10,6 +10,7 @@ namespace ProjetoPPI.PagSecretaria
     public partial class VerConsulta : System.Web.UI.Page
     {
         protected int codConsulta;
+        protected bool colocarConsultaTela;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,32 +19,40 @@ namespace ProjetoPPI.PagSecretaria
                 Response.Redirect("../Index.aspx");
                 return;
             }
-            string url = HttpContext.Current.Request.Url.AbsoluteUri;
-            // se passou codigo consulta pela url
-            try
-            {
-                int index = url.LastIndexOf('?');
-                if (index < 0)
-                    throw new Exception("");
-                string codStr = url.Substring(index + 1);
-                int codConsulta = Convert.ToInt32(codStr);
-                Session["consulta"] = Consulta.DeCodigo(codConsulta, (ConexaoBD)Session["conexao"]);
-            }
-            catch (Exception err)
-            {
-                Response.Redirect("Index.aspx");
-                return;
-            }
 
+            if (Session["consulta"] == null)
+            {
+                string url = HttpContext.Current.Request.Url.AbsoluteUri;
+                // se passou codigo consulta pela url
+                try
+                {
+                    int index = url.LastIndexOf('?');
+                    if (index < 0)
+                        throw new Exception("");
+                    string codStr = url.Substring(index + 1);
+                    int codConsulta = Convert.ToInt32(codStr);
+                    Session["consulta"] = Consulta.DeCodigo(codConsulta, (ConexaoBD)Session["conexao"]);
+                }
+                catch (Exception err)
+                {
+                    Response.Redirect("Index.aspx");
+                    return;
+                }
+            }
 
             //resto
             this.codConsulta = ((AtributosConsultaCod)Session["consulta"]).CodConsulta;
 
+            this.colocarConsultaTela = true;
+        }
+
+        protected void ColocarConsultaTela()
+        {
             AtributosConsulta atrConsulta = (AtributosConsultaCod)Session["consulta"];
             this.txtProposito.Text = atrConsulta.Proposito;
 
             //horario
-            this.txtDia. Text = atrConsulta.Horario.ToString("yyyy - MM - dd");
+            this.txtDia.Text = atrConsulta.Horario.ToString("yyyy-MM-dd");
             this.txtHorario.Text = atrConsulta.Horario.ToString("HH:mm");
 
             //duracao
@@ -64,10 +73,34 @@ namespace ProjetoPPI.PagSecretaria
                     this.ddlStatus.SelectedIndex = 2;
                     break;
             }
+
+            if (atrConsulta.Status == 's')
+                this.txtObservacoes.Text = atrConsulta.Observacoes;
         }
+        protected void ColocarDDLsTela(AtributosConsulta atrConsulta)
+        {
+            //selecionar medico no combobox
+            for (int i = 0; i < this.ddlMedicos.Items.Count; i++)
+                if (this.ddlMedicos.Items[i].Value == atrConsulta.EmailMedico)
+                {
+                    this.ddlMedicos.SelectedIndex = i;
+                    break;
+                }
+
+            //selecionar paciente no combobox
+            for (int i = 0; i < this.ddlPacientes.Items.Count; i++)
+                if (this.ddlPacientes.Items[i].Value == atrConsulta.EmailPaciente)
+                {
+                    this.ddlPacientes.SelectedIndex = i;
+                    break;
+                }
+        }
+
 
         protected void btnAtualizarDados_Click(object sender, EventArgs e)
         {
+            this.colocarConsultaTela = false;
+
             AtributosConsultaCod atributos = new AtributosConsultaCod();
             bool podeIncluir = true;
 
@@ -124,7 +157,10 @@ namespace ProjetoPPI.PagSecretaria
 
             //30 minutos ou 1 hora
             if (this.ddlTempoConsulta.SelectedIndex < 0)
+            {
                 this.lbMsgDuracao.Text = "Selecione um tempo para a consulta";
+                podeIncluir = false;
+            }
             else
             {
                 this.lbMsgDuracao.Text = "";
@@ -132,8 +168,11 @@ namespace ProjetoPPI.PagSecretaria
             }
 
             //status
-            if (this.ddlTempoConsulta.SelectedIndex < 0)
+            if (this.ddlStatus.SelectedIndex < 0)
+            {
                 this.lbMsgStatus.Text = "Selecione um status!";
+                podeIncluir = false;
+            }
             else
             {
                 this.lbMsgStatus.Text = "";
@@ -156,6 +195,7 @@ namespace ProjetoPPI.PagSecretaria
                 try
                 {
                     ((Secretaria)Session["usuario"]).AtualizarDadosConsulta(atributos);
+                    Session["consulta"] = atributos;
                 }
                 catch (Exception err)
                 {

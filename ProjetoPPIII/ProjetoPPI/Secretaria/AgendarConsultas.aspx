@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AgendarConsultas.aspx.cs" Inherits="ProjetoPPI.PagSecretaria.AgendarConsultas" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -15,7 +17,10 @@
 </head>
 <body style="background-image: url('../assistant-beard-boss-630836.jpg');background-attachment: fixed; background-position: center; background-size: cover; background-repeat: no-repeat; overflow-y: hidden;">
 <form id="form1" runat="server">
-    <a href="/Secretaria/IndexSecretaria" class="btnVoltar"><i class="glyphicon glyphicon-chevron-left"></i></a>
+<asp:scriptmanager runat="server"></asp:scriptmanager>
+
+    <a href="IndexSecretaria.aspx" class="btnVoltar"><i class="glyphicon glyphicon-chevron-left"></i></a>
+
 <div class="consulta">    
     <h1 class="title-originais">Agendar Consulta</h1>
     
@@ -50,6 +55,14 @@
             <td> Horário: <asp:TextBox ID="txtDia" runat="server" TextMode="Date"></asp:TextBox>
             </td>
             <td> <asp:TextBox ID="txtHorario" runat="server"></asp:TextBox></td>
+
+            <!-- MÁSCARA HORÁRIO -->
+            <ajaxToolkit:MaskedEditExtender ID="MaskedEditExtender1" runat="server" 
+                TargetControlID="txtHorario" 
+                Mask="99:99" 
+                MaskType="Number" 
+                InputDirection="LeftToRight" 
+                ClearMaskOnLostFocus ="False" />
         </tr>
         <tr><td><asp:Label ID="lbMsgHorario" runat="server" Text=""></asp:Label></td></tr>
 

@@ -16,7 +16,7 @@
     <link href="Content/bootstrap.css" rel="stylesheet" />   
 </head>
 <body id="bodyRelatorios">
-    <a href="/Secretaria/IndexSecretaria" class="btnVoltar"><i class="glyphicon glyphicon-chevron-left"></i></a>
+    <a href="IndexSecretaria.aspx" class="btnVoltar"><i class="glyphicon glyphicon-chevron-left"></i></a>
     <form id="form1" runat="server">
         <div class="consulta">
             <h1 class="title-originais">Relatórios de Gestão de Qualidade</h1>

@@ -1,14 +1,18 @@
 O QUE FALTA:
- - colocar máscaras nos campos (AgendarConsulta, CadastroUsuarios, VerConsulta)
- - arrumar VerConsultas de secretaria
-
- - botao de voltar em Relatorio.aspx
- - botao de login em cima do label de resposta
- - deixar mensagens de erro em vermelho
- - colocar todas as imagens em uma pasta
+ - colocar o botao de login em cima do label de resposta (que fala se nao conseguiu logar)
+ - deixar mensagens de erro em vermelho (em VerConsulta da secretaria, AgendarConsulta e CadastrarUsuarios)
  - arrumar os text area e textbox MultiLine(deixar bonito e de maneira que nao de para mudar o tamanho)
  - nao tem btn voltar no login
+ - aumentar DIV login (no login da secretaria fica zuado)
+ - botao de voltar em Relatorio.aspx
+ - dimiuir tamanho DIV servidor
+ - mudar imagem de fundo do login? (nao eh relacionado a hospital)
+ - ocorreu e observacoes estao na mesma linha nas tabelas da consulta
+ - colocar todas as imagens em uma pasta
  - menu dos usuarios (mudar no Menu.Master: mexer com Session)
+
+ - atualizar dados em VerConsulta da Secretaria. Praticamente OK
+    .falta descobrir como mudar os DDLs no .ASPX
 
  - design VerConsultas do medico quando fez observacao e vai fazer observacao. OK
  - design VerConsultas do paciente quando vai fazer comentario e satisfacao, e quando fez soh satisfacao, ou quando fez satisfacao e comentario. OK
@@ -18,6 +22,8 @@ O QUE FALTA:
  - logout e menu. OK
  - adicionar especialidade e adicionar especialidades a medicos. OK
  - fazer escape (HttpUtility.HtmlEncode(str dado por usuarios)). OK
+ - voltar de especialidade medico, ser especialidade. OK
+ - colocar máscaras nos campos (CadastroUsuarios, AgendarConsulta, VerConsulta). OK
 
 
 Outras Coisa:

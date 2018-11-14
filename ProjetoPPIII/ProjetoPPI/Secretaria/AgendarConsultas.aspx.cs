@@ -74,7 +74,10 @@ namespace ProjetoPPI.PagSecretaria
 
             //30 minutos ou 1 hora
             if (this.ddlTempoConsulta.SelectedIndex < 0)
+            {
                 this.lbMsgTempoConsulta.Text = "Selecione um tempo para a consulta";
+                podeIncluir = false;
+            }
             else
             {
                 this.lbMsgTempoConsulta.Text = "";

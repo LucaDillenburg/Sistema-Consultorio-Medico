@@ -67,6 +67,15 @@ namespace ProjetoPPI.PagSecretaria {
         protected global::System.Web.UI.WebControls.TextBox txtCRM;
         
         /// <summary>
+        /// Controle MaskedEditExtender4.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::AjaxControlToolkit.MaskedEditExtender MaskedEditExtender4;
+        
+        /// <summary>
         /// Controle lbMsgCRM.
         /// </summary>
         /// <remarks>
@@ -85,6 +94,15 @@ namespace ProjetoPPI.PagSecretaria {
         protected global::System.Web.UI.WebControls.TextBox txtCelular;
         
         /// <summary>
+        /// Controle MaskedEditExtender2.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::AjaxControlToolkit.MaskedEditExtender MaskedEditExtender2;
+        
+        /// <summary>
         /// Controle lbMsgCelular.
         /// </summary>
         /// <remarks>
@@ -101,6 +119,15 @@ namespace ProjetoPPI.PagSecretaria {
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTelefone;
+        
+        /// <summary>
+        /// Controle MaskedEditExtender1.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::AjaxControlToolkit.MaskedEditExtender MaskedEditExtender1;
         
         /// <summary>
         /// Controle lbMsgTelefone.

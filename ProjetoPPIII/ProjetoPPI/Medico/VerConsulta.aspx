@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+    <title>Ver Consulta</title>
     <link href="https://fonts.googleapis.com/css?family=Baloo+Tammudu" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"/>
@@ -15,7 +15,7 @@
 </head>
 <body id="bodyVerConsultaMedico">
 <form id="form1" runat="server">
-    <a href="/Medico/IndexMedico" class="btnVoltar"><i class="glyphicon glyphicon-chevron-left"></i></a>
+    <a href="IndexMedico.aspx" class="btnVoltar"><i class="glyphicon glyphicon-chevron-left"></i></a>
 <div class="consulta">
     <%        
         //se a consulta nao eh desse medico

@@ -15,7 +15,7 @@
 </head>
 <body style="background-image: url('../assistant-beard-boss-630836.jpg');background-attachment: fixed; background-position: center; background-size: cover; background-repeat: no-repeat; overflow-y: hidden;">
 <form id="form1" runat="server">
-    <a href="/Secretaria/IndexSecretaria" class="btnVoltar"><i class="glyphicon glyphicon-chevron-left"></i></a>
+    <a href="IndexSecretaria.aspx" class="btnVoltar"><i class="glyphicon glyphicon-chevron-left"></i></a>
 <div class="consulta">    
     <h1 class="title-originais">NOVA ESPECIALIDADE:</h1>
 

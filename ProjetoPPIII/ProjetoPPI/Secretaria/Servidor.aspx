@@ -23,7 +23,7 @@
 </head>
 <body>
 <form id="form2" runat="server">
-    <a href="/Secretaria/IndexSecretaria" class="btnVoltar"><i class="glyphicon glyphicon-chevron-left"></i></a>
+    <a href="IndexSecretaria.aspx" class="btnVoltar"><i class="glyphicon glyphicon-chevron-left"></i></a>
 <div class="consulta">
     <h1 class="title-originais"> SERVIDOR </h1>
 

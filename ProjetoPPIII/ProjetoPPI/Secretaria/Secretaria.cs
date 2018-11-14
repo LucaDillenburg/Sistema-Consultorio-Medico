@@ -111,14 +111,27 @@ namespace ProjetoPPI
 
         public void AtualizarDadosConsulta(AtributosConsultaCod atributos)
         {
-            if (atributos.Status=='s') //consulta ocorreu
+            switch (atributos.Status)
             {
-                if (String.IsNullOrEmpty(atributos.Observacoes)) //nao tem observacoes
-                    throw new Exception("Uma consulta que ocorreu precisa ter observações!");
+                case 'n': //'n' -> tem que ser no dia de hoje ou depois e observacoes tem que ser nulo
+                    DateTime finalHoje = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,
+                        23, 59, 59);
+                    if (atributos.Horario == null || atributos.Horario.CompareTo(finalHoje) < 0)
+                        throw new Exception("Uma consulta antes de hoje tem que não pode ser \"ainda não ocorrida\"!");
+                    if (!String.IsNullOrEmpty(atributos.Observacoes)) //se observacoes nao eh nulo
+                        throw new Exception("Se a consulta foi cancelada não se pode ter observações!");
+                    break;
+                case 'c': //'c' -> observacoes tem que ser null
+                    if (!String.IsNullOrEmpty(atributos.Observacoes)) //se observacoes nao eh nulo
+                        throw new Exception("Se a consulta foi cancelada não se pode ter observações!");
+                    break;
+                case 's': //'s' -> o horario da consulta tem que ser depois da atual e observacoes tem que ter alguma coisa
+                    if (atributos.Horario == null || DateTime.Now.CompareTo(atributos.Horario) < 0) // se ainda nao foi
+                        throw new Exception("Para o status ser \"ocorrido\" o horário da consulta tem que ser antes do horário atual!");
+                    if (String.IsNullOrEmpty(atributos.Observacoes)) //se observacoes eh nulo
+                        throw new Exception("A observação não pode ser nula para o status ser \"ocorrido\"!");
+                    break;
             }
-            else //consulta nao ocorreu
-                if(!String.IsNullOrEmpty(atributos.Observacoes)) //tem observacoes
-                throw new Exception("Observações tem que ser vazia se consulta ainda não ocorreu.");
 
             if ((atributos.Status != 'n' && atributos.Status != 's' && atributos.Status != 'c') || String.IsNullOrEmpty(atributos.Proposito)
                 || atributos.Horario == null || String.IsNullOrEmpty(atributos.EmailMedico) ||
@@ -127,7 +140,7 @@ namespace ProjetoPPI
 
             //proposito, medico, paciente, horario, duracao, status, observações
             this.conexaoBD.ExecuteInUpDel("update consulta set proposito='" + atributos.Proposito + "', emailMedico='" + atributos.EmailMedico + "', " +
-                "emailPaciente='" + atributos.EmailPaciente + "', horario='" + atributos.Horario + "', umaHora= " + (atributos.UmaHora ? "1" : "0") + ", " +
+                "emailPac='" + atributos.EmailPaciente + "', horario='" + atributos.Horario + "', umaHora= " + (atributos.UmaHora ? "1" : "0") + ", " +
                 "status='" + atributos.Status + "', observacoes='" + atributos.Observacoes + "' " +
                 "where codConsulta = " + atributos.CodConsulta);
         }

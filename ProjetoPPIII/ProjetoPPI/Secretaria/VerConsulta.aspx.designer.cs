@@ -67,15 +67,6 @@ namespace ProjetoPPI.PagSecretaria {
         protected global::System.Web.UI.WebControls.Label lbMsgMedico;
         
         /// <summary>
-        /// Controle lbPaciente.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPaciente;
-        
-        /// <summary>
         /// Controle ddlPacientes.
         /// </summary>
         /// <remarks>
@@ -121,6 +112,15 @@ namespace ProjetoPPI.PagSecretaria {
         protected global::System.Web.UI.WebControls.TextBox txtHorario;
         
         /// <summary>
+        /// Controle MaskedEditExtender1.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::AjaxControlToolkit.MaskedEditExtender MaskedEditExtender1;
+        
+        /// <summary>
         /// Controle lbMsgHorario.
         /// </summary>
         /// <remarks>
@@ -128,15 +128,6 @@ namespace ProjetoPPI.PagSecretaria {
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbMsgHorario;
-        
-        /// <summary>
-        /// Controle lbDuracao.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbDuracao;
         
         /// <summary>
         /// Controle ddlTempoConsulta.

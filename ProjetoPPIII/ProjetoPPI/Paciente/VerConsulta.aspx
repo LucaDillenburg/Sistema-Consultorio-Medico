@@ -11,11 +11,11 @@
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"/>
     <link href="/Content/bootstrap.min.css" rel="stylesheet" />
     <script src="/Scripts/jquery-1.10.2.min.js"></script>
-    <title></title>
+    <title>Ver Consulta</title>
 </head>
 <body id="body-verConsulta">
 <form id="form1" runat="server">
-    <a href="/Paciente/IndexPaciente" class="btnVoltar"><i class="glyphicon glyphicon-chevron-left"></i></a>
+    <a href="IndexPaciente.aspx" class="btnVoltar"><i class="glyphicon glyphicon-chevron-left"></i></a>
 <div>
     <%
         ProjetoPPI.AtributosConsultaCod atrConsulta = (ProjetoPPI.AtributosConsultaCod)Session["consulta"];
