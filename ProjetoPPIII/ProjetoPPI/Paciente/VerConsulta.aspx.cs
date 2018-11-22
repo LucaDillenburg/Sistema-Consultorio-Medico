@@ -46,7 +46,7 @@ namespace ProjetoPPI.PagPaciente
             bool tudoCerto = true;
 
             string comentario = HttpUtility.HtmlEncode(this.txtComentario.Text);
-            if (!String.IsNullOrEmpty(this.txtComentario.Text))
+            if (!String.IsNullOrEmpty(comentario))
                 //comentario
                 try
                 {
@@ -67,7 +67,8 @@ namespace ProjetoPPI.PagPaciente
             if (tudoCerto)
             {
                 //colocar no session da consulta 
-                ((AtributosConsultaCod)Session["consulta"]).Comentario = comentario;
+                if (!String.IsNullOrEmpty(comentario))
+                    ((AtributosConsultaCod)Session["consulta"]).Comentario = comentario;
                 ((AtributosConsultaCod)Session["consulta"]).Satisfacao = satisfacao;
                 ((AtributosConsultaCod)Session["consulta"]).HorarioSatisfacao = DateTime.Now;
                 ((AtributosConsultaCod)Session["consulta"]).MedicoJahViuSatisfacao = false;

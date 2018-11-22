@@ -134,15 +134,13 @@ namespace ProjetoPPI
             }
 
             if ((atributos.Status != 'n' && atributos.Status != 's' && atributos.Status != 'c') || String.IsNullOrEmpty(atributos.Proposito)
-                || atributos.Horario == null || String.IsNullOrEmpty(atributos.EmailMedico) ||
-                String.IsNullOrEmpty(atributos.EmailPaciente))
+                || atributos.Horario == null)
                 throw new Exception("Atributos da consulta invalido! Faltando dados!");
 
             //proposito, medico, paciente, horario, duracao, status, observações
-            this.conexaoBD.ExecuteInUpDel("update consulta set proposito='" + atributos.Proposito + "', emailMedico='" + atributos.EmailMedico + "', " +
-                "emailPac='" + atributos.EmailPaciente + "', horario='" + atributos.Horario + "', umaHora= " + (atributos.UmaHora ? "1" : "0") + ", " +
-                "status='" + atributos.Status + "', observacoes='" + atributos.Observacoes + "' " +
-                "where codConsulta = " + atributos.CodConsulta);
+            this.conexaoBD.ExecuteInUpDel("update consulta set proposito='" + atributos.Proposito + "', horario='" + atributos.Horario + "', " +
+                "umaHora= " + (atributos.UmaHora ? "1" : "0") + ", " + "status='" + atributos.Status + "', observacoes='" + 
+                atributos.Observacoes + "' " + "where codConsulta = " + atributos.CodConsulta);
         }
 
         public object[,] PesquisarConsultas(string medico, string paciente, string data, int tipoData)

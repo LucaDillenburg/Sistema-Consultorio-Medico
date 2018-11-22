@@ -40,60 +40,6 @@ namespace ProjetoPPI.PagSecretaria {
         protected global::System.Web.UI.WebControls.Label lbMsgProposito;
         
         /// <summary>
-        /// Controle ddlMedicos.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMedicos;
-        
-        /// <summary>
-        /// Controle SqlDataSourceMedicos.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceMedicos;
-        
-        /// <summary>
-        /// Controle lbMsgMedico.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbMsgMedico;
-        
-        /// <summary>
-        /// Controle ddlPacientes.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPacientes;
-        
-        /// <summary>
-        /// Controle SqlDataSourcePacientes.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourcePacientes;
-        
-        /// <summary>
-        /// Controle lbMsgPaciente.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbMsgPaciente;
-        
-        /// <summary>
         /// Controle txtDia.
         /// </summary>
         /// <remarks>

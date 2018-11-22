@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="estilo.css" />
     <link href="https://fonts.googleapis.com/css?family=Baloo+Tammudu" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"/>    
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"/>
     <link href="/Content/bootstrap.css" rel="stylesheet" />
     <script src="/Scripts/jquery-1.10.2.min.js"></script>
     <style>
         body {
-            background-image: url("/beach-boys-children-1231365.jpg");
+            background-image: url("/imgs/beach-boys-children-1231365.jpg");
             background-position: center;
             background-attachment: fixed;
             background-size: cover;
@@ -28,7 +28,7 @@
         <div class="formulario">
             <%
                 if (Session["tipoUsuario"] == null || Session["tipoUsuario"].GetType()!=typeof(ProjetoPPI.TipoUsuario))
-                    Session["tipoUsuario"] = ProjetoPPI.TipoUsuario.paciente; 
+                    Session["tipoUsuario"] = ProjetoPPI.TipoUsuario.paciente;
             %>
 
             <asp:Label ID="lbTitulo" CssClass="legenda" runat="server" Text="TITULO" >
@@ -60,11 +60,11 @@
             <hr />
             <div class="campo">
                 <asp:Label CssClass="asp_label" ID="Label1" runat="server" Text="Email: "></asp:Label>
-                <asp:TextBox  CssClass="input_text"  ID="txtEmail" runat="server"></asp:TextBox>          
+                <asp:TextBox  CssClass="input_text"  ID="txtEmail" runat="server"></asp:TextBox>
             </div>
             <div class="campo">
                 <asp:Label CssClass="asp_label" ID="Label2" runat="server" Text="Senha: "></asp:Label>
-                <asp:TextBox CssClass="input_text" ID="txtSenha" runat="server" TextMode="Password"></asp:TextBox>          
+                <asp:TextBox CssClass="input_text" ID="txtSenha" runat="server" TextMode="Password"></asp:TextBox>
             </div>
             <div class="campo">
                 <asp:Button CssClass="asp_button" ID="btnLogar" runat="server" Text="Logar" OnClick="btnLogar_Click" />

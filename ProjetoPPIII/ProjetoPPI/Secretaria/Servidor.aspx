@@ -13,7 +13,7 @@
     <link href="/Content/bootstrap.css" rel="stylesheet" />
     <style>
         body {
-            background-image: url('/charts-cup-of-coffee-desk-1345089.jpg');
+            background-image: url('/imgs/charts-cup-of-coffee-desk-1345089.jpg');
             background-attachment: fixed;
             background-position: center;
             background-repeat: no-repeat;
@@ -27,7 +27,7 @@
 <div class="consulta">
     <h1 class="title-originais"> SERVIDOR </h1>
 
-    <center><asp:ListBox ID="lbxComandos" runat="server" Rows="20" SelectionMode="Multiple" Width="488px"></asp:ListBox></center>
+    <center><asp:ListBox ID="lbxComandos" runat="server" Rows="17" SelectionMode="Multiple" Width="600px" Font-Size="X-Large"></asp:ListBox></center>
 </div>
 </form>
 </body>

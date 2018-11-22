@@ -31,20 +31,26 @@
         </div>
          <ul class="menu-vertical">          
             <li class="menu-item menu-titulo">MENU</li>
-             <% if (Session["usuario"] == null) { %>
+            <% if (Session["usuario"] == null) { %>
                 <li class="menu-item"><asp:LinkButton CssClass="asp_button" ID="btnMenuPaciente" runat="server" OnClick="btnMenuPaciente_Click"><i class="glyphicon glyphicon-user"></i>PACIENTE</asp:LinkButton></li>
                 <li class="menu-item"><asp:LinkButton CssClass="asp_button" ID="btnMenuSecretaria" runat="server" OnClick="btnMenuSecretaria_Click"><i class="glyphicon glyphicon-inbox"></i>SECRETARIA</asp:LinkButton></li>
                 <li class="menu-item"><asp:LinkButton CssClass="asp_button" ID="btnMenuMedico" runat="server" OnClick="btnMenuMedico_Click"><i class="glyphicon glyphicon-plus-sign"></i>MÉDICO</asp:LinkButton></li>     
-             <% 
-             } else
-             if (Session["usuario"].GetType() == typeof(ProjetoPPI.Medico))
-             { %>
-                
-             <% }else if (Session["usuario"].GetType() == typeof(ProjetoPPI.Paciente)) { %>
-                
-             <% }else { %>
-                
-             <%} %>
+            <% 
+            } else
+                {
+                if (Session["usuario"].GetType() == typeof(ProjetoPPI.Medico))
+                { %>
+                    <li class="menu-item"><asp:LinkButton CssClass="asp_button" ID="btnPrincMed" runat="server" OnClick="btnPrincMed_Click">Página Principal</asp:LinkButton></li>
+                <% }else if (Session["usuario"].GetType() == typeof(ProjetoPPI.Paciente)) { %>
+                    <li class="menu-item"><asp:LinkButton CssClass="asp_button" ID="btnPrincPac" runat="server" OnClick="btnPrincPac_Click">Página Principal</asp:LinkButton></li>
+                <% }else { %>
+                    <li class="menu-item"><asp:LinkButton CssClass="asp_button" ID="btnPrincSec" runat="server" OnClick="btnPrincSec_Click">Página Principal</asp:LinkButton></li>
+                    <li class="menu-item"><asp:LinkButton CssClass="asp_button" ID="btnAgendarConsulta" runat="server" OnClick="btnAgendarConsulta_Click">Agendar Consulta</asp:LinkButton></li>
+                    <li class="menu-item"><asp:LinkButton CssClass="asp_button" ID="btnServidor" runat="server" OnClick="btnServidor_Click">Servidor</asp:LinkButton></li>
+                    <li class="menu-item"><asp:LinkButton CssClass="asp_button" ID="btnRelatórios" runat="server" OnClick="btnRelatórios_Click">Relatórios</asp:LinkButton></li>
+                <%} 
+                %><li class="menu-item"><asp:LinkButton CssClass="asp_button" ID="btnLogout" runat="server" OnClick="btnLoginLogout_Click">Logout</asp:LinkButton></li><%
+            }%>
         </ul>
         <script src="/NScript.js"></script>
         <div id="da-espaco"></div>          

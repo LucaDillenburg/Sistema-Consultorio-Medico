@@ -77,25 +77,6 @@ namespace ProjetoPPI.PagSecretaria
             if (atrConsulta.Status == 's')
                 this.txtObservacoes.Text = atrConsulta.Observacoes;
         }
-        protected void ColocarDDLsTela(AtributosConsulta atrConsulta)
-        {
-            //selecionar medico no combobox
-            for (int i = 0; i < this.ddlMedicos.Items.Count; i++)
-                if (this.ddlMedicos.Items[i].Value == atrConsulta.EmailMedico)
-                {
-                    this.ddlMedicos.SelectedIndex = i;
-                    break;
-                }
-
-            //selecionar paciente no combobox
-            for (int i = 0; i < this.ddlPacientes.Items.Count; i++)
-                if (this.ddlPacientes.Items[i].Value == atrConsulta.EmailPaciente)
-                {
-                    this.ddlPacientes.SelectedIndex = i;
-                    break;
-                }
-        }
-
 
         protected void btnAtualizarDados_Click(object sender, EventArgs e)
         {
@@ -114,28 +95,6 @@ namespace ProjetoPPI.PagSecretaria
             }
             catch (Exception err)
             { this.lbMsgProposito.Text = err.Message; podeIncluir = false; }
-
-            //email medico
-            try
-            {
-                if (this.ddlMedicos.SelectedIndex < 0)
-                    throw new Exception("Selecione um médico!");
-                atributos.SetEmailMedico(this.ddlMedicos.SelectedValue, (ConexaoBD)Session["conexao"]);
-                this.lbMsgMedico.Text = "";
-            }
-            catch (Exception err)
-            { this.lbMsgMedico.Text = err.Message; podeIncluir = false; }
-
-            //email paciente
-            try
-            {
-                if (this.ddlPacientes.SelectedIndex < 0)
-                    throw new Exception("Selecione um paciente!");
-                atributos.SetEmailPaciente(this.ddlPacientes.SelectedValue, (ConexaoBD)Session["conexao"]);
-                this.lbMsgPaciente.Text = "";
-            }
-            catch (Exception err)
-            { this.lbMsgPaciente.Text = err.Message; podeIncluir = false; }
 
             //horario
             try
@@ -205,8 +164,6 @@ namespace ProjetoPPI.PagSecretaria
                 }
 
                 this.lbMsgProposito.Text = "";
-                this.lbMsgMedico.Text = "";
-                this.lbMsgPaciente.Text = "";
                 this.lbMsgHorario.Text = "";
                 this.lbMsgDuracao.Text = "";
                 this.lbMsgStatus.Text = "";

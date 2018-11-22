@@ -89,7 +89,7 @@ body {
     margin: 0;
     padding: 0;
     height: 100%;
-    word-wrap: break-word;   
+    word-wrap: break-word;
     overflow-x: hidden;
 }
 
@@ -114,11 +114,11 @@ body {
     background-position: center;
     background-repeat: no-repeat repeat;
     background-size: cover;
-    background-image: url('medico-paciente.jpg');
+    background-image: url('imgs/medico-paciente.jpg');
 }
 
 #bodyRelatorios {
-    background-image: url('analysis-analytics-application-590016.jpg');
+    background-image: url('imgs/analysis-analytics-application-590016.jpg');
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat repeat;
@@ -152,11 +152,11 @@ div.menu-horizontal {
     position: relative;
     vertical-align: middle;
     padding-left: 10px;
-    padding-right: 10px;     
+    padding-right: 10px;
 }
 
 #btnOpen {
-    float: left; 
+    float: left;
     width: 70px;
     text-align: center;
     cursor: pointer;
@@ -170,7 +170,7 @@ div.menu-horizontal {
 }
 
 #login {
-    float: right;    
+    float: right;
 }
 
 ul.menu-vertical {
@@ -190,7 +190,7 @@ ul.menu-vertical {
 
 ul.menu-vertical li.menu-item {
     display: block;
-    padding: 8px;    
+    padding: 8px;
     margin: 0;
     font-family: 'Comfortaa', cursive;
     font-size: 20px;
@@ -205,7 +205,7 @@ ul.menu-vertical li.menu-titulo{
 #da-espaco {
     height: 5vh;
     width: 100%;
-    top: 0%;    
+    top: 0%;
     z-index: -99;
 }
 
@@ -220,12 +220,12 @@ ul.menu-vertical li.menu-titulo{
     color: black;
 }
 
-div.content {    
+div.content {
     text-align: left;
     margin: auto;
     margin-top: 50px;
     display: block;
-    position: relative;   
+    position: relative;
     width: 100vw;
     background-color: rgb(242, 242, 242);
     z-index: -1;
@@ -233,7 +233,7 @@ div.content {
     padding-top: 15px;
     padding: 20px 50px;
     color: black;
-    box-shadow: 0px 0px 5px 0.5px rgba(50, 50, 50, 0.5);    
+    box-shadow: 0px 0px 5px 0.5px rgba(50, 50, 50, 0.5);
 }
 
 .content h1.title {
@@ -250,20 +250,20 @@ h1.title-originais {
     margin-top: 10vh;
     text-align: center;
     font-family: 'Comfortaa', cursive;
-    font-weight: normal;    
+    font-weight: normal;
 }
 
 hr.hr-originais {
-    border-width: 2px;  
+    border-width: 2px;
     border-color: lightgrey;
     width: 90%;
-    margin: auto;    
+    margin: auto;
     margin-top: 50px;
     margin-bottom: 50px;
 }
 
 ul.opcoes {
-    font-family: 'Comfortaa', cursive;    
+    font-family: 'Comfortaa', cursive;
     margin: auto;
     margin-top: 7vh;
     margin-bottom: 7vh;
@@ -282,7 +282,7 @@ ul.opcoes {
     font-size: 25px;
     display: inline-block;
     padding: 10px;
-    border: 2px solid rgb(0,36,33);    
+    border: 2px solid rgb(0,36,33);
     border-radius: 10px;
     text-align: center;
     box-sizing: border-box;
@@ -296,7 +296,7 @@ ul.opcoes {
 }
 
 .opcoes li.ativo {
-    background-image: linear-gradient(120deg, #89f7fe 0%, #63dfff 100%);    
+    background-image: linear-gradient(120deg, #89f7fe 0%, #63dfff 100%);
 }
 
 .opcoes li .asp_button {
@@ -305,8 +305,8 @@ ul.opcoes {
 }
 
 div.tab-paciente {
-    width: 80%;    
-    margin: auto;    
+    width: 80%;
+    margin: auto;
     padding-bottom: 10vh;
 }
 
@@ -333,7 +333,7 @@ div.tab-paciente {
     height: 100%;
 }
 
-.consultas-paciente .proposito {    
+.consultas-paciente .proposito {
     color: black;
     font-weight: bold;
 }
@@ -368,7 +368,7 @@ div.tab-paciente {
 .consulta-atual, .perfil, .cadastros {
     width: 100%;
     border: 2px gray solid;
-    font-family: 'Comfortaa', cursive;    
+    font-family: 'Comfortaa', cursive;
     color: black;
     padding: 30px;
 }
@@ -386,7 +386,7 @@ ul.cadastros {
 }
 
 .perfil h1 {
-    font-size: 30px;    
+    font-size: 30px;
     font-family: 'Comfortaa', cursive;
 }
 
@@ -399,9 +399,9 @@ ul.cadastros {
 
 .perfil #imagem {
     float:right;
-    border: solid 2px grey;   
+    border: solid 2px grey;
     height: 120px;
-    width: 90px;    
+    width: 90px;
     display: inline-block;
     margin: 0;
     margin-bottom: 10px;
@@ -427,8 +427,13 @@ ul.cadastros {
 .perfil #cabecalho .asp_button {
     float: right;
     display: inline-block;
-    border: 1px solid grey;
-    background-color: #edf3fc;
+    margin-left: 10px;
+}
+
+.perfil #cabecalho #ContentPlaceHolder1_btnFileUpload
+{
+    float: right;
+    display: inline-block;
     margin-left: 10px;
 }
 
@@ -443,10 +448,10 @@ ul.cadastros {
 
 .cadastros ul li {
     font-size: 24px;
-    display: inline-block;    
+    display: inline-block;
     margin: 0 5%;
-    box-sizing: border-box;        
-    background: rgb(47,198,47);   
+    box-sizing: border-box;
+    background: rgb(47,198,47);
     background-image: linear-gradient(120deg, #89f7fe 0%, #63dfff 100%);
     padding: 10px;
     border-style: none solid;
@@ -455,7 +460,7 @@ ul.cadastros {
 }
 
 .cadastros .asp_button {
-   
+
 }
 
 #body-verConsulta {
@@ -463,7 +468,7 @@ ul.cadastros {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url("medico-paciente.jpg");
+    background-image: url("imgs/medico-paciente.jpg");
 }
 
 .consulta {
@@ -474,7 +479,7 @@ ul.cadastros {
     width: 70vw;
     background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 0px 0px 5px 3px rgba(50, 50, 50, 0.5);
-    font-family: 'Comfortaa', cursive;    
+    font-family: 'Comfortaa', cursive;
 }
 
 .consulta .secao {
@@ -489,7 +494,7 @@ ul.cadastros {
     padding: 10px;
    background-image: linear-gradient(120deg, #89f7fe 0%, #63dfff 100%);
     font-size: 32px;
-    color: black;    
+    color: black;
     border-radius: 10px;
 }
 
@@ -531,7 +536,7 @@ ul.cadastros {
     text-align: center;
 }
 
-.btnFinal .asp_button {        
+.btnFinal .asp_button {
     padding: 10px 3px;
     border: solid black 3px;
     font-size: 24px;
@@ -544,7 +549,7 @@ ul.cadastros {
     top: calc(110vh + 30px);
     display: block;
     width: 350px;
-    height: auto;    
+    height: auto;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -557,7 +562,7 @@ ul.cadastros {
 
 #subMenu-cadastros li {
     display: block;
-    padding: 8px;    
+    padding: 8px;
     margin: 0;
     font-family: 'Comfortaa', cursive;
     font-size: 20px;
@@ -580,11 +585,11 @@ ul.cadastros {
 
 .formulario {
     display: block;
-    position: absolute;     
+    position: absolute;
     left: 40vw;
     top: 50vh;
     padding: 15px;
-    width: 400px;    
+    width: 470px;
     background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 0px 0px 5px 3px rgba(50, 50, 50, 0.5);
 }
@@ -594,11 +599,11 @@ ul.cadastros {
     font-size: 30px;
     display: block;
     margin: auto;
-    text-align: center;    
+    text-align: center;
     width: 59%;
 }
 
-.formulario .campo {    
+.formulario .campo {
     margin: auto;
     padding: 5px;
 }
@@ -611,18 +616,18 @@ ul.cadastros {
 
 .formulario .input_text {
     font-family: 'Trebuchet MS', sans-serif;
-    font-size: 1.5em;    
+    font-size: 1.5em;
     right: 0;
     display: inline-block;
-    width: 100%;   
+    width: 100%;
 }
 
 .formulario .asp_label {
     font-size: 20px;
     font-family: 'Comfortaa', cursive;
-    color: black;   
+    color: black;
     display: block;
-    margin-right: auto;    
+    margin-right: auto;
 
 }
 
@@ -643,7 +648,7 @@ ul.cadastros {
 
 .formulario #lbMsg {
     text-align: center;
-    margin-top: 25px;   
+    margin-top: 25px;
 }
 
 .formulario #btnLogar {
@@ -651,27 +656,27 @@ ul.cadastros {
 }
 
 #indexPaciente {
-    background-image: url('aerial-background-beautiful-990830.jpg');
+    background-image: url('imgs/aerial-background-beautiful-990830.jpg');
 }
 
 #indexMedico {
-    background-image: url('clinic-doctors-glass-127873.jpg');
+    background-image: url('imgs/clinic-doctors-glass-127873.jpg');
 }
 
 #indexSecretaria {
-    background-image: url('accounting-achievement-aerial-1043506.jpg');
+    background-image: url('imgs/accounting-achievement-aerial-1043506.jpg');
 }
 
 #index-1 {
     z-index: -999;
-    background-image: url("arms-care-check-905874.jpg");
+    background-image: url("imgs/arms-care-check-905874.jpg");
 }
 
 .banner {
     display: block;
     width: 100%;
     line-height: 92vh;
-    height: 92vh;    
+    height: 92vh;
     background-position-x: center;
     background-position-y: top;
     background-repeat: no-repeat;
@@ -685,7 +690,7 @@ ul.cadastros {
     vertical-align: middle;
     margin: auto;
     padding: 0;
-    text-align: center;    
+    text-align: center;
     font-size: 7em;
     font-family: 'Oleo Script Swash Caps', cursive;
     color: #000000;
@@ -696,7 +701,7 @@ ul.cadastros {
     width: 100vw;
     height: 3vh;
     background-image: linear-gradient(to left, #689be7, #4ca9ef, #2bb7f1, #05c3f0, #12cfeb);
-    box-shadow: 0px -3px 5px 2px rgba(0,0,0,0.5);    
+    box-shadow: 0px -3px 5px 2px rgba(0,0,0,0.5);
 }
 
 .section {
@@ -725,7 +730,7 @@ ul.cadastros {
 }
 
 .footer {
-    width: 100vw;    
+    width: 100vw;
     box-sizing: border-box;
     background-color: #80d4ff;
     margin: 0;
@@ -735,8 +740,8 @@ ul.cadastros {
 }
 
 .footer h3{
-    font-family: 'Open Sans', sans-serif;   
-    font-size: 
+    font-family: 'Open Sans', sans-serif;
+    font-size:
 }
 
 .footer p {
@@ -747,7 +752,7 @@ div.polaroid {
     display: inline-block;
     width: 40vw;
     background-color: white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);    
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin: 0 3vw;
 }
 
@@ -769,7 +774,7 @@ div.container {
     font-family: 'Open Sans', sans-serif;
     margin-bottom: 3vh;
     background-color: #edf3fc;
-    border-radius: 5px; 
+    border-radius: 5px;
     padding: 10px;
 }
 
@@ -777,11 +782,11 @@ div.container {
     display:inline-block;
     width: 10%;
     font-size: 1.2em;
-    text-align: center;  
+    text-align: center;
     margin: 0;
 }
 
-.filtrar .asp_button{    
+.filtrar .asp_button{
     margin: 0;
     border: solid grey 3px;
     border-radius: 10px;
@@ -799,7 +804,7 @@ ul.filtros {
     list-style: none;
     text-align: center;
     box-sizing: border-box;
-    font-size: 1.2em;    
+    font-size: 1.2em;
 }
 
 ul.filtros li {
@@ -819,9 +824,9 @@ ul.filtros li .asp_textbox{
     left: 5vw;
 }
 
-.btnVoltar i{    
+.btnVoltar i{
     background-color: rgba(255, 255, 255, 0.9);
-    color: black;    
+    color: black;
     padding: 2vw;
     border-radius: 5px;
     font-size: 1.5em;

@@ -13,7 +13,7 @@
     <link href="/Content/bootstrap.css" rel="stylesheet" />
     <title></title>
 </head>
-<body style="background-image: url('../assistant-beard-boss-630836.jpg');background-attachment: fixed; background-position: center; background-size: cover; background-repeat: no-repeat;">
+<body style="background-image: url('../imgs/assistant-beard-boss-630836.jpg');background-attachment: fixed; background-position: center; background-size: cover; background-repeat: no-repeat;">
 <form id="form1" runat="server">
 <asp:scriptmanager runat="server"></asp:scriptmanager>
 
@@ -23,7 +23,7 @@
     %>
 <div class="consulta">
     <a href="IndexSecretaria.aspx" class="btnVoltar"><i class="glyphicon glyphicon-chevron-left"></i></a>
-    <h1 class="title-originais"> Cadastrar 
+    <h1 class="title-originais"> Cadastrar
         <%
             switch(Session["tipoUsCadastrar"])
             {
@@ -38,8 +38,8 @@
                     break;
             }
         %>
-    </h1>    
-    
+    </h1>
+
     <table class="tab-cadastro">
         <tr>
             <td><label>Email: </label></td>
@@ -62,10 +62,10 @@
                 <td><asp:TextBox ID="txtCRM" runat="server" MaxLength="13" OnTextChanged="txtCRM_TextChanged"></asp:TextBox></td>
 
                 <!-- MÁSCARA CRM -->
-                <ajaxToolkit:MaskedEditExtender ID="MaskedEditExtender4" runat="server" 
-                    TargetControlID="txtCRM" 
-                    Mask="99999999-9/LL" 
-                    InputDirection="LeftToRight" 
+                <ajaxToolkit:MaskedEditExtender ID="MaskedEditExtender4" runat="server"
+                    TargetControlID="txtCRM"
+                    Mask="99999999-9/LL"
+                    InputDirection="LeftToRight"
                     ClearMaskOnLostFocus ="False" />
             </tr>
             <tr><td><asp:Label CssClass="lblErro" ID="lbMsgCRM" runat="server"></asp:Label></td></tr>
@@ -82,11 +82,11 @@
                 <td><asp:TextBox ID="txtCelular" runat="server" MaxLength="14" OnTextChanged="txtCelular_TextChanged"></asp:TextBox></td>
 
                 <!-- MÁSCARA CELULAR-->
-                <ajaxToolkit:MaskedEditExtender ID="MaskedEditExtender2" runat="server" 
-                    TargetControlID="txtCelular" 
-                    Mask="(99)99999-9999" 
-                    MaskType="Number" 
-                    InputDirection="LeftToRight" 
+                <ajaxToolkit:MaskedEditExtender ID="MaskedEditExtender2" runat="server"
+                    TargetControlID="txtCelular"
+                    Mask="(99)99999-9999"
+                    MaskType="Number"
+                    InputDirection="LeftToRight"
                     ClearMaskOnLostFocus ="False" />
             </tr>
             <tr><td><asp:Label CssClass="lblErro" ID="lbMsgCelular" runat="server"></asp:Label></td></tr>
@@ -97,11 +97,11 @@
                 <td><asp:TextBox ID="txtTelefone" runat="server" MaxLength="13" OnTextChanged="txtTelefone_TextChanged"></asp:TextBox></td>
 
                 <!-- MÁSCARA TELEFONE -->
-                <ajaxToolkit:MaskedEditExtender ID="MaskedEditExtender1" runat="server" 
-                    TargetControlID="txtTelefone" 
-                    Mask="(99)9999-9999" 
-                    MaskType="Number" 
-                    InputDirection="LeftToRight" 
+                <ajaxToolkit:MaskedEditExtender ID="MaskedEditExtender1" runat="server"
+                    TargetControlID="txtTelefone"
+                    Mask="(99)9999-9999"
+                    MaskType="Number"
+                    InputDirection="LeftToRight"
                     ClearMaskOnLostFocus ="False" />
             </tr>
             <tr><td><asp:Label CssClass="lblErro" ID="lbMsgTelefone" runat="server"></asp:Label></td></tr>

@@ -132,14 +132,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="accounting-achievement-aerial-1043506.jpg" />
-    <Content Include="aerial-background-beautiful-990830.jpg" />
-    <Content Include="analysis-analytics-application-590016.jpg" />
-    <Content Include="arms-care-check-905874.jpg" />
-    <Content Include="assistant-beard-boss-630836.jpg" />
-    <Content Include="beach-boys-children-1231365.jpg" />
-    <Content Include="charts-cup-of-coffee-desk-1345089.jpg" />
-    <Content Include="clinic-doctors-glass-127873.jpg" />
+    <Content Include="imgs\accounting-achievement-aerial-1043506.jpg" />
+    <Content Include="imgs\aerial-background-beautiful-990830.jpg" />
+    <Content Include="imgs\analysis-analytics-application-590016.jpg" />
+    <Content Include="imgs\arms-care-check-905874.jpg" />
+    <Content Include="imgs\assistant-beard-boss-630836.jpg" />
+    <Content Include="imgs\beach-boys-children-1231365.jpg" />
+    <Content Include="imgs\charts-cup-of-coffee-desk-1345089.jpg" />
+    <Content Include="imgs\clinic-doctors-glass-127873.jpg" />
     <Content Include="Content\architecture-buildings-city-1139556.jpg" />
     <Content Include="Index.aspx" />
     <Content Include="Medico\IndexMedico.aspx" />
@@ -147,8 +147,8 @@
     <Content Include="Secretaria\AdicionarEspecialidadeAMédico.aspx" />
     <Content Include="Secretaria\Relatorios.aspx" />
     <Content Include="scriptPaginas.js" />
-    <Content Include="medico-paciente.jpg" />
-    <Content Include="medico-sorrindo.jpg" />
+    <Content Include="imgs\medico-paciente.jpg" />
+    <Content Include="imgs\medico-sorrindo.jpg" />
     <Content Include="Medico\VerConsulta.aspx" />
     <Content Include="NScript.js" />
     <Content Include="Paciente\VerConsulta.aspx" />
@@ -157,7 +157,7 @@
     <Content Include="Secretaria\AgendarConsultas.aspx" />
     <Content Include="Secretaria\IndexSecretaria.aspx" />
     <Content Include="Secretaria\Servidor.aspx" />
-    <Content Include="wallpaper-index.jpeg" />
+    <Content Include="imgs\wallpaper-index.jpeg" />
     <Content Include="Secretaria\CadastroUsuarios.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -367,9 +367,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49461</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:21362/</IISUrl>
+          <IISUrl>http://localhost:49905/</IISUrl>
           <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost:21362/</IISAppRootUrl>
+          <IISAppRootUrl>http://localhost:49905/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

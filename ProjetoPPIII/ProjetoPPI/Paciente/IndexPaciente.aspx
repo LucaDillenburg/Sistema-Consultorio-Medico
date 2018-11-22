@@ -63,14 +63,14 @@
                           <%
                               if (consultas[i].Satisfacao >= 0)
                               {
-                                %>Satisfação: <%=consultas[i].Satisfacao%> <br /><%
-                                                                                     if (!String.IsNullOrEmpty(consultas[i].Comentario))
+                                %><br>Satisfação: <%=consultas[i].Satisfacao%> <br /><%
+                                if (!String.IsNullOrEmpty(consultas[i].Comentario))
                                     %>Comentário: <%=consultas[i].Comentario%> <br /> <%
                               }
                               break;
                         }%>
-                    </td>
-                    </tr>                                
+                            </td>
+                        </tr>                                
             </table>
             </a>
           <%} else
@@ -93,7 +93,7 @@
                     <% } %>
                 </div>
                 <div class="btnsUpload">                    
-                    <asp:Button CssClass="asp_button" ID="btnFileUpload" runat="server" Text="Adicionar/Mudar foto" OnClick="btnFileUpload_Click" />
+                    <asp:Button ID="btnFileUpload" runat="server" Text="Adicionar/Mudar foto" OnClick="btnFileUpload_Click" />
                     <asp:FileUpload CssClass="asp_button" ID="fileUpload" runat="server" />
                 </div>
             </div>            

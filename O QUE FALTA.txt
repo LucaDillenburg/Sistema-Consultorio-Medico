@@ -1,32 +1,26 @@
 O QUE FALTA:
- - colocar o botao de login em cima do label de resposta (que fala se nao conseguiu logar)
- - deixar mensagens de erro em vermelho (em VerConsulta da secretaria, AgendarConsulta e CadastrarUsuarios)
- - arrumar os text area e textbox MultiLine(deixar bonito e de maneira que nao de para mudar o tamanho)
- - nao tem btn voltar no login
- - aumentar DIV login (no login da secretaria fica zuado)
- - botao de voltar em Relatorio.aspx
- - dimiuir tamanho DIV servidor
- - mudar imagem de fundo do login? (nao eh relacionado a hospital)
- - ocorreu e observacoes estao na mesma linha nas tabelas da consulta
+
+ - arrumar os text area e textbox MultiLine (deixar bonito e de maneira que nao de para mudar o tamanho)
+
+ - deixar menu de cor azul
+
+ - colocar em label o nome do paciente e medico e nao dar update neles. OK
+ - menu dos usuarios (mudar no Menu.Master: mexer com Session). OK
  - colocar todas as imagens em uma pasta
- - menu dos usuarios (mudar no Menu.Master: mexer com Session)
+. OK
+ - aumentar width listbox servidor e tamanho letra. OK
+ - deixar botao foto sem estilo. OK
 
- - atualizar dados em VerConsulta da Secretaria. Praticamente OK
-    .falta descobrir como mudar os DDLs no .ASPX
+ - otimizar (exemplo: deixar o nomeCompleto do medico e do paciente junto no AtributosConsulta para nao ter que dar dois selects)
 
- - design VerConsultas do medico quando fez observacao e vai fazer observacao. OK
- - design VerConsultas do paciente quando vai fazer comentario e satisfacao, e quando fez soh satisfacao, ou quando fez satisfacao e comentario. OK
- - adicionar foto de perfil. OK
- - testar e arrumar VerConsultas (de paciente, medico e secretaria). OK
- - media de satisfacao. OK
- - logout e menu. OK
- - adicionar especialidade e adicionar especialidades a medicos. OK
- - fazer escape (HttpUtility.HtmlEncode(str dado por usuarios)). OK
- - voltar de especialidade medico, ser especialidade. OK
- - colocar máscaras nos campos (CadastroUsuarios, AgendarConsulta, VerConsulta). OK
+
+
 
 
 Outras Coisa:
+
  - mostrar horarios possiveis para o medico ?
+
  - opcao para mudar atributos dos usuarios ?
+
  - opcao para usuario pedir consulta ??

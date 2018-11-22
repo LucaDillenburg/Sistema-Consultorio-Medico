@@ -46,5 +46,22 @@ namespace ProjetoPPI
             Response.Redirect("/Login.aspx");
         }
 
+        //PACIENTE
+        protected void btnPrincPac_Click(object sender, EventArgs e)
+        { Response.Redirect("/Paciente/IndexPaciente.aspx"); }
+
+        //MEDICO
+        protected void btnPrincMed_Click(object sender, EventArgs e)
+        { Response.Redirect("/Medico/IndexMedico.aspx"); }
+
+        //SECRETARIA
+        protected void btnPrincSec_Click(object sender, EventArgs e)
+        { Response.Redirect("/Secretaria/IndexSecretaria.aspx"); }
+        protected void btnAgendarConsulta_Click(object sender, EventArgs e)
+        { Response.Redirect("/Secretaria/AgendarConsultas.aspx"); }
+        protected void btnServidor_Click(object sender, EventArgs e)
+        { Response.Redirect("/Secretaria/Servidor.aspx"); }
+        protected void btnRelatórios_Click(object sender, EventArgs e)
+        { Response.Redirect("/Secretaria/Relatorios.aspx"); }
     }
 }

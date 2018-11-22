@@ -2,11 +2,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <body id="bodyIndex">        
+    <body id="bodyIndex">
         <div class="banner" id="index-1">
             <h1 class="text-shadow-drop-center">Bem-Vindo</h1>
         </div>
-        
+
         <div class="gradient-1"></div>
 
         <div class="section">
@@ -28,17 +28,17 @@
 
         <div class="section">
             <div class="polaroid">
-                <img src="assistant-beard-boss-630836.jpg" />
+                <img src="imgs/assistant-beard-boss-630836.jpg" />
                 <div class="container">
                     <p>Agendamento Flexível</p>
                 </div>
-            </div>   
+            </div>
             <div class="polaroid">
-                <img src="medico-paciente.jpg" />
+                <img src="imgs/medico-paciente.jpg" />
                 <div class="container">
                     <p>Atendimento Amigável</p>
                 </div>
-            </div> 
+            </div>
         </div>
         <footer class="footer">
             <h3>Autores: </h3>
