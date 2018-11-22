@@ -479,7 +479,7 @@ ul.cadastros {
 
 .consulta .secao {
     border-left: 3px solid #63dfff;
-    padding: 5px 10px;
+    padding: 5px 10px 20px 10px;
     background-color: rgba(191, 191, 191, 0.5);
     margin: 20px 0;
 }
@@ -501,6 +501,12 @@ ul.cadastros {
 .consulta p {
     margin-left: 30px;
     font-size: 18px;
+}
+
+.consulta textarea {
+    resize: none;
+    width: 100%;
+    height: 180px;
 }
 
 .tab-cadastro {
