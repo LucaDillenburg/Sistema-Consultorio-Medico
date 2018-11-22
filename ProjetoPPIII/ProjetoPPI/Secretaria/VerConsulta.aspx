@@ -48,7 +48,7 @@
         </asp:DropDownList>
         <asp:SqlDataSource ID="SqlDataSourceMedicos" runat="server" ConnectionString="<%$ ConnectionStrings:PR317188ConnectionString %>" SelectCommand="SELECT [email], [nomeCompleto] FROM [medico]"></asp:SqlDataSource>
         
-        <asp:Label ID="lbMsgMedico" runat="server" Text=""></asp:Label> <br />
+        <asp:Label CssClass="lblErro" ID="lbMsgMedico" runat="server" Text=""></asp:Label> <br />
     </div>
 
     <div class="secao">
@@ -57,7 +57,7 @@
         </asp:DropDownList>
         <asp:SqlDataSource ID="SqlDataSourcePacientes" runat="server" ConnectionString="<%$ ConnectionStrings:PR317188ConnectionString %>" SelectCommand="SELECT [email], [nomeCompleto] FROM [paciente]"></asp:SqlDataSource>
         
-        <asp:Label ID="lbMsgPaciente" runat="server" Text=""></asp:Label> <br />
+        <asp:Label CssClass="lblErro" ID="lbMsgPaciente" runat="server" Text=""></asp:Label> <br />
     </div>
 
     <div class="secao">
@@ -70,7 +70,7 @@
             InputDirection="LeftToRight" 
             ClearMaskOnLostFocus ="False" />
         <br />
-        <asp:Label ID="lbMsgHorario" runat="server" Text=""></asp:Label>
+        <asp:Label CssClass="lblErro" ID="lbMsgHorario" runat="server" Text=""></asp:Label>
     </div>           
 
     <div class="secao">
@@ -80,7 +80,7 @@
             <asp:ListItem Value="60">1 hora</asp:ListItem>
         </asp:DropDownList>
         <br />
-        <asp:Label ID="lbMsgDuracao" runat="server" Text=""></asp:Label>
+        <asp:Label CssClass="lblErro" ID="lbMsgDuracao" runat="server" Text=""></asp:Label>
     </div>
         
     <div class="secao">
@@ -92,7 +92,7 @@
             <asp:ListItem Value="c">Cancelado</asp:ListItem>
         </asp:DropDownList>
         <br />
-        <asp:Label ID="lbMsgStatus" runat="server" Text=""></asp:Label>
+        <asp:Label CssClass="lblErro" ID="lbMsgStatus" runat="server" Text=""></asp:Label>
     </div>
 
     <%
@@ -118,7 +118,7 @@
     }else
     { 
     %>
-        <asp:Label ID="lbSemSatisfacao" runat="server" Text="O paciente não registrou nenhuma satisfação..."></asp:Label> <br />
+        <asp:Label CssClass="lblErro" ID="lbSemSatisfacao" runat="server" Text="O paciente não registrou nenhuma satisfação..."></asp:Label> <br />
     <% } %>
 
 
@@ -132,7 +132,7 @@
     
     <div class="btnFinal">
         <asp:Button CssClass="asp_button" ID="btnAtualizarDados" runat="server" Text="Atualizar dados consulta" OnClick="btnAtualizarDados_Click" /> <br /> 
-        <asp:Label ID="lbMsg" runat="server" Text=""></asp:Label>
+        <asp:Label CssClass="lblErro" ID="lbMsg" runat="server" Text=""></asp:Label>
     </div>
 </div>
 </form>

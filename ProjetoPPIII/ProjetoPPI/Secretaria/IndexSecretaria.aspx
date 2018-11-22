@@ -53,7 +53,7 @@
             <table class="consultas-paciente">
             <tr class="proposito">
                 <td>PROPÓSITO: </td>                
-                <td colspan="4"><%=((ProjetoPPI.AtributosConsultaCod)infoConsultas[i,0]).Proposito%></td>
+                <td colspan="3"><%=((ProjetoPPI.AtributosConsultaCod)infoConsultas[i,0]).Proposito%></td>
             </tr>
             <tr>
                 <td style="font-weight: bold; color: black;">HORÁRIO: </td>
@@ -63,27 +63,31 @@
             </tr>
             <tr>
                 <td style="font-weight: bold; color: black;">PACIENTE: </td>
-                <td colspan="4"><%=((string)infoConsultas[i,1])%></td>
+                <td colspan="3"><%=((string)infoConsultas[i,1])%></td>
             </tr>
             <tr>
                 <td style="font-weight: bold; color: black;">MÉDICO: </td>
-                <td colspan="4"><%=((string)infoConsultas[i,2])%></td>
+                <td colspan="3"><%=((string)infoConsultas[i,2])%></td>
             </tr>
-            <tr class="observacoes">
-                <td style="font-weight: bold;">OBSERVAÇÕES</td>
-                <td colspan="4">
+            <tr>
+                <td style="font-weight: bold; color: black;">STATUS: </td>
+                <td colspan="3">            
+            
                     <%
                     switch(((ProjetoPPI.AtributosConsultaCod)infoConsultas[i,0]).Status)
                     {
                         case 'n':
-                            %>Ainda não ocorreu<%
+                            %>Ainda não ocorreu</td><%
                             break;
                         case 'c':
-                            %>Cancelada<%
+                            %>Cancelada</td><%
                             break;
                         case 's':
                           %>
-                            Ocorreu
+                            Ocorreu</td>
+                        <tr class="observacoes">
+                            <td style="font-weight: bold;">OBSERVAÇÕES</td>
+                            <td colspan="3">
                             Observações: <%=((ProjetoPPI.AtributosConsultaCod)infoConsultas[i,0]).Observacoes%>
                           <%
                             if (((ProjetoPPI.AtributosConsultaCod)infoConsultas[i,0]).Satisfacao >= 0)
@@ -93,11 +97,11 @@
                                     %>Comentário: <%=((ProjetoPPI.AtributosConsultaCod)infoConsultas[i,0]).Comentario%><%
                             }
                             break;
+                            %></td></tr><%
                     }
                 
                 %>
-                </td>
-            </tr>
+             </tr>               
             </table> 
             </a>
             <%} %>

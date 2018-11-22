@@ -81,34 +81,37 @@
             <table class="consultas-paciente">
             <tr class="proposito">
                 <td>PROPÓSITO: </td>                
-                <td colspan="4"><%=consultas[i].Proposito%></td>
+                <td colspan="3"><%=consultas[i].Proposito%></td>
             </tr>
             <tr>
                 <td style="font-weight: bold; color: black;">HORÁRIO: </td>
                 <td><%=consultas[i].Horario.ToString("dd-MM-yyyy HH:mm")%></td> 
                 <td style="font-weight: bold; color: black;">DURAÇÃO: </td>
-                <td colspan="2"><%=(consultas[i].UmaHora)?"1 hora":"30 minutos"%></td>
+                <td><%=(consultas[i].UmaHora)?"1 hora":"30 minutos"%></td>
             </tr>
             <tr>
                 <td style="font-weight: bold; color: black;">PACIENTE: </td>
-                <td colspan="4"><%=ProjetoPPI.Paciente.DeEmail(consultas[i].EmailPaciente, (ProjetoPPI.ConexaoBD)Session["conexao"]).NomeCompleto%></td>
+                <td colspan="3"><%=ProjetoPPI.Paciente.DeEmail(consultas[i].EmailPaciente, (ProjetoPPI.ConexaoBD)Session["conexao"]).NomeCompleto%></td>
             </tr>
-            <tr class="observacoes">
-                <td style="font-weight: bold;">OBSERVAÇÕES</td>
-                <td colspan="4">
+            <tr>
+                <td style="font-weight: bold; color: black;">STATUS: </td>
+                <td colspan="3">
                     <%
                     switch(consultas[i].Status)
                     {
                         case 'n':
-                            %>Ainda não ocorreu<%
+                            %>Ainda não ocorreu</td><%
                             break;
                         case 'c':
-                            %>Cancelada<%
+                            %>Cancelada</td><%
                             break;
                         case 's':
                           %>
-                            Ocorreu <br />
-                            Observações: <%=consultas[i].Observacoes%> <br />
+                            Ocorreu</td></tr>
+                        <tr class="observacoes">
+                            <td style="font-weight: bold;">OBSERVAÇÕES</td>
+                            <td colspan="3">
+                            <%=consultas[i].Observacoes%> <br />
                           <%
                             if (consultas[i].Satisfacao >= 0)
                             {

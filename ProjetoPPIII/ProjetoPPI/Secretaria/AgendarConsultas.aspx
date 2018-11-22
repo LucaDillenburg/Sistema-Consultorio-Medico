@@ -29,7 +29,7 @@
             <td> Propósito: </td>
             <td> <asp:TextBox ID="txtProposito" runat="server"></asp:TextBox> </td>
         </tr>
-        <tr><td><asp:Label ID="lbMsgProposito" runat="server" Text=""></asp:Label></td></tr>
+        <tr><td><asp:Label CssClass="lblErro" ID="lbMsgProposito" runat="server" Text=""></asp:Label></td></tr>
 
         <tr>
             <td> Médico: </td>
@@ -39,7 +39,7 @@
                 <asp:SqlDataSource ID="SqlDataSourceMedicos" runat="server" ConnectionString="<%$ ConnectionStrings:PR317188ConnectionString %>" SelectCommand="SELECT [email], [nomeCompleto] FROM [medico]"></asp:SqlDataSource>
             </td>
         </tr>
-        <tr><td><asp:Label ID="lbMsgMedico" runat="server" Text=""></asp:Label></td></tr>
+        <tr><td><asp:Label CssClass="lblErro" ID="lbMsgMedico" runat="server" Text=""></asp:Label></td></tr>
 
         <tr>
             <td> Paciente: </td>
@@ -49,7 +49,7 @@
                 <asp:SqlDataSource ID="SqlDataSourcePacientes" runat="server" ConnectionString="<%$ ConnectionStrings:PR317188ConnectionString %>" SelectCommand="SELECT [email], [nomeCompleto] FROM [paciente]"></asp:SqlDataSource>
             </td>
         </tr>
-        <tr><td><asp:Label ID="lbMsgPaciente" runat="server" Text=""></asp:Label></td></tr>
+        <tr><td><asp:Label CssClass="lblErro" ID="lbMsgPaciente" runat="server" Text=""></asp:Label></td></tr>
 
         <tr>
             <td> Horário: <asp:TextBox ID="txtDia" runat="server" TextMode="Date"></asp:TextBox>
@@ -64,7 +64,7 @@
                 InputDirection="LeftToRight" 
                 ClearMaskOnLostFocus ="False" />
         </tr>
-        <tr><td><asp:Label ID="lbMsgHorario" runat="server" Text=""></asp:Label></td></tr>
+        <tr><td><asp:Label CssClass="lblErro" ID="lbMsgHorario" runat="server" Text=""></asp:Label></td></tr>
 
         <tr>
             <td> Tempo da consulta: </td>
@@ -75,11 +75,11 @@
                 </asp:DropDownList>
             </td>
         </tr>
-        <tr><td><asp:Label ID="lbMsgTempoConsulta" runat="server" Text=""></asp:Label></td></tr>
+        <tr><td><asp:Label CssClass="lblErro" ID="lbMsgTempoConsulta" runat="server" Text=""></asp:Label></td></tr>
     </table>
     
     <div class="btnFinal">
-        <asp:Label ID="lbMsg" runat="server" Text=""></asp:Label>    
+        <asp:Label ID="lbMsg" runat="server" CssClass="lblErro" Text=""></asp:Label>    
         <asp:button CssClass="asp_button" ID="btnAgendar" runat="server" text="Agendar" OnClick="btnAgendar_Click" />
     </div>
     

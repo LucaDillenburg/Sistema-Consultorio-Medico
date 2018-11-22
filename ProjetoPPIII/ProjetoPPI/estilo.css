@@ -311,12 +311,15 @@ div.tab-paciente {
 }
 
 .consultas-paciente {
+    background-color: rgb(250,250,250);
     display: none;
     border: solid grey 2px;
     width: 100%;
     font-family: 'Comfortaa', cursive;
     color: black;
-    margin-bottom: 30px;
+    margin-bottom: 70px;
+    table-layout: fixed;
+    font-size: 1.2em;
 }
 
 .consultas-paciente tr {
@@ -572,11 +575,10 @@ ul.cadastros {
 .formulario {
     display: block;
     position: absolute;     
-    left: calc(50% - 200px);
-    top: calc(50% - 150px);
+    left: 40vw;
+    top: 50vh;
     padding: 15px;
-    width: 400px;
-    height: 300px;
+    width: 400px;    
     background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 0px 0px 5px 3px rgba(50, 50, 50, 0.5);
 }
@@ -600,27 +602,6 @@ ul.cadastros {
     font-family: 'Comfortaa', cursive;
     color: black;
 }
-
-    /*
-.formulario .campo input[type=text] {
-    font-family: 'Trebuchet MS', sans-serif;
-    font-size: 1.5em;
-    margin-left: 10px;
-}
-
-.formulario .campo input[type=button] {
-    text-decoration: none;
-    background: none;
-    border: none;
-    width: 80%;
-    text-align: center;
-    margin: auto;
-    font-size: 2em;
-    font-family: 'Comfortaa', cursive;
-    vertical-align: middle;
-    padding: 0;
-    margin: 0;
-}*/
 
 .formulario .input_text {
     font-family: 'Trebuchet MS', sans-serif;
@@ -650,13 +631,17 @@ ul.cadastros {
 }
 
 .formulario hr {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    border: groove black 1px;
+    margin: 10px 0;
 }
 
 .formulario #lbMsg {
     text-align: center;
     margin-top: 25px;   
+}
+
+.formulario #btnLogar {
+    margin-top: 25px;
 }
 
 #indexPaciente {
@@ -836,9 +821,21 @@ ul.filtros li .asp_textbox{
     font-size: 1.5em;
 }
 
-
 .msgErro
 {
     color: red;
     font-size: 40px;
+}
+
+.lblErro {
+    color: red;
+}
+
+#bodyServidor {
+    height: unset;
+}
+
+#bodyServidor .consulta {
+    width: 800px;
+    left: calc("50vw - 400px");
 }

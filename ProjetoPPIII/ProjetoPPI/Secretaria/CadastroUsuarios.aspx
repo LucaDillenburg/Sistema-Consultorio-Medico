@@ -45,13 +45,13 @@
             <td><label>Email: </label></td>
             <td><asp:TextBox ID="txtEmail" runat="server" MaxLength="50" OnTextChanged="txtEmail_TextChanged"></asp:TextBox></td>
         </tr>
-        <tr><td><asp:Label ID="lbMsgEmail" runat="server"></asp:Label></td></tr>
+        <tr><td><asp:Label CssClass="lblErro" ID="lbMsgEmail" runat="server"></asp:Label></td></tr>
 
         <tr>
             <td><label>Nome completo: </label></td>
             <td><asp:TextBox ID="txtNome" runat="server" MaxLength="50" OnTextChanged="txtNome_TextChanged"></asp:TextBox></td>
         </tr>
-        <tr><td><asp:Label ID="lbMsgNome" runat="server"></asp:Label></td></tr>
+        <tr><td><asp:Label CssClass="lblErro" ID="lbMsgNome" runat="server"></asp:Label></td></tr>
 
         <%
             if ((ProjetoPPI.TipoUsuario)Session["tipoUsCadastrar"] == ProjetoPPI.TipoUsuario.medico)
@@ -68,7 +68,7 @@
                     InputDirection="LeftToRight" 
                     ClearMaskOnLostFocus ="False" />
             </tr>
-            <tr><td><asp:Label ID="lbMsgCRM" runat="server"></asp:Label></td></tr>
+            <tr><td><asp:Label CssClass="lblErro" ID="lbMsgCRM" runat="server"></asp:Label></td></tr>
         <%
             }
         %>
@@ -89,7 +89,7 @@
                     InputDirection="LeftToRight" 
                     ClearMaskOnLostFocus ="False" />
             </tr>
-            <tr><td><asp:Label ID="lbMsgCelular" runat="server"></asp:Label></td></tr>
+            <tr><td><asp:Label CssClass="lblErro" ID="lbMsgCelular" runat="server"></asp:Label></td></tr>
 
 
             <tr>
@@ -104,7 +104,7 @@
                     InputDirection="LeftToRight" 
                     ClearMaskOnLostFocus ="False" />
             </tr>
-            <tr><td><asp:Label ID="lbMsgTelefone" runat="server"></asp:Label></td></tr>
+            <tr><td><asp:Label CssClass="lblErro" ID="lbMsgTelefone" runat="server"></asp:Label></td></tr>
         <%
             }
         %>
@@ -123,7 +123,7 @@
                 <td><label>Data de Nascimento: </label></td>
                 <td><asp:TextBox ID="txtDataNascimento" runat="server" TextMode="Date" MaxLength="10" OnTextChanged="txtDataNascimento_TextChanged"></asp:TextBox></td>
             </tr>
-            <tr><td><asp:Label ID="lbMsgDataNascimento" runat="server"></asp:Label></td></tr>
+            <tr><td><asp:Label CssClass="lblErro" ID="lbMsgDataNascimento" runat="server"></asp:Label></td></tr>
         <%
             }
         %>
@@ -138,11 +138,11 @@
             <td><label>Confirmação de senha: </label></td>
             <td><asp:TextBox ID="txtConfirmacaoSenha" runat="server" TextMode="Password" MaxLength="30" OnTextChanged="txtConfirmacaoSenha_TextChanged"></asp:TextBox></td>
         </tr>
-        <tr><td><asp:Label ID="lbMsgConfSenha" runat="server"></asp:Label></td></tr>
+        <tr><td><asp:Label CssClass="lblErro" ID="lbMsgConfSenha" runat="server"></asp:Label></td></tr>
     </table>
 
     <div class="btnFinal">
-        <asp:Label ID="lbMsg" runat="server" Text=""></asp:Label>
+        <asp:Label CssClass="lblErro" ID="lbMsg" runat="server" Text=""></asp:Label>
         <asp:Button CssClass="asp_button" ID="btnCadastrar" runat="server" Text="Cadastrar" OnClick="btnCadastrar_Click" CausesValidation="False"/>
     </div>
 </div>

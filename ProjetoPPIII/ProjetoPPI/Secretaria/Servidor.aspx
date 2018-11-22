@@ -21,7 +21,7 @@
         }
     </style>
 </head>
-<body>
+<body id="bodyServidor">
 <form id="form2" runat="server">
     <a href="IndexSecretaria.aspx" class="btnVoltar"><i class="glyphicon glyphicon-chevron-left"></i></a>
 <div class="consulta">

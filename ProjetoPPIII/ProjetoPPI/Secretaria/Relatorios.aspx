@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"/>
     <script src="/Scripts/jquery-1.10.2.min.js"></script>
-    <link href="Content/bootstrap.css" rel="stylesheet" />   
+    <link href="/Content/bootstrap.css" rel="stylesheet" />   
 </head>
 <body id="bodyRelatorios">
     <a href="IndexSecretaria.aspx" class="btnVoltar"><i class="glyphicon glyphicon-chevron-left"></i></a>

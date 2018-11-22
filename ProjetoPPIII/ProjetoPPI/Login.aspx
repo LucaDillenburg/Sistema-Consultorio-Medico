@@ -10,11 +10,13 @@
     <link href="https://fonts.googleapis.com/css?family=Baloo+Tammudu" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"/>    
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <script src="/Scripts/jquery-1.10.2.min.js"></script>
     <style>
         body {
-            background-image: url("Content/architecture-buildings-city-1139556.jpg");
+            background-image: url("/beach-boys-children-1231365.jpg");
             background-position: center;
-            background-attachment:fixed;
+            background-attachment: fixed;
             background-size: cover;
             background-repeat: no-repeat;
         }
@@ -22,6 +24,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <a class="btnVoltar" href="/Index.aspx"><i class="glyphicon glyphicon-chevron-left"></i></a>
         <div class="formulario">
             <%
                 if (Session["tipoUsuario"] == null || Session["tipoUsuario"].GetType()!=typeof(ProjetoPPI.TipoUsuario))
@@ -68,6 +71,21 @@
                 <asp:Label CssClass="asp_label" ID="lbMsg" runat="server" Text="" Visible="true" style="color:red"></asp:Label>
             </div>
         </div>
+        <script>
+            $(window).ready(function () {
+                var marginTop = $(window).height() / 2 - $(".formulario").height() / 2;
+                var marginLeft = $(window).width() / 2 - $(".formulario").width() / 2;
+                $(".formulario").css("top", marginTop);
+                $(".formulario").css("left", marginLeft);
+            })
+
+            $(window).resize(function () {
+                var marginTop = $(window).height() / 2 - $(".formulario").height() / 2;
+                var marginLeft = $(window).width() / 2 - $(".formulario").width() / 2;
+                $(".formulario").css("top", marginTop);
+                $(".formulario").css("left", marginLeft);
+            })
+        </script>
     </form>
 </body>
 </html>
