@@ -1,16 +1,5 @@
 O QUE FALTA:
-
- - arrumar os text area e textbox MultiLine (deixar bonito e de maneira que nao de para mudar o tamanho)
-
  - deixar menu de cor azul
-
- - colocar em label o nome do paciente e medico e nao dar update neles. OK
- - menu dos usuarios (mudar no Menu.Master: mexer com Session). OK
- - colocar todas as imagens em uma pasta
-. OK
- - aumentar width listbox servidor e tamanho letra. OK
- - deixar botao foto sem estilo. OK
-
  - otimizar (exemplo: deixar o nomeCompleto do medico e do paciente junto no AtributosConsulta para nao ter que dar dois selects)
 
 
